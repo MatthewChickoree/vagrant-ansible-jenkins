@@ -28,7 +28,7 @@ documentTitles["01-intro.html#introduction"] = "Introduction";
 index.add({
     url: "01-intro.html#introduction",
     title: "Introduction",
-    body: "# Introduction   This repository was created to provide a new team with a pre configured Jenkins environment with similar slave environments by using Amazon Web Services. Vagrant and packer was used with the help of Ansible for consistent and repeatable environments.  * If interested in pushing to this Repository please see the `Development` section. * If problems occur, Please check the `Known Issues` page first. If there are no resolutions for your problem then feel free to submit an [issue](https://github.com/medullan/vagrant-ansible-jenkins/issues) * Most Instructions and problem resolutions were tested for Mac OS X. Cannot guarantee this process will work on other operating systems   *** &lt;br/&gt; "
+    body: "# Introduction   This repository was created to provide a new team with a pre configured Jenkins environment with similar slave environments by using Amazon Web Services. Vagrant and packer was used with the help of Ansible for consistent and repeatable environments.  * If interested in pushing to this Repository please see the `Development` section. * If problems occur, Please check the `Known Issues` page first. If there are no resolutions for your problem then feel free to submit an [issue](https://github.com/medullan/vagrant-ansible-jenkins/issues) * Most Instructions and problem resolutions were tested for Mac OS X. Cannot guarantee this process will work on other operating systems  &lt;br/&gt; "
 });
 
 documentTitles["01-intro.html#credits"] = "Credits";
