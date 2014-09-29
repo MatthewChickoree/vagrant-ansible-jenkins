@@ -402,7 +402,7 @@ documentTitles["06-documentation.html#deploy-docs-to-gh-pages"] = "Deploy Docs t
 index.add({
     url: "06-documentation.html#deploy-docs-to-gh-pages",
     title: "Deploy Docs to GH-Pages",
-    body: "## Deploy Docs to GH-Pages  When the documentation is generated and parsed properly then you can deploy to the [website](http://medullan.github.io/vagrant-ansible-jenkins)  **NB.** Please review generated docs locally before deploying  You can do this by running: ```bash $ grunt deploy ``` "
+    body: "## Deploy Docs to GH-Pages  When the documentation is generated and parsed properly then you can deploy to the [website](http://medullan.github.io/vagrant-ansible-jenkins)  **NB.** Please review generated docs locally before deploying  You can deploy by running: ```bash $ grunt deploy ``` "
 });
 
 
