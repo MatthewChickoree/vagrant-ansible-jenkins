@@ -381,7 +381,7 @@ documentTitles["06-documentation.html#generate-documentation-website"] = "Genera
 index.add({
     url: "06-documentation.html#generate-documentation-website",
     title: "Generate Documentation Website",
-    body: "## Generate Documentation Website  To get started with generating the documentation, you must have already clone the [git repository](https://github.com/medullan/vagrant-ansible-jenkins) and be inside the root directory with your console.  The tools needed to get you started are all powered by [NPM](https://www.npmjs.org/) and [Grunt](http://gruntjs.com/). Therefore, you must have [nodejs](http://nodejs.org/) and **npm** installed with **grunt** installed globally as a **npm** package  "
+    body: "## Generate Documentation Website  To get started with generating the documentation, you must have already cloned the [git repository](https://github.com/medullan/vagrant-ansible-jenkins) and be inside the root directory with your console.  The tools needed to get you started are all powered by:  - [nodejs](http://nodejs.org/) - [npm](https://www.npmjs.org/)  - [Grunt](http://gruntjs.com/)   Therefore, you must have **Nodejs** and **npm** installed with **grunt** installed globally as a **npm** package  "
 });
 
 documentTitles["06-documentation.html#step-1"] = "Step 1";
