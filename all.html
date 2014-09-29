@@ -163,6 +163,21 @@
                 
     <ol>
     
+        <li>
+            <a href="06-known-issues.html#issue-shared-workspace-jenkins-plugin-woes">Issue: shared-workspace Jenkins Plugin woes</a>
+            
+        </li>
+    
+        <li>
+            <a href="06-known-issues.html#issue-invalid-machine-state-when-provisioning">Issue: Invalid machine state when provisioning</a>
+            
+        </li>
+    
+        <li>
+            <a href="06-known-issues.html#issue-ansiblehost-turned-into-executable-file">Issue: ansible.host turned into executable file</a>
+            
+        </li>
+    
 </ol>
 
             
@@ -504,7 +519,7 @@ The following Pages will give you detailed information on these setup steps.</p>
 
       aws.ami = &quot;ami-8bda99bb&quot; # replace with AMI id generated with packer if necessary
       aws.security_groups = [&quot;launch-wizard-1&quot;] # replace with preferred security group, must have an ssh port
-      aws.region = &quot;us-west-2&quot; # replace with our region
+      aws.region = &quot;us-west-2&quot; # replace with your region
   end
 </code></pre>
 <p>then run:</p>
@@ -530,7 +545,7 @@ This can be resolved by getting the IP address of the created instance in your <
 </code></pre>
 
 <h1 id="known-issues">Known Issues</h1>
-<h3 id="issue-1">Issue 1</h3>
+<h2 id="issue-shared-workspace-jenkins-plugin-woes">Issue: shared-workspace Jenkins Plugin woes</h2>
 <blockquote>
 <p>The github-oauth@0.19 plugin doesnt play well with the shared-workspace plugin.
 At version 0.19, the github-oauth plugin checks each job for a git url and if this url is null then an exception is thrown. This happens when the ${SHAREDSPACE_SCM_URL} is used.
@@ -538,7 +553,7 @@ This variable is null until a job is executed, hence the github-oauth plugin wil
 <h4 id="resolution">Resolution</h4>
 <p>Just avoid using that variable and everything will be ok.</p>
 </blockquote>
-<h3 id="issue-2">Issue 2</h3>
+<h2 id="issue-invalid-machine-state-when-provisioning">Issue: Invalid machine state when provisioning</h2>
 <blockquote>
 <p>With <code>VirtualBox v4.3.14</code>, when doing <code>vagrant up</code>, an error (or similar error) sometimes occurs saying:</p>
 <h4 id="exception">Exception</h4>
@@ -554,7 +569,7 @@ VirtualBox GUI is open.</p>
 <h4 id="resolution-">Resolution:</h4>
 <p>To resolve the issue, downgrading to version <code>VirtualBox v4.3.12</code> worked</p>
 </blockquote>
-<h3 id="issue-3">Issue 3</h3>
+<h2 id="issue-ansible-host-turned-into-executable-file">Issue: ansible.host turned into executable file</h2>
 <blockquote>
 <p>Sometimes pulling the repository down will make <code>ansible.host</code> an executable file and will produce the following error:</p>
 <h4 id="exception">Exception</h4>

@@ -330,7 +330,7 @@ documentTitles["052-provision-jenkins-with-aws.html#step-3-fill-in-required-aws-
 index.add({
     url: "052-provision-jenkins-with-aws.html#step-3-fill-in-required-aws-info",
     title: "Step 3 - Fill in required AWS info",
-    body: "### Step 3 - Fill in required AWS info  if you already understand what to do, please edit the AWS provider section in the Vagrantfile: ```yaml config.vm.provider :aws do |aws, override|       override.ssh.username = \&quot;ubuntu\&quot;       override.ssh.private_key_path = \&quot;\&quot; # location of rsa private key file here        aws.access_key_id = \&quot;\&quot; # Your access key id here       aws.secret_access_key = \&quot;\&quot; # Your secret access key here       aws.keypair_name = \&quot;\&quot;        aws.ami = \&quot;ami-8bda99bb\&quot; # replace with AMI id generated with packer if necessary       aws.security_groups = [\&quot;launch-wizard-1\&quot;] # replace with preferred security group, must have an ssh port       aws.region = \&quot;us-west-2\&quot; # replace with our region   end ```  then run: ``` $ vagrant up --provider=aws ```  This will create and run an AWS instance in your account.  For more information on provisioning with AWS please view the following repository:  https://github.com/mitchellh/vagrant-aws  "
+    body: "### Step 3 - Fill in required AWS info  if you already understand what to do, please edit the AWS provider section in the Vagrantfile: ```yaml config.vm.provider :aws do |aws, override|       override.ssh.username = \&quot;ubuntu\&quot;       override.ssh.private_key_path = \&quot;\&quot; # location of rsa private key file here        aws.access_key_id = \&quot;\&quot; # Your access key id here       aws.secret_access_key = \&quot;\&quot; # Your secret access key here       aws.keypair_name = \&quot;\&quot;        aws.ami = \&quot;ami-8bda99bb\&quot; # replace with AMI id generated with packer if necessary       aws.security_groups = [\&quot;launch-wizard-1\&quot;] # replace with preferred security group, must have an ssh port       aws.region = \&quot;us-west-2\&quot; # replace with your region   end ```  then run: ``` $ vagrant up --provider=aws ```  This will create and run an AWS instance in your account.  For more information on provisioning with AWS please view the following repository:  https://github.com/mitchellh/vagrant-aws  "
 });
 
 documentTitles["052-provision-jenkins-with-aws.html#extras"] = "Extras";
@@ -356,25 +356,25 @@ index.add({
     body: "# Known Issues  "
 });
 
-documentTitles["06-known-issues.html#issue-1"] = "Issue 1";
+documentTitles["06-known-issues.html#issue-shared-workspace-jenkins-plugin-woes"] = "Issue: shared-workspace Jenkins Plugin woes";
 index.add({
-    url: "06-known-issues.html#issue-1",
-    title: "Issue 1",
-    body: "### Issue 1  &gt; The github-oauth@0.19 plugin doesnt play well with the shared-workspace plugin. &gt; At version 0.19, the github-oauth plugin checks each job for a git url and if this url is null then an exception is thrown. This happens when the ${SHAREDSPACE_SCM_URL} is used. This variable is null until a job is executed, hence the github-oauth plugin will throw a fit.  &gt;#### Resolution  &gt;Just avoid using that variable and everything will be ok.  "
+    url: "06-known-issues.html#issue-shared-workspace-jenkins-plugin-woes",
+    title: "Issue: shared-workspace Jenkins Plugin woes",
+    body: "## Issue: shared-workspace Jenkins Plugin woes  &gt; The github-oauth@0.19 plugin doesnt play well with the shared-workspace plugin. &gt; At version 0.19, the github-oauth plugin checks each job for a git url and if this url is null then an exception is thrown. This happens when the ${SHAREDSPACE_SCM_URL} is used. This variable is null until a job is executed, hence the github-oauth plugin will throw a fit.  &gt;#### Resolution  &gt;Just avoid using that variable and everything will be ok.  "
 });
 
-documentTitles["06-known-issues.html#issue-2"] = "Issue 2";
+documentTitles["06-known-issues.html#issue-invalid-machine-state-when-provisioning"] = "Issue: Invalid machine state when provisioning";
 index.add({
-    url: "06-known-issues.html#issue-2",
-    title: "Issue 2",
-    body: "### Issue 2 &gt; With `VirtualBox v4.3.14`, when doing `vagrant up`, an error (or similar error) sometimes occurs saying:  &gt; #### Exception  &gt; The guest machine entered an invalid state while waiting for it &gt; to boot. Valid states are 'starting, running'. The machine is in the &gt; 'poweroff' state. Please verify everything is configured &gt; properly and try again.  &gt; If the provider you're using has a GUI that comes with it, &gt; it is often helpful to open that and watch the machine, since the &gt; GUI often has more helpful error messages than Vagrant can retrieve. &gt; For example, if you're using VirtualBox, run `vagrant up` while the &gt; VirtualBox GUI is open.  &gt; #### Resolution:  &gt; To resolve the issue, downgrading to version `VirtualBox v4.3.12` worked  "
+    url: "06-known-issues.html#issue-invalid-machine-state-when-provisioning",
+    title: "Issue: Invalid machine state when provisioning",
+    body: "## Issue: Invalid machine state when provisioning  &gt; With `VirtualBox v4.3.14`, when doing `vagrant up`, an error (or similar error) sometimes occurs saying:  &gt; #### Exception  &gt; The guest machine entered an invalid state while waiting for it &gt; to boot. Valid states are 'starting, running'. The machine is in the &gt; 'poweroff' state. Please verify everything is configured &gt; properly and try again.  &gt; If the provider you're using has a GUI that comes with it, &gt; it is often helpful to open that and watch the machine, since the &gt; GUI often has more helpful error messages than Vagrant can retrieve. &gt; For example, if you're using VirtualBox, run `vagrant up` while the &gt; VirtualBox GUI is open.  &gt; #### Resolution:  &gt; To resolve the issue, downgrading to version `VirtualBox v4.3.12` worked  "
 });
 
-documentTitles["06-known-issues.html#issue-3"] = "Issue 3";
+documentTitles["06-known-issues.html#issue-ansiblehost-turned-into-executable-file"] = "Issue: ansible.host turned into executable file";
 index.add({
-    url: "06-known-issues.html#issue-3",
-    title: "Issue 3",
-    body: "### Issue 3 &gt; Sometimes pulling the repository down will make `ansible.host` an executable file and will produce the following error:  &gt; ####Exception  &gt; ERROR: The file provisioners/ansible/ansible.host is marked as executable, &gt; but failed to execute correctly. If this is not supposed to be an executable script, &gt; correct this with `chmod -x provisioners/ansible/ansible.host`.  &gt; #### Resolution  &gt; To resolve the issue, run `chmod -x provisioners/ansible/ansible.host`"
+    url: "06-known-issues.html#issue-ansiblehost-turned-into-executable-file",
+    title: "Issue: ansible.host turned into executable file",
+    body: "## Issue: ansible.host turned into executable file &gt; Sometimes pulling the repository down will make `ansible.host` an executable file and will produce the following error:  &gt; ####Exception  &gt; ERROR: The file provisioners/ansible/ansible.host is marked as executable, &gt; but failed to execute correctly. If this is not supposed to be an executable script, &gt; correct this with `chmod -x provisioners/ansible/ansible.host`.  &gt; #### Resolution  &gt; To resolve the issue, run `chmod -x provisioners/ansible/ansible.host`"
 });
 
 
