@@ -12,7 +12,7 @@ documentTitles["home.html#home"] = "Home";
 index.add({
     url: "home.html#home",
     title: "Home",
-    body: "# Home  Welcome to the vagrant-ansible-jenkins documentation!  To get started view the Introduction page,  otherwise, select the specific topic that you require.  Jump right in! "
+    body: "# Home  Welcome to the vagrant-ansible-jenkins documentation!  To get started view the Introduction page,  otherwise, select the specific topic that you require.  Jump right in!   ![github](http://ciembor.github.io/4bit/images/github.png)  [Repository](https://github.com/medullan/vagrant-ansible-jenkins)   ![wiki](http://www.altera.com/common/template/08/icon-wiki.gif)  [Edit On Guthub](https://github.com/medullan/vagrant-ansible-jenkins.wiki.git)"
 });
 
 
@@ -346,21 +346,21 @@ documentTitles["06-known-issues.html#issue-1"] = "Issue 1";
 index.add({
     url: "06-known-issues.html#issue-1",
     title: "Issue 1",
-    body: "#### Issue 1  &gt; The github-oauth@0.19 plugin doesnt play well with the shared-workspace plugin. &gt; At version 0.19, the github-oauth plugin checks each job for a git url and if this url is null then an exception is thrown. This happens when the ${SHAREDSPACE_SCM_URL} is used. This variable is null until a job is executed, hence the github-oauth plugin will throw a fit.  &gt;***Resolution***  &gt;Just avoid using that variable and everything will be ok.  "
+    body: "### Issue 1  &gt; The github-oauth@0.19 plugin doesnt play well with the shared-workspace plugin. &gt; At version 0.19, the github-oauth plugin checks each job for a git url and if this url is null then an exception is thrown. This happens when the ${SHAREDSPACE_SCM_URL} is used. This variable is null until a job is executed, hence the github-oauth plugin will throw a fit.  &gt;#### Resolution  &gt;Just avoid using that variable and everything will be ok.  "
 });
 
 documentTitles["06-known-issues.html#issue-2"] = "Issue 2";
 index.add({
     url: "06-known-issues.html#issue-2",
     title: "Issue 2",
-    body: "#### Issue 2 &gt; With `VirtualBox v4.3.14`, when doing `vagrant up`, an error (or similar error) sometimes occurs saying:  &gt; ***Exception:***  &gt; The guest machine entered an invalid state while waiting for it &gt; to boot. Valid states are 'starting, running'. The machine is in the &gt; 'poweroff' state. Please verify everything is configured &gt; properly and try again.  &gt; If the provider you're using has a GUI that comes with it, &gt; it is often helpful to open that and watch the machine, since the &gt; GUI often has more helpful error messages than Vagrant can retrieve. &gt; For example, if you're using VirtualBox, run `vagrant up` while the &gt; VirtualBox GUI is open.  &gt; ***Resolution***:  &gt; To resolve the issue, downgrading to version `VirtualBox v4.3.12` worked  "
+    body: "### Issue 2 &gt; With `VirtualBox v4.3.14`, when doing `vagrant up`, an error (or similar error) sometimes occurs saying:  &gt; #### Exception  &gt; The guest machine entered an invalid state while waiting for it &gt; to boot. Valid states are 'starting, running'. The machine is in the &gt; 'poweroff' state. Please verify everything is configured &gt; properly and try again.  &gt; If the provider you're using has a GUI that comes with it, &gt; it is often helpful to open that and watch the machine, since the &gt; GUI often has more helpful error messages than Vagrant can retrieve. &gt; For example, if you're using VirtualBox, run `vagrant up` while the &gt; VirtualBox GUI is open.  &gt; #### Resolution:  &gt; To resolve the issue, downgrading to version `VirtualBox v4.3.12` worked  "
 });
 
 documentTitles["06-known-issues.html#issue-3"] = "Issue 3";
 index.add({
     url: "06-known-issues.html#issue-3",
     title: "Issue 3",
-    body: "#### Issue 3 &gt; Sometimes pulling the repository down will make `ansible.host` an executable file and will produce the following error:  &gt; ***Exception:***  &gt; ERROR: The file provisioners/ansible/ansible.host is marked as executable, &gt; but failed to execute correctly. If this is not supposed to be an executable script, &gt; correct this with `chmod -x provisioners/ansible/ansible.host`.  &gt; ***Resolution***:  &gt; To resolve the issue, run `chmod -x provisioners/ansible/ansible.host`"
+    body: "### Issue 3 &gt; Sometimes pulling the repository down will make `ansible.host` an executable file and will produce the following error:  &gt; ####Exception  &gt; ERROR: The file provisioners/ansible/ansible.host is marked as executable, &gt; but failed to execute correctly. If this is not supposed to be an executable script, &gt; correct this with `chmod -x provisioners/ansible/ansible.host`.  &gt; #### Resolution  &gt; To resolve the issue, run `chmod -x provisioners/ansible/ansible.host`"
 });
 
 
