@@ -323,14 +323,21 @@ documentTitles["052-provision-jenkins-with-aws.html#step-3-fill-in-required-aws-
 index.add({
     url: "052-provision-jenkins-with-aws.html#step-3-fill-in-required-aws-info",
     title: "Step 3 - Fill in required AWS info",
-    body: "### Step 3 - Fill in required AWS info  if you already understand what to do, please edit the AWS provider section in the Vagrantfile: ```yaml config.vm.provider :aws do |aws, override|       override.ssh.username = \&quot;ubuntu\&quot;       override.ssh.private_key_path = \&quot;\&quot; # location of rsa private key file here        aws.access_key_id = \&quot;\&quot; # Your access key id here       aws.secret_access_key = \&quot;\&quot; # Your secret access key here       aws.keypair_name = \&quot;\&quot;        aws.ami = \&quot;ami-8bda99bb\&quot; # replace with AMI id generated with packer if necessary       aws.security_groups = [\&quot;launch-wizard-1\&quot;] # replace with preferred security group, must have an ssh port       aws.region = \&quot;us-west-2\&quot; # replace with our region   end ```  then run: ``` $ vagrant up --provider=aws ```  This will create and run an AWS instance in your account.  For more information on provisioning with AWS please view the following repository:  https://github.com/mitchellh/vagrant-aws   "
+    body: "### Step 3 - Fill in required AWS info  if you already understand what to do, please edit the AWS provider section in the Vagrantfile: ```yaml config.vm.provider :aws do |aws, override|       override.ssh.username = \&quot;ubuntu\&quot;       override.ssh.private_key_path = \&quot;\&quot; # location of rsa private key file here        aws.access_key_id = \&quot;\&quot; # Your access key id here       aws.secret_access_key = \&quot;\&quot; # Your secret access key here       aws.keypair_name = \&quot;\&quot;        aws.ami = \&quot;ami-8bda99bb\&quot; # replace with AMI id generated with packer if necessary       aws.security_groups = [\&quot;launch-wizard-1\&quot;] # replace with preferred security group, must have an ssh port       aws.region = \&quot;us-west-2\&quot; # replace with our region   end ```  then run: ``` $ vagrant up --provider=aws ```  This will create and run an AWS instance in your account.  For more information on provisioning with AWS please view the following repository:  https://github.com/mitchellh/vagrant-aws  "
+});
+
+documentTitles["052-provision-jenkins-with-aws.html#extras"] = "Extras";
+index.add({
+    url: "052-provision-jenkins-with-aws.html#extras",
+    title: "Extras",
+    body: "### Extras There are some Ansible roles that are shared when provisioning the base image and the Jenkins environments. One such role would be **setup**. If you wat to ignore this role when provisioning the Jenkins environments, Then uncomment the following line in the Vagrantfile:  ```yaml ansible.skip_tags = ['setup'] ```  "
 });
 
 documentTitles["052-provision-jenkins-with-aws.html#caveats"] = "Caveats";
 index.add({
     url: "052-provision-jenkins-with-aws.html#caveats",
     title: "Caveats",
-    body: "##### Caveats  When provisioning the Jenkins environment with AWS for the first time, the provisioning will fail for SSH reasons.  This can be resolved by getting the IP address of the created instance in your `EC2 Console` and replacing the ip address within the `provisioners/ansible/ansible.host` file.  Current File ```yaml [jenkins] 127.0.0.1 ansible_ssh_port=2222 ```  Eg. of what to be updated to: ```yaml [jenkins] 54.69.58.64 ```"
+    body: "### Caveats  When provisioning the Jenkins environment with AWS for the first time, the provisioning will fail for SSH reasons.  This can be resolved by getting the IP address of the created instance in your `EC2 Console` and replacing the ip address within the `provisioners/ansible/ansible.host` file.  Current File ```yaml [jenkins] 127.0.0.1 ansible_ssh_port=2222 ```  Eg. of what to be updated to: ```yaml [jenkins] 54.69.58.64 ```"
 });
 
 
