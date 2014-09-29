@@ -293,7 +293,14 @@ documentTitles["051-provision-with-virtualbox.html#local-provisioning-with-virtu
 index.add({
     url: "051-provision-with-virtualbox.html#local-provisioning-with-virtualbox",
     title: "Local provisioning with VirtualBox",
-    body: "## Local provisioning with VirtualBox  By default, the Vagrantfile is setup to provision using VirtualBox  To provision: - run ***vagrant up*** to get the environment going - Get a drink, this will take approx. 30 mins for the first time you do ***vagrant up*** (excluding the time to retrieve the base box image) "
+    body: "## Local provisioning with VirtualBox  By default, the Vagrantfile is setup to provision using VirtualBox and a clean ubuntu box from VagrantCloud  To provision: - run ***vagrant up*** to get the environment going - Get a drink, this will take approx. 30 mins for the first time you do **vagrant up** (excluding the time to retrieve the base box image)  "
+});
+
+documentTitles["051-provision-with-virtualbox.html#using-the-box-built-with-packer"] = "Using the Box Built with Packer";
+index.add({
+    url: "051-provision-with-virtualbox.html#using-the-box-built-with-packer",
+    title: "Using the Box Built with Packer",
+    body: "### Using the Box Built with Packer  if you built a shiny new box with **packer**, then to use it, you must change the box being referenced in the Vagrantfile.  default:  ```yaml config.vm.box = \&quot;ubuntu/trusty64\&quot; ```  should be updated to: ```yaml config.vm.box = \&quot;packer_virtualbox-iso_virtualbox.box\&quot; ```  then run  ```bash $ vagrant up ``` "
 });
 
 

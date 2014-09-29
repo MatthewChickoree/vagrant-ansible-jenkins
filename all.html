@@ -461,12 +461,23 @@ The following Pages will give you detailed information on these setup steps.</p>
 </ul>
 
 <h2 id="local-provisioning-with-virtualbox">Local provisioning with VirtualBox</h2>
-<p>By default, the Vagrantfile is setup to provision using VirtualBox</p>
+<p>By default, the Vagrantfile is setup to provision using VirtualBox and a clean ubuntu box from VagrantCloud</p>
 <p>To provision:</p>
 <ul>
 <li>run <strong><em>vagrant up</em></strong> to get the environment going</li>
-<li>Get a drink, this will take approx. 30 mins for the first time you do <strong><em>vagrant up</em></strong> (excluding the time to retrieve the base box image)</li>
+<li>Get a drink, this will take approx. 30 mins for the first time you do <strong>vagrant up</strong> (excluding the time to retrieve the base box image)</li>
 </ul>
+<h3 id="using-the-box-built-with-packer">Using the Box Built with Packer</h3>
+<p>if you built a shiny new box with <strong>packer</strong>, then to use it, you must change the box being referenced in the Vagrantfile.</p>
+<p>default: </p>
+<pre><code class="lang-yaml">config.vm.box = &quot;ubuntu/trusty64&quot;
+</code></pre>
+<p>should be updated to:</p>
+<pre><code class="lang-yaml">config.vm.box = &quot;packer_virtualbox-iso_virtualbox.box&quot;
+</code></pre>
+<p>then run </p>
+<pre><code class="lang-bash">$ vagrant up
+</code></pre>
 
 <h2 id="provision-with-aws-amazon-web-service-">Provision with AWS (Amazon Web Service)</h2>
 <h3 id="step-1-change-the-vm-box-to-be-used">Step 1 - Change the vm box to be used</h3>
