@@ -279,14 +279,12 @@ One such role would be <strong>setup</strong>. If you wat to ignore this role wh
 <p>When provisioning the Jenkins environment with AWS for the first time, the provisioning will fail for SSH reasons. 
 This can be resolved by getting the IP address of the created instance in your <code>EC2 Console</code> and replacing the ip address within the <code>provisioners/ansible/ansible.host</code> file.</p>
 <p>Current File</p>
-<pre><code class="lang-yaml">[jenkins]
+<pre><code>[jenkins]
 127.0.0.1 ansible_ssh_port=2222
-</code></pre>
-<p>Eg. of what to be updated to:</p>
-<pre><code class="lang-yaml">[jenkins]
+</code></pre><p>Eg. of what to be updated to:</p>
+<pre><code>[jenkins]
 54.69.58.64
-</code></pre>
-<p>then run:</p>
+</code></pre><p>then run:</p>
 <pre><code>$ vagrant provision
 </code></pre><p>This will now provisioning the machine properly. </p>
 <p><strong>NB.</strong> Note that the machine is already running and we do not need to run <strong>vagrant up</strong> again. Thus running <strong>vagrant provision</strong> will work just fine</p>

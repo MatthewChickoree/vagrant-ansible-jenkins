@@ -351,7 +351,7 @@ documentTitles["052-provision-jenkins-with-aws.html#caveats"] = "Caveats";
 index.add({
     url: "052-provision-jenkins-with-aws.html#caveats",
     title: "Caveats",
-    body: "### Caveats  When provisioning the Jenkins environment with AWS for the first time, the provisioning will fail for SSH reasons.  This can be resolved by getting the IP address of the created instance in your `EC2 Console` and replacing the ip address within the `provisioners/ansible/ansible.host` file.  Current File ```yaml [jenkins] 127.0.0.1 ansible_ssh_port=2222 ```  Eg. of what to be updated to: ```yaml [jenkins] 54.69.58.64 ```  then run: ``` $ vagrant provision ```  This will now provisioning the machine properly.   **NB.** Note that the machine is already running and we do not need to run **vagrant up** again. Thus running **vagrant provision** will work just fine "
+    body: "### Caveats  When provisioning the Jenkins environment with AWS for the first time, the provisioning will fail for SSH reasons.  This can be resolved by getting the IP address of the created instance in your `EC2 Console` and replacing the ip address within the `provisioners/ansible/ansible.host` file.  Current File ``` [jenkins] 127.0.0.1 ansible_ssh_port=2222 ```  Eg. of what to be updated to: ``` [jenkins] 54.69.58.64 ```  then run: ``` $ vagrant provision ```  This will now provisioning the machine properly.   **NB.** Note that the machine is already running and we do not need to run **vagrant up** again. Thus running **vagrant provision** will work just fine "
 });
 
 
