@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <title>Vagrant Ansible Jenkins</title>
+
+    <link type="text/css" rel="stylesheet" href="assets/css/reset.css">
+    <link type="text/css" rel="stylesheet" href="http://yandex.st/highlightjs/6.1/styles/sunburst.min.css">
+    <link type="text/css" rel="stylesheet" href="assets/css/docs.css">
+    <link type="text/css" rel="stylesheet" href="assets/css/print.css" media="print">
+    
+
+    <script type="text/javascript" src="assets/js/jquery-1.10.1.min.js"></script>
+    <script type="text/javascript" src="http://yandex.st/highlightjs/6.1/highlight.min.js"></script>
+    <script type="text/javascript" src="assets/js/lunr.min.js"></script>
+
+    
+
+    <script type="text/javascript">var BASE_URL = "";</script>
+    <script type="text/javascript" src="assets/js/viewer.js"></script>
+
+    
+</head>
+<body>
+    <div id="page">
+        <a name="top" />
+        <header id="header">
+            <h1><a href="">Vagrant Ansible Jenkins</a></h1>
+        </header>
+        
+
+<div id="sidebar">
+    <form action="search.html"><input id="search" type="text" placeholder="Search" name="q" /></form>
+    <nav id="toc">
+        
+    <ol>
+    
+        <li>
+            <a href="home.html#home">Home</a>
+            
+                
+    <ol>
+    
+</ol>
+
+            
+        </li>
+    
+        <li>
+            <a href="01-intro.html#introduction">Introduction</a>
+            
+                
+    <ol>
+    
+</ol>
+
+            
+        </li>
+    
+        <li>
+            <a href="02-requirements-and-features.html#requirements">Requirements</a>
+            
+                
+    <ol>
+    
+</ol>
+
+            
+        </li>
+    
+        <li>
+            <a href="02-requirements-and-features.html#features">Features</a>
+            
+                
+    <ol>
+    
+</ol>
+
+            
+        </li>
+    
+        <li>
+            <a href="03-whats-already-inside.html#whats-already-inside">Whats Already inside</a>
+            
+                
+    <ol>
+    
+        <li>
+            <a href="031-checkurl-groovy-script.html#checkurl-groovy-script">CheckUrl Groovy Script</a>
+            
+        </li>
+    
+        <li>
+            <a href="032-saucelabs-python-script.html#saucelabs-python-script">SauceLabs Python Script</a>
+            
+        </li>
+    
+</ol>
+
+            
+        </li>
+    
+        <li>
+            <a href="04-how-to-setup.html#how-to-setup">How to Setup</a>
+            
+                
+    <ol>
+    
+        <li>
+            <a href="041-verify-list-of-jenkins-plugins-and-jobs-to-be-installed.html#install-plugins">Install Plugins</a>
+            
+        </li>
+    
+        <li>
+            <a href="041-verify-list-of-jenkins-plugins-and-jobs-to-be-installed.html#create-jobs">Create Jobs</a>
+            
+        </li>
+    
+        <li>
+            <a href="041-verify-list-of-jenkins-plugins-and-jobs-to-be-installed.html#share-files-with-the-imagebox">Share Files with the Image/Box</a>
+            
+        </li>
+    
+        <li>
+            <a href="042-update-override-variables.html#update-override-variables">Update Override Variables</a>
+            
+        </li>
+    
+        <li>
+            <a href="043-build-images-with-packer.html#build-images-with-packer">Build Images with Packer</a>
+            
+        </li>
+    
+</ol>
+
+            
+        </li>
+    
+        <li>
+            <a href="05-create-jenkins-environment-with-vagrant.html#create-jenkins-environment-with-vagrant">Create Jenkins Environment with Vagrant</a>
+            
+                
+    <ol>
+    
+        <li>
+            <a href="051-provision-with-virtualbox.html#local-provisioning-with-virtualbox">Local provisioning with VirtualBox</a>
+            
+        </li>
+    
+        <li>
+            <a href="052-provision-jenkins-with-aws.html#provision-with-aws-amazon-web-service">Provision with AWS (Amazon Web Service)</a>
+            
+        </li>
+    
+</ol>
+
+            
+        </li>
+    
+        <li>
+            <a href="06-known-issues.html#known-issues">Known Issues</a>
+            
+                
+    <ol>
+    
+</ol>
+
+            
+        </li>
+    
+</ol>
+
+    </nav>
+    
+    <nav id="links">
+        <ul>
+            
+        </ul>
+    </nav>
+    
+</div>
+
+        <div id="content">
+            <h2 id="build-images-with-packer">Build Images with Packer</h2>
+<h3 id="build-an-aws-vagrant-box-and-ami-image">Build an AWS Vagrant Box and AMI image</h3>
+<p>To build an AWS Vagrant Box and AMI image: </p>
+<p>Edit the <strong><em>packer.json</em></strong> file</p>
+<ul>
+<li>put your access key</li>
+<li>put your secret access key </li>
+<li>edit the description for the image, if necessary</li>
+<li>edit the tags, if necessary</li>
+<li>edit the region</li>
+</ul>
+<pre><code class="lang-json">{
+      &quot;type&quot;: &quot;amazon-ebs&quot;,
+      &quot;access_key&quot;: &quot;&quot;, # put your access key here
+      &quot;secret_key&quot;: &quot;&quot;, # put your secret access key here
+      &quot;region&quot;: &quot;us-west-2&quot;,
+      &quot;source_ami&quot;: &quot;ami-cf397aff&quot;,
+      &quot;instance_type&quot;: &quot;t1.micro&quot;,
+      &quot;ssh_username&quot;: &quot;ubuntu&quot;,
+      &quot;ami_name&quot;: &quot;medullan-ubuntu-latest-{{timestamp}}-{{isotime \&quot;02-Jan-06\&quot;}}&quot;,
+      &quot;ami_description&quot;: &quot;......&quot;, 
+      &quot;tags&quot;: {
+        &quot;OS_Version&quot;: &quot;Ubuntu&quot;,
+        &quot;Release&quot;: &quot;Latest&quot;,
+        &quot;Provisioner&quot;: &quot;Medullan&quot;
+      }
+    }
+</code></pre>
+<p>Then run</p>
+<pre><code class="lang-bash">$ packer build -only amazon-ebs packer.json
+</code></pre>
+<p>This will execute <strong><em>packer</em></strong> to provision an AMI image and create an AWS Vagrant Box at the end of the build process.</p>
+<ul>
+<li>output file: <strong><em>packer_amazon-ebs_aws.box</em></strong></li>
+<li>eg. output image name: <strong><em>medullan-ubuntu-latest-1411750026-26-Sep-14</em></strong> (this is accompanied by an AMI id, can be seen in EC2 Console)</li>
+</ul>
+<h3 id="build-a-virtualbox-vagrant-box">Build a VirtualBox Vagrant Box</h3>
+<p>To build a VirtualBox Vagrant Box, run</p>
+<pre><code class="lang-bash">$ packer build -only virtualbox-iso packer.json
+</code></pre>
+<p>This will execute <strong><em>packer</em></strong> to provision an Ubuntu image and produce a VirtualBox Vagrant Box at the end of the build process.</p>
+<ul>
+<li>output file: <strong><em>packer_virtualbox-iso_virtualbox.box</em></strong></li>
+</ul>
+<h3 id="build-all-images-in-parallel">Build All Images in Parallel</h3>
+<p>run: </p>
+<pre><code class="lang-bash">$ packer build packer.json
+</code></pre>
+
+
+
+
+        </div>
+        <footer id="footer">
+            Powered by <a href="http://github.com/maximebf/beautiful-docs">beautiful-docs</a> -
+            <a href="#top">Back to top</a> - <a href="all.html">Everything on a single page</a>
+            - <a href="?print=1">Print current page</a> - <a href="all.html?print=1">Print all pages</a>
+            
+                <a href="https://github.com/https://github.com/medullan/vagrant-ansible-jenkins" id="fork-me-on-github">Fork me on Github</a>
+            
+        </footer>
+    </div>
+</body>
+</html>

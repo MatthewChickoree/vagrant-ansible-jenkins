@@ -1,0 +1,564 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <title>Vagrant Ansible Jenkins</title>
+
+    <link type="text/css" rel="stylesheet" href="assets/css/reset.css">
+    <link type="text/css" rel="stylesheet" href="http://yandex.st/highlightjs/6.1/styles/sunburst.min.css">
+    <link type="text/css" rel="stylesheet" href="assets/css/docs.css">
+    <link type="text/css" rel="stylesheet" href="assets/css/print.css" media="print">
+    
+
+    <script type="text/javascript" src="assets/js/jquery-1.10.1.min.js"></script>
+    <script type="text/javascript" src="http://yandex.st/highlightjs/6.1/highlight.min.js"></script>
+    <script type="text/javascript" src="assets/js/lunr.min.js"></script>
+
+    
+
+    <script type="text/javascript">var BASE_URL = "";</script>
+    <script type="text/javascript" src="assets/js/viewer.js"></script>
+
+    
+</head>
+<body>
+    <div id="page">
+        <a name="top" />
+        <header id="header">
+            <h1><a href="">Vagrant Ansible Jenkins</a></h1>
+        </header>
+        
+
+<div id="sidebar">
+    <form action="search.html"><input id="search" type="text" placeholder="Search" name="q" /></form>
+    <nav id="toc">
+        
+    <ol>
+    
+        <li>
+            <a href="home.html#home">Home</a>
+            
+                
+    <ol>
+    
+</ol>
+
+            
+        </li>
+    
+        <li>
+            <a href="01-intro.html#introduction">Introduction</a>
+            
+                
+    <ol>
+    
+</ol>
+
+            
+        </li>
+    
+        <li>
+            <a href="02-requirements-and-features.html#requirements">Requirements</a>
+            
+                
+    <ol>
+    
+</ol>
+
+            
+        </li>
+    
+        <li>
+            <a href="02-requirements-and-features.html#features">Features</a>
+            
+                
+    <ol>
+    
+</ol>
+
+            
+        </li>
+    
+        <li>
+            <a href="03-whats-already-inside.html#whats-already-inside">Whats Already inside</a>
+            
+                
+    <ol>
+    
+        <li>
+            <a href="031-checkurl-groovy-script.html#checkurl-groovy-script">CheckUrl Groovy Script</a>
+            
+        </li>
+    
+        <li>
+            <a href="032-saucelabs-python-script.html#saucelabs-python-script">SauceLabs Python Script</a>
+            
+        </li>
+    
+</ol>
+
+            
+        </li>
+    
+        <li>
+            <a href="04-how-to-setup.html#how-to-setup">How to Setup</a>
+            
+                
+    <ol>
+    
+        <li>
+            <a href="041-verify-list-of-jenkins-plugins-and-jobs-to-be-installed.html#install-plugins">Install Plugins</a>
+            
+        </li>
+    
+        <li>
+            <a href="041-verify-list-of-jenkins-plugins-and-jobs-to-be-installed.html#create-jobs">Create Jobs</a>
+            
+        </li>
+    
+        <li>
+            <a href="041-verify-list-of-jenkins-plugins-and-jobs-to-be-installed.html#share-files-with-the-imagebox">Share Files with the Image/Box</a>
+            
+        </li>
+    
+        <li>
+            <a href="042-update-override-variables.html#update-override-variables">Update Override Variables</a>
+            
+        </li>
+    
+        <li>
+            <a href="043-build-images-with-packer.html#build-images-with-packer">Build Images with Packer</a>
+            
+        </li>
+    
+</ol>
+
+            
+        </li>
+    
+        <li>
+            <a href="05-create-jenkins-environment-with-vagrant.html#create-jenkins-environment-with-vagrant">Create Jenkins Environment with Vagrant</a>
+            
+                
+    <ol>
+    
+        <li>
+            <a href="051-provision-with-virtualbox.html#local-provisioning-with-virtualbox">Local provisioning with VirtualBox</a>
+            
+        </li>
+    
+        <li>
+            <a href="052-provision-jenkins-with-aws.html#provision-with-aws-amazon-web-service">Provision with AWS (Amazon Web Service)</a>
+            
+        </li>
+    
+</ol>
+
+            
+        </li>
+    
+        <li>
+            <a href="06-known-issues.html#known-issues">Known Issues</a>
+            
+                
+    <ol>
+    
+</ol>
+
+            
+        </li>
+    
+</ol>
+
+    </nav>
+    
+    <nav id="links">
+        <ul>
+            
+        </ul>
+    </nav>
+    
+</div>
+
+        <div id="content">
+            <h1 id="home">Home</h1>
+<p>Welcome to the vagrant-ansible-jenkins documentation!</p>
+<p>To get started view the Introduction page, 
+otherwise, select the specific topic that you require.</p>
+<p>Jump right in!</p>
+
+<h1 id="introduction">Introduction</h1>
+<p>This repository was created to provide a new team with a pre configured Jenkins environment with similar slave environments by using Amazon Web Services. Vagrant and packer was used with the help of Ansible for consistent and repeatable environments.</p>
+<ul>
+<li>If interested in pushing to this Repository please see the <code>Development</code> section below.</li>
+<li>Please check the <code>Known Issues</code> page.</li>
+<li>Most Instructions and problem resolutions were tested for Mac OS X. Cannot guarantee this process will work on other operating systems</li>
+</ul>
+<h4 id="useful-links-">Useful Links:</h4>
+<ul>
+<li><a href="http://docs.ansible.com/">Ansible</a></li>
+<li><a href="http://www.packer.io/docs">Packer</a></li>
+<li><a href="http://docs.vagrantup.com/v2/">Vagrant</a></li>
+<li><a href="http://techapple.net/2014/04/trick-obtain-direct-download-links-dropbox-files-dropbox-direct-link-maker-tool-cloudlinker/">DropBox Direct Link Creation</a></li>
+</ul>
+
+<h1 id="requirements">Requirements</h1>
+<ul>
+<li><code>Vagrant - latest</code></li>
+<li><code>Ansible &gt;= v1.7.1</code> (will most likely get errors if version is lower)</li>
+<li><code>Packer - latest</code></li>
+</ul>
+<p>Two vagrant plugins are required. To install these plugins, please run:</p>
+<pre><code class="lang-shell">vagrant plugin install vagrant-vbguest
+vagrant plugin install vagrant-aws
+</code></pre>
+<h1 id="features">Features</h1>
+<ul>
+<li>Setup jenkins</li>
+<li>Setup jenkins security (github strategy)</li>
+<li>Install/Update Plugins</li>
+<li>Pre Configured Plugins eg. git, GitHub Webhook, Rally (Some plugins such as rally cannot be fully configured in the playbook due to password encryptions)</li>
+<li>Create defined list of jobs from xml</li>
+<li>Restarts jenkins if needed after provisioning</li>
+</ul>
+
+<h1 id="whats-already-inside">Whats Already inside</h1>
+<h3 id="major-apt-packages">Major Apt Packages</h3>
+<p><code>jenkins</code>, <code>ansible</code>, <code>docker</code>, <code>jmeter</code>, <code>python-setuptools</code>, <code>git</code>, <code>jre-7</code>, <code>jdk-7</code>, <code>curl</code>,
+<code>groovy</code>, <code>nodejs-legacy</code>, <code>npm</code></p>
+<h3 id="pip-packages">Pip Packages</h3>
+<p><code>jenkins-autojobs</code>, <code>robotframework-selenium2library</code></p>
+<h3 id="npm-global-packages">NPM Global Packages</h3>
+<p><code>istanbul</code>, <code>bower</code>, <code>grunt-cli</code></p>
+<p>To see a full list of apt and pip packages installed, see the following file:
+<a href="https://github.com/medullan/vagrant-ansible-jenkins/blob/master/provisioners/ansible/roles/shared/vars/main.yml">https://github.com/medullan/vagrant-ansible-jenkins/blob/master/provisioners/ansible/roles/shared/vars/main.yml</a></p>
+
+<h2 id="checkurl-groovy-script">CheckUrl Groovy Script</h2>
+<h3 id="what-is-checkurl-">What is CheckUrl?</h3>
+<p>CheckUrl is a script created to ping a website to check if it is giving a <code>200</code> response in a favorable response time.</p>
+<h3 id="use-case">Use Case</h3>
+<p>The perfect use case for this script is to check until a site comes online after a deploy. If it doesn&#39;t get a 200 response after a specified interval, then the deploy can be considered a failure. Works great for deploying a test or production site.</p>
+<h3 id="where-is-it-">Where is it?</h3>
+<p>The script is transferred to the <strong><em>/var/lib/jenkins/shared_ansible</em></strong> location on each machine provisioned. This ensures there is a consistent location on Jenkins Master and all slaves to enable seamless builds across the environment. The script does not run indefinitely; it runs for a specified amount of tries and will exit with a failure or success depending on the <code>Final Response</code>.</p>
+<h3 id="how-to-use">How to Use</h3>
+<p><strong><em>groovy</em></strong> and <strong><em>curl</em></strong> must be installed to run the script. Luckily these are already installed when provisioning with Ansible.</p>
+<p>To get help with figuring out the arguments to pass when running the script, you can use the <strong><em>-h</em></strong> argument to see instructions.</p>
+<pre><code class="lang-bash">$ groovy checkurl.groovy -h
+
+usage: checkurl.groovy -[hmst] [url]
+ -h,--help                 Show usage information
+ -m,--max-time &lt;maxTime&gt;   max time in seconds before killing a curl
+                           command, Default: 20
+ -s,--sleep &lt;sleep&gt;        time in seconds before next retry, Default: 4
+ -t,--tries &lt;tries&gt;        number of tries before exit, Default: 3
+</code></pre>
+<h3 id="example">Example</h3>
+<p>eg. of the script being run in a build pipeline.
+The example below pings a site every minute and attempts 12 tries before exiting.</p>
+<pre><code class="lang-bash">$ groovy /var/lib/jenkins/shared_ansible/checkurl.groovy -m 30 -s 60 -t 12 http://ec2-54-221-51-114.compute-1.amazonaws.com
+
+Checking &#39;http://ec2-54-221-51-114.compute-1.amazonaws.com&#39; with: 
+  12 tries 
+  30 seconds timeout per try 
+  60 seconds interval before next try 
+
+LETS ROCK!
+Response is 404: not satisfactory ... executing retry (11 left)
+elapsed time: 0.359 seconds 
+
+Response is 404: not satisfactory ... executing retry (10 left)
+elapsed time: 1 minutes, 0.480 seconds 
+
+Response is 404: not satisfactory ... executing retry (9 left)
+elapsed time: 2 minutes, 0.512 seconds 
+
+
+(0) Final Response is 200: site is ready!
+elapsed time: 3 minutes, 4.586 seconds
+</code></pre>
+<p>The <strong><em>(0)</em></strong> in this line <strong><em>(0) Final Response is 200: site is ready!</em></strong> is the exit code.</p>
+<ul>
+<li>An exit code of <strong><em>0</em></strong> means success</li>
+<li>An exit code of <strong><em>1</em></strong> means a failure</li>
+</ul>
+
+<h2 id="saucelabs-python-script">SauceLabs Python Script</h2>
+<p>The <code>SauceLabs.py</code> script, discovered in a <a href="http://datakurre.pandala.org/2014/03/cross-browser-selenium-testing-with.html">blog</a>, is used to run robotframework tests on SauceLabs while creating the outputs on the machine that executed the command.</p>
+<p>This Requires the following pip packages: </p>
+<ul>
+<li><code>robotframework-selenium2library</code></li>
+<li><code>simplejson</code></li>
+<li><code>requests</code></li>
+</ul>
+<h3 id="where-is-it-">Where is it?</h3>
+<p>The script is copied to the <strong><em>/usr/local/bin</em></strong> directory where it can be referenced by python when a script is run that imports the SauceLabs library</p>
+
+<h1 id="how-to-setup">How to Setup</h1>
+<p>There are several steps that are required and some may be optional that will get you going with this repository.
+The following Pages will give you detailed information on these setup steps.</p>
+
+<h2 id="install-plugins">Install Plugins</h2>
+<p>To edit the list of plugins to install when provisioning, look for the following file and edit the plugins section as necessary
+<a href="https://github.com/medullan/vagrant-ansible-jenkins/blob/master/provisioners/ansible/roles/shared/vars/main.yml">provisioners/ansible/roles/shared/vars/main.yml</a></p>
+<pre><code class="lang-yaml">plugins: # Jenkins Plugins
+  - &#39;ldap&#39;
+  - &#39;translation&#39;
+[...]
+</code></pre>
+<h2 id="create-jobs">Create Jobs</h2>
+<p>To have a job be created by the Ansible Provisioning then a job xml should be placed in the following directory:
+<strong><em>provisioners/ansible/files/jenkins/jobs</em></strong></p>
+<p>The job created will match the name of the file</p>
+<p>eg.</p>
+<p>The file: <strong><em>provisioners/ansible/files/jenkins/jobs/ExampleJob.xml</em></strong></p>
+<p>Will create a job called: <strong><em>ExampleJob</em></strong></p>
+<h2 id="share-files-with-the-image-box">Share Files with the Image/Box</h2>
+<p>If there are extra files needed to be shared from Ansible to Jenkins, place them in the following folder:
+<strong><em>provisioners/ansible/files/jenkins/shared</em></strong>. This will create and copy these files to a folder in Jenkins home:
+<strong><em>{jenkins_home}/shared_ansible</em></strong>. The default user will be the owner of these files once copied over but will be accessible to any user of the machine.</p>
+
+<h2 id="update-override-variables">Update Override Variables</h2>
+<h3 id="where-to-find-these-">Where to find these?</h3>
+<p>These variables are located in different files in the <strong><em>provisioners/ansible/extra_vars</em></strong> folder. The file to change will depend on the environment you are provisioning.</p>
+<h4 id="check-update-waiting-time-for-jenkins-restarts">Check/Update Waiting time for jenkins restarts</h4>
+<p>To override the time it waits (in seconds) for Jenkins to start please edit the respective file in the <strong><em>provisioners/ansible/extra_vars</em></strong> folder</p>
+<pre><code class="lang-yaml">startup_delay_s: 50
+</code></pre>
+<h4 id="set-git-credentials">Set Git Credentials</h4>
+<p>Update the git name and email to the credentials specific to your Jenkins setup</p>
+<h5 id="settings-">Settings:</h5>
+<ul>
+<li><strong><em>enable_configure:</em></strong> This enables the configuration of this plugin. When <code>false</code> will skip the configuration</li>
+<li><strong><em>email:</em></strong> This is the email of the Jenkins git user, will be used when the ci makes commits to git repositories</li>
+<li><strong><em>name:</em></strong> This is the full name of the Jenkins git user, will be used when the ci makes commits to git repositories</li>
+</ul>
+<p>eg.</p>
+<pre><code class="lang-yaml">git:
+  enable_configure: true
+  email: &#39;noreply@gmail.com&#39;
+  name: &#39;Jenkins CI&#39;
+</code></pre>
+<h4 id="set-rally-variables-to-preconfigure-plugin">Set Rally Variables to Preconfigure Plugin</h4>
+<h5 id="settings-">Settings:</h5>
+<ul>
+<li><strong><em>enable_configure:</em></strong> This enables the configuration of this plugin. When <code>false</code> will skip the configuration</li>
+<li><strong><em>server:</em></strong> This is rally&#39;s website address</li>
+<li><strong><em>email:</em></strong> Email (username) registered with rally</li>
+<li><strong><em>jenkins_machine:</em></strong> This is the domain name and port of the Jenkins server</li>
+</ul>
+<p>eg.</p>
+<pre><code class="lang-yaml">rally:
+  enable_configure: true
+  server: &quot;rally1.rallydev.com&quot;
+  email: &quot;&quot;
+  jenkins_machine: &quot;localhost:8080&quot;
+</code></pre>
+<p>Please note that this step does not fully configure the rally plugin. You will have to navigate to <strong><em>configure system</em></strong> when Jenkins goes live and enter the password for the rally user/email</p>
+<h4 id="edit-github-security-settings">Edit GitHub Security Settings</h4>
+<p>To setup Jenkins security please edit the respective file in the <strong><em>provisioners/ansible/extra_vars</em></strong> folder with the necessary variables</p>
+<h5 id="settings-">Settings:</h5>
+<ul>
+<li><strong><em>enable_security:</em></strong> This flag tells the playbook to enable security for the Jenkins instance. If false, the playbook will skip enabling security.</li>
+<li><strong><em>jenkins_admins:</em></strong> This is a list of github usernames that will have admin rights in the Jenkins instance</li>
+<li><strong><em>github_orgNames:</em></strong> This is a list of organisations that will have access to the Jenkins instance, including non-admin users. If omitted then only admins will have access.</li>
+<li><strong><em>github_clientId:</em></strong> This is a github application Client ID</li>
+<li><strong><em>github_clientSecret:</em></strong> This is a github application Client Secret</li>
+</ul>
+<p>To get the information from github:</p>
+<ul>
+<li><a href="https://github.com/settings/applications/new">Create a GitHub Application</a> that will provide the <strong><em>clientid</em></strong> and <strong><em>clientsecret</em></strong>.</li>
+<li>Set Authorization Callback URL:   <strong><em><a href="http://{jenkins-server}:{port}/securityRealm/finishLogin">http://{jenkins-server}:{port}/securityRealm/finishLogin</a></em></strong></li>
+</ul>
+<p>eg.</p>
+<pre><code class="lang-yaml">security:
+  enable_security: true,
+  jenkins_admins: &quot;admin1,admin2&quot;, #comma delimited list eg. &quot;admin1,admin2&quot;
+  github_orgNames: &quot;medullan&quot;, #comma delimited list eg. &quot;medullan,google&quot;
+  github_clientId: &quot;532534253fw3245&quot;,
+  github_clientSecret: &quot;32refwdfs324rewf343q4rwqr32qr&quot;
+</code></pre>
+<h4 id="things-to-note-">Things to Note:</h4>
+<p>If there are raw xml config files that you want to be copied to Jenkins. Then simply adding them to the <strong><em>provisioners/ansible/files/jenkins/config</em></strong> directory will get them to Jenkins for pre-configuration.</p>
+<h4 id="configure-jenkins-memory">Configure Jenkins Memory</h4>
+<p>Configure the heap size Jenkins will be assigned on startup.</p>
+<ul>
+<li><strong><em>enable_configure:</em></strong> This flag tells the playbook to enable security for the Jenkins instance. If false, the playbook will skip enabling security.</li>
+<li><strong><em>maxPermSize:</em></strong> Assign the MaxPermSize that jenkins will be assigned (&quot;-XX:MaxPermSize=512m&quot;)</li>
+<li><strong><em>memory:</em></strong> sets the heap size assigned to jenkins (&#39;-Xmx1024m&#39;)</li>
+</ul>
+<p>eg.</p>
+<pre><code class="lang-yaml">jenkins_opts:
+  enable_configure: true,
+  maxPermSize: 512, # cannot be less than 512
+  memory: 1024 # cannot be less than 256
+</code></pre>
+<h4 id="install-global-npm-packages">Install global npm packages</h4>
+<ul>
+<li><strong><em>global_packages:</em></strong> This is a space delimited list of npm packges eg. &#39;bower grunt-cli&#39;</li>
+</ul>
+<p>eg.</p>
+<pre><code class="lang-yaml">npm:   # bower, grunt-cli and istanbul are installed by default
+  global_packages: &quot;doxx npm-check-updates&quot; # global_packages is a space delimited list eg. &#39;bower grunt-cli&#39;
+</code></pre>
+
+<h2 id="build-images-with-packer">Build Images with Packer</h2>
+<h3 id="build-an-aws-vagrant-box-and-ami-image">Build an AWS Vagrant Box and AMI image</h3>
+<p>To build an AWS Vagrant Box and AMI image: </p>
+<p>Edit the <strong><em>packer.json</em></strong> file</p>
+<ul>
+<li>put your access key</li>
+<li>put your secret access key </li>
+<li>edit the description for the image, if necessary</li>
+<li>edit the tags, if necessary</li>
+<li>edit the region</li>
+</ul>
+<pre><code class="lang-json">{
+      &quot;type&quot;: &quot;amazon-ebs&quot;,
+      &quot;access_key&quot;: &quot;&quot;, # put your access key here
+      &quot;secret_key&quot;: &quot;&quot;, # put your secret access key here
+      &quot;region&quot;: &quot;us-west-2&quot;,
+      &quot;source_ami&quot;: &quot;ami-cf397aff&quot;,
+      &quot;instance_type&quot;: &quot;t1.micro&quot;,
+      &quot;ssh_username&quot;: &quot;ubuntu&quot;,
+      &quot;ami_name&quot;: &quot;medullan-ubuntu-latest-{{timestamp}}-{{isotime \&quot;02-Jan-06\&quot;}}&quot;,
+      &quot;ami_description&quot;: &quot;......&quot;, 
+      &quot;tags&quot;: {
+        &quot;OS_Version&quot;: &quot;Ubuntu&quot;,
+        &quot;Release&quot;: &quot;Latest&quot;,
+        &quot;Provisioner&quot;: &quot;Medullan&quot;
+      }
+    }
+</code></pre>
+<p>Then run</p>
+<pre><code class="lang-bash">$ packer build -only amazon-ebs packer.json
+</code></pre>
+<p>This will execute <strong><em>packer</em></strong> to provision an AMI image and create an AWS Vagrant Box at the end of the build process.</p>
+<ul>
+<li>output file: <strong><em>packer_amazon-ebs_aws.box</em></strong></li>
+<li>eg. output image name: <strong><em>medullan-ubuntu-latest-1411750026-26-Sep-14</em></strong> (this is accompanied by an AMI id, can be seen in EC2 Console)</li>
+</ul>
+<h3 id="build-a-virtualbox-vagrant-box">Build a VirtualBox Vagrant Box</h3>
+<p>To build a VirtualBox Vagrant Box, run</p>
+<pre><code class="lang-bash">$ packer build -only virtualbox-iso packer.json
+</code></pre>
+<p>This will execute <strong><em>packer</em></strong> to provision an Ubuntu image and produce a VirtualBox Vagrant Box at the end of the build process.</p>
+<ul>
+<li>output file: <strong><em>packer_virtualbox-iso_virtualbox.box</em></strong></li>
+</ul>
+<h3 id="build-all-images-in-parallel">Build All Images in Parallel</h3>
+<p>run: </p>
+<pre><code class="lang-bash">$ packer build packer.json
+</code></pre>
+
+<h1 id="create-jenkins-environment-with-vagrant">Create Jenkins Environment with Vagrant</h1>
+<p>There are currently two options for creating a Jenkins environment with Vagrant:</p>
+<ul>
+<li>Locally with VirtualBox</li>
+<li>Remotely in AWS (Amazon Web Services)</li>
+</ul>
+
+<h2 id="local-provisioning-with-virtualbox">Local provisioning with VirtualBox</h2>
+<p>By default, the Vagrantfile is setup to provision using VirtualBox</p>
+<p>To provision:</p>
+<ul>
+<li>run <strong><em>vagrant up</em></strong> to get the environment going</li>
+<li>Get a drink, this will take approx. 30 mins for the first time you do <strong><em>vagrant up</em></strong> (excluding the time to retrieve the base box image)</li>
+</ul>
+
+<h2 id="provision-with-aws-amazon-web-service-">Provision with AWS (Amazon Web Service)</h2>
+<h3 id="step-1-change-the-vm-box-to-be-used">Step 1 - Change the vm box to be used</h3>
+<p>To provision with AWS, the AWS box built with <strong><em>packer</em></strong> or a referenced AWS vagrant box from some archive must be used. If the box was built update the base box in the Vagrantfile</p>
+<p>for eg. </p>
+<pre><code class="lang-yaml">config.vm.box = &quot;packer_amazon-ebs_aws.box&quot;
+</code></pre>
+<h3 id="step-2-change-ansible-override-variables">Step 2 - Change Ansible Override Variables</h3>
+<p>from:</p>
+<pre><code class="lang-yaml">ansible.extra_vars = &quot;provisioners/ansible/extra_vars/jenkins-master-playbook-vars.yml&quot;
+</code></pre>
+<p>to:</p>
+<pre><code class="lang-yaml">ansible.extra_vars = &quot;provisioners/ansible/extra_vars/jenkins-master-aws-playbook-vars.yml&quot;
+</code></pre>
+<h3 id="step-3-fill-in-required-aws-info">Step 3 - Fill in required AWS info</h3>
+<p>if you already understand what to do, please edit the AWS provider section in the Vagrantfile:</p>
+<pre><code class="lang-yaml">config.vm.provider :aws do |aws, override|
+      override.ssh.username = &quot;ubuntu&quot;
+      override.ssh.private_key_path = &quot;&quot; # location of rsa private key file here
+
+      aws.access_key_id = &quot;&quot; # Your access key id here
+      aws.secret_access_key = &quot;&quot; # Your secret access key here
+      aws.keypair_name = &quot;&quot;
+
+      aws.ami = &quot;ami-8bda99bb&quot; # replace with AMI id generated with packer if necessary
+      aws.security_groups = [&quot;launch-wizard-1&quot;] # replace with preferred security group, must have an ssh port
+      aws.region = &quot;us-west-2&quot; # replace with our region
+  end
+</code></pre>
+<p>then run:</p>
+<pre><code>$ vagrant up --provider=aws
+</code></pre><p>This will create and run an AWS instance in your account.</p>
+<p>For more information on provisioning with AWS please view the following repository:</p>
+<p><a href="https://github.com/mitchellh/vagrant-aws">https://github.com/mitchellh/vagrant-aws</a></p>
+<h5 id="caveats">Caveats</h5>
+<p>When provisioning the Jenkins environment with AWS for the first time, the provisioning will fail for SSH reasons. 
+This can be resolved by getting the IP address of the created instance in your <code>EC2 Console</code> and replacing the ip address within the <code>provisioners/ansible/ansible.host</code> file.</p>
+<p>Current File</p>
+<pre><code class="lang-yaml">[jenkins]
+127.0.0.1 ansible_ssh_port=2222
+</code></pre>
+<p>Eg. of what to be updated to:</p>
+<pre><code class="lang-yaml">[jenkins]
+54.69.58.64
+</code></pre>
+
+<h1 id="known-issues">Known Issues</h1>
+<h4 id="issue-1">Issue 1</h4>
+<blockquote>
+<p>The github-oauth@0.19 plugin doesnt play well with the shared-workspace plugin.
+At version 0.19, the github-oauth plugin checks each job for a git url and if this url is null then an exception is thrown. This happens when the ${SHAREDSPACE_SCM_URL} is used.
+This variable is null until a job is executed, hence the github-oauth plugin will throw a fit.</p>
+<p><strong><em>Resolution</em></strong></p>
+<p>Just avoid using that variable and everything will be ok.</p>
+</blockquote>
+<h4 id="issue-2">Issue 2</h4>
+<blockquote>
+<p>With <code>VirtualBox v4.3.14</code>, when doing <code>vagrant up</code>, an error (or similar error) sometimes occurs saying:</p>
+<p><strong><em>Exception:</em></strong></p>
+<p>The guest machine entered an invalid state while waiting for it
+to boot. Valid states are &#39;starting, running&#39;. The machine is in the
+&#39;poweroff&#39; state. Please verify everything is configured
+properly and try again.</p>
+<p>If the provider you&#39;re using has a GUI that comes with it,
+it is often helpful to open that and watch the machine, since the
+GUI often has more helpful error messages than Vagrant can retrieve.
+For example, if you&#39;re using VirtualBox, run <code>vagrant up</code> while the
+VirtualBox GUI is open.</p>
+<p><strong><em>Resolution</em></strong>:</p>
+<p>To resolve the issue, downgrading to version <code>VirtualBox v4.3.12</code> worked</p>
+</blockquote>
+<h4 id="issue-3">Issue 3</h4>
+<blockquote>
+<p>Sometimes pulling the repository down will make <code>ansible.host</code> an executable file and will produce the following error:</p>
+<p><strong><em>Exception:</em></strong></p>
+<p>ERROR: The file provisioners/ansible/ansible.host is marked as executable,
+but failed to execute correctly. If this is not supposed to be an executable script,
+correct this with <code>chmod -x provisioners/ansible/ansible.host</code>.</p>
+<p><strong><em>Resolution</em></strong>:</p>
+<p>To resolve the issue, run <code>chmod -x provisioners/ansible/ansible.host</code></p>
+</blockquote>
+
+
+
+
+
+        </div>
+        <footer id="footer">
+            Powered by <a href="http://github.com/maximebf/beautiful-docs">beautiful-docs</a> -
+            <a href="#top">Back to top</a> - <a href="all.html">Everything on a single page</a>
+            - <a href="?print=1">Print current page</a> - <a href="all.html?print=1">Print all pages</a>
+            
+                <a href="https://github.com/https://github.com/medullan/vagrant-ansible-jenkins" id="fork-me-on-github">Fork me on Github</a>
+            
+        </footer>
+    </div>
+</body>
+</html>
