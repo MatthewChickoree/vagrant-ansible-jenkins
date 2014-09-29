@@ -349,30 +349,74 @@ index.add({
 
 
 
-documentTitles["06-known-issues.html#known-issues"] = "Known Issues";
+documentTitles["06-documentation.html#documentation"] = "Documentation";
 index.add({
-    url: "06-known-issues.html#known-issues",
+    url: "06-documentation.html#documentation",
+    title: "Documentation",
+    body: "# Documentation  "
+});
+
+documentTitles["06-documentation.html#editing-the-docs"] = "Editing the Docs";
+index.add({
+    url: "06-documentation.html#editing-the-docs",
+    title: "Editing the Docs",
+    body: "## Editing the Docs You can edit the documentation by visiting the [Github wiki](https://github.com/medullan/vagrant-ansible-jenkins/wiki) of this repository. The wiki is parsed and use to generate the documentation for the [website](http://medullan.github.io/vagrant-ansible-jenkins).  "
+});
+
+documentTitles["06-documentation.html#generate-documentation-website"] = "Generate Documentation Website";
+index.add({
+    url: "06-documentation.html#generate-documentation-website",
+    title: "Generate Documentation Website",
+    body: "## Generate Documentation Website  To get started with generating the documentation, you must have already clone the [git repository](https://github.com/medullan/vagrant-ansible-jenkins) and be inside the root directory with your console.  The tools need to get you started are all powered by [NPM](https://www.npmjs.org/) and [Grunt](http://gruntjs.com/). Therefore, you must have [nodejs](http://nodejs.org/) and **npm** installed with **grunt** installed globally as an **npm** package  "
+});
+
+documentTitles["06-documentation.html#step-1"] = "Step 1";
+index.add({
+    url: "06-documentation.html#step-1",
+    title: "Step 1",
+    body: "### Step 1  run ```bash $ npm install ```  This will install all npm modules/dependencies needed within the project to generate the documentation.  "
+});
+
+documentTitles["06-documentation.html#step-2"] = "Step 2";
+index.add({
+    url: "06-documentation.html#step-2",
+    title: "Step 2",
+    body: "### Step 2 run ```bash $ grunt docs ``` This will then generate the documentation locally to the **docs** folder.   "
+});
+
+documentTitles["06-documentation.html#deploy-docs-to-gh-pages"] = "Deploy Docs to GH-Pages";
+index.add({
+    url: "06-documentation.html#deploy-docs-to-gh-pages",
+    title: "Deploy Docs to GH-Pages",
+    body: "## Deploy Docs to GH-Pages  When the documentation is generated and parsed properly then you can deploy to the [website](http://medullan.github.io/vagrant-ansible-jenkins)  **NB.** (Please review generated docs locally before deploying)  you can do this by running: ```bash $ grunt deploy ``` "
+});
+
+
+
+documentTitles["07-known-issues.html#known-issues"] = "Known Issues";
+index.add({
+    url: "07-known-issues.html#known-issues",
     title: "Known Issues",
     body: "# Known Issues  "
 });
 
-documentTitles["06-known-issues.html#issue-shared-workspace-jenkins-plugin-woes"] = "Issue: shared-workspace Jenkins Plugin woes";
+documentTitles["07-known-issues.html#issue-shared-workspace-jenkins-plugin-woes"] = "Issue: shared-workspace Jenkins Plugin woes";
 index.add({
-    url: "06-known-issues.html#issue-shared-workspace-jenkins-plugin-woes",
+    url: "07-known-issues.html#issue-shared-workspace-jenkins-plugin-woes",
     title: "Issue: shared-workspace Jenkins Plugin woes",
     body: "## Issue: shared-workspace Jenkins Plugin woes  &gt; The github-oauth@0.19 plugin doesnt play well with the shared-workspace plugin. &gt; At version 0.19, the github-oauth plugin checks each job for a git url and if this url is null then an exception is thrown. This happens when the ${SHAREDSPACE_SCM_URL} is used. This variable is null until a job is executed, hence the github-oauth plugin will throw a fit.  &gt;#### Resolution  &gt;Just avoid using that variable and everything will be ok.  "
 });
 
-documentTitles["06-known-issues.html#issue-invalid-machine-state-when-provisioning"] = "Issue: Invalid machine state when provisioning";
+documentTitles["07-known-issues.html#issue-invalid-machine-state-when-provisioning"] = "Issue: Invalid machine state when provisioning";
 index.add({
-    url: "06-known-issues.html#issue-invalid-machine-state-when-provisioning",
+    url: "07-known-issues.html#issue-invalid-machine-state-when-provisioning",
     title: "Issue: Invalid machine state when provisioning",
     body: "## Issue: Invalid machine state when provisioning  &gt; With `VirtualBox v4.3.14`, when doing `vagrant up`, an error (or similar error) sometimes occurs saying:  &gt; #### Exception  &gt; The guest machine entered an invalid state while waiting for it &gt; to boot. Valid states are 'starting, running'. The machine is in the &gt; 'poweroff' state. Please verify everything is configured &gt; properly and try again.  &gt; If the provider you're using has a GUI that comes with it, &gt; it is often helpful to open that and watch the machine, since the &gt; GUI often has more helpful error messages than Vagrant can retrieve. &gt; For example, if you're using VirtualBox, run `vagrant up` while the &gt; VirtualBox GUI is open.  &gt; #### Resolution:  &gt; To resolve the issue, downgrading to version `VirtualBox v4.3.12` worked  "
 });
 
-documentTitles["06-known-issues.html#issue-ansiblehost-turned-into-executable-file"] = "Issue: ansible.host turned into executable file";
+documentTitles["07-known-issues.html#issue-ansiblehost-turned-into-executable-file"] = "Issue: ansible.host turned into executable file";
 index.add({
-    url: "06-known-issues.html#issue-ansiblehost-turned-into-executable-file",
+    url: "07-known-issues.html#issue-ansiblehost-turned-into-executable-file",
     title: "Issue: ansible.host turned into executable file",
     body: "## Issue: ansible.host turned into executable file &gt; Sometimes pulling the repository down will make `ansible.host` an executable file and will produce the following error:  &gt; ####Exception  &gt; ERROR: The file provisioners/ansible/ansible.host is marked as executable, &gt; but failed to execute correctly. If this is not supposed to be an executable script, &gt; correct this with `chmod -x provisioners/ansible/ansible.host`.  &gt; #### Resolution  &gt; To resolve the issue, run `chmod -x provisioners/ansible/ansible.host`"
 });

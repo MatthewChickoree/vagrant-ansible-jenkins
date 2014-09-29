@@ -158,23 +158,49 @@
         </li>
     
         <li>
-            <a href="06-known-issues.html#known-issues">Known Issues</a>
+            <a href="06-documentation.html#documentation">Documentation</a>
             
                 
     <ol>
     
         <li>
-            <a href="06-known-issues.html#issue-shared-workspace-jenkins-plugin-woes">Issue: shared-workspace Jenkins Plugin woes</a>
+            <a href="06-documentation.html#editing-the-docs">Editing the Docs</a>
             
         </li>
     
         <li>
-            <a href="06-known-issues.html#issue-invalid-machine-state-when-provisioning">Issue: Invalid machine state when provisioning</a>
+            <a href="06-documentation.html#generate-documentation-website">Generate Documentation Website</a>
             
         </li>
     
         <li>
-            <a href="06-known-issues.html#issue-ansiblehost-turned-into-executable-file">Issue: ansible.host turned into executable file</a>
+            <a href="06-documentation.html#deploy-docs-to-gh-pages">Deploy Docs to GH-Pages</a>
+            
+        </li>
+    
+</ol>
+
+            
+        </li>
+    
+        <li>
+            <a href="07-known-issues.html#known-issues">Known Issues</a>
+            
+                
+    <ol>
+    
+        <li>
+            <a href="07-known-issues.html#issue-shared-workspace-jenkins-plugin-woes">Issue: shared-workspace Jenkins Plugin woes</a>
+            
+        </li>
+    
+        <li>
+            <a href="07-known-issues.html#issue-invalid-machine-state-when-provisioning">Issue: Invalid machine state when provisioning</a>
+            
+        </li>
+    
+        <li>
+            <a href="07-known-issues.html#issue-ansiblehost-turned-into-executable-file">Issue: ansible.host turned into executable file</a>
             
         </li>
     
@@ -542,6 +568,29 @@ This can be resolved by getting the IP address of the created instance in your <
 <p>Eg. of what to be updated to:</p>
 <pre><code class="lang-yaml">[jenkins]
 54.69.58.64
+</code></pre>
+
+<h1 id="documentation">Documentation</h1>
+<h2 id="editing-the-docs">Editing the Docs</h2>
+<p>You can edit the documentation by visiting the <a href="https://github.com/medullan/vagrant-ansible-jenkins/wiki">Github wiki</a> of this repository. The wiki is parsed and use to generate the documentation for the <a href="http://medullan.github.io/vagrant-ansible-jenkins">website</a>.</p>
+<h2 id="generate-documentation-website">Generate Documentation Website</h2>
+<p>To get started with generating the documentation, you must have already clone the <a href="https://github.com/medullan/vagrant-ansible-jenkins">git repository</a> and be inside the root directory with your console.</p>
+<p>The tools need to get you started are all powered by <a href="https://www.npmjs.org/">NPM</a> and <a href="http://gruntjs.com/">Grunt</a>. Therefore, you must have <a href="http://nodejs.org/">nodejs</a> and <strong>npm</strong> installed with <strong>grunt</strong> installed globally as an <strong>npm</strong> package</p>
+<h3 id="step-1">Step 1</h3>
+<p>run</p>
+<pre><code class="lang-bash">$ npm install
+</code></pre>
+<p>This will install all npm modules/dependencies needed within the project to generate the documentation.</p>
+<h3 id="step-2">Step 2</h3>
+<p>run</p>
+<pre><code class="lang-bash">$ grunt docs
+</code></pre>
+<p>This will then generate the documentation locally to the <strong>docs</strong> folder.</p>
+<h2 id="deploy-docs-to-gh-pages">Deploy Docs to GH-Pages</h2>
+<p>When the documentation is generated and parsed properly then you can deploy to the <a href="http://medullan.github.io/vagrant-ansible-jenkins">website</a></p>
+<p><strong>NB.</strong> (Please review generated docs locally before deploying)</p>
+<p>you can do this by running:</p>
+<pre><code class="lang-bash">$ grunt deploy
 </code></pre>
 
 <h1 id="known-issues">Known Issues</h1>
