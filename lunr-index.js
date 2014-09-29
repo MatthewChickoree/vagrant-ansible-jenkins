@@ -330,7 +330,14 @@ documentTitles["052-provision-jenkins-with-aws.html#step-3-fill-in-required-aws-
 index.add({
     url: "052-provision-jenkins-with-aws.html#step-3-fill-in-required-aws-info",
     title: "Step 3 - Fill in required AWS info",
-    body: "### Step 3 - Fill in required AWS info  if you already understand what to do, please edit the AWS provider section in the Vagrantfile: ```yaml config.vm.provider :aws do |aws, override|       override.ssh.username = \&quot;ubuntu\&quot;       override.ssh.private_key_path = \&quot;\&quot; # location of rsa private key file here        aws.access_key_id = \&quot;\&quot; # Your access key id here       aws.secret_access_key = \&quot;\&quot; # Your secret access key here       aws.keypair_name = \&quot;\&quot;        aws.ami = \&quot;ami-8bda99bb\&quot; # replace with AMI id generated with packer if necessary       aws.security_groups = [\&quot;launch-wizard-1\&quot;] # replace with preferred security group, must have an ssh port       aws.region = \&quot;us-west-2\&quot; # replace with your region   end ```  then run: ``` $ vagrant up --provider=aws ```  This will create and run an AWS instance in your account.  For more information on provisioning with AWS please view the following repository:  https://github.com/mitchellh/vagrant-aws  "
+    body: "### Step 3 - Fill in required AWS info  if you already understand what to do, please edit the AWS provider section in the Vagrantfile: ```yaml config.vm.provider :aws do |aws, override|       override.ssh.username = \&quot;ubuntu\&quot;       override.ssh.private_key_path = \&quot;\&quot; # location of rsa private key file here        aws.access_key_id = \&quot;\&quot; # Your access key id here       aws.secret_access_key = \&quot;\&quot; # Your secret access key here       aws.keypair_name = \&quot;\&quot;        aws.ami = \&quot;ami-8bda99bb\&quot; # replace with AMI id generated with packer if necessary       aws.security_groups = [\&quot;launch-wizard-1\&quot;] # replace with preferred security group, must have an ssh port       aws.region = \&quot;us-west-2\&quot; # replace with your region   end ``` "
+});
+
+documentTitles["052-provision-jenkins-with-aws.html#step-4-uncomment-rsync-folder-sharing"] = "Step 4 - Uncomment Rsync Folder sharing";
+index.add({
+    url: "052-provision-jenkins-with-aws.html#step-4-uncomment-rsync-folder-sharing",
+    title: "Step 4 - Uncomment Rsync Folder sharing",
+    body: "### Step 4 - Uncomment Rsync Folder sharing  This step is important. The rsync line lists files that should be ignore when syncing files on the local machine with the AWS machine. If these are not ignore then the process will attempt to transfer very huge files and you may wait a very long time before seeing any progress.   ```yaml config.vm.synced_folder \&quot;.\&quot;, \&quot;/vagrant\&quot;, type: \&quot;rsync\&quot;, :rsync_excludes =&gt; ['packer_cache/', 'http/', ... ] ```  then run: ``` $ vagrant up --provider=aws ```  This will create and run an AWS instance in your account.  For more information on provisioning with AWS please view the following repository:  https://github.com/mitchellh/vagrant-aws  "
 });
 
 documentTitles["052-provision-jenkins-with-aws.html#extras"] = "Extras";
@@ -444,15 +451,6 @@ index.add({
     url: "license.html#license",
     title: "License",
     body: "### License  The MIT License  Copyright (c) 2013. https://github.com/medullan/vagrant-ansible-jenkins  Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the \&quot;Software\&quot;), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:  The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.  THE SOFTWARE IS PROVIDED \&quot;AS IS\&quot;, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE."
-});
-
-
-
-documentTitles["license.html#license"] = "License";
-index.add({
-    url: "license.html#license",
-    title: "License",
-    body: "The MIT License  Copyright (c) 2013. https://github.com/medullan/vagrant-ansible-jenkins  Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the \&quot;Software\&quot;), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:  The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.  THE SOFTWARE IS PROVIDED \&quot;AS IS\&quot;, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE. "
 });
 
 

@@ -220,17 +220,6 @@
             
         </li>
     
-        <li>
-            <a href="license.html#license">License</a>
-            
-                
-    <ol>
-    
-</ol>
-
-            
-        </li>
-    
 </ol>
 
     </nav>
@@ -271,6 +260,10 @@
       aws.security_groups = [&quot;launch-wizard-1&quot;] # replace with preferred security group, must have an ssh port
       aws.region = &quot;us-west-2&quot; # replace with your region
   end
+</code></pre>
+<h3 id="step-4-uncomment-rsync-folder-sharing">Step 4 - Uncomment Rsync Folder sharing</h3>
+<p>This step is important. The rsync line lists files that should be ignore when syncing files on the local machine with the AWS machine. If these are not ignore then the process will attempt to transfer very huge files and you may wait a very long time before seeing any progress. </p>
+<pre><code class="lang-yaml">config.vm.synced_folder &quot;.&quot;, &quot;/vagrant&quot;, type: &quot;rsync&quot;, :rsync_excludes =&gt; [&#39;packer_cache/&#39;, &#39;http/&#39;, ... ]
 </code></pre>
 <p>then run:</p>
 <pre><code>$ vagrant up --provider=aws
