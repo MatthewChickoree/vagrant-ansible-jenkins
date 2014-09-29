@@ -257,8 +257,7 @@ usage: checkurl.groovy -[hmst] [url]
  -t,--tries &lt;tries&gt;        number of tries before exit, Default: 3
 </code></pre>
 <h3 id="example">Example</h3>
-<p>eg. of the script being run in a build pipeline.
-The example below pings a site every minute and attempts 12 tries before exiting.</p>
+<p>The example below pings a site every minute and attempts 12 tries before exiting.</p>
 <pre><code class="lang-bash">$ groovy /var/lib/jenkins/shared_ansible/checkurl.groovy -m 30 -s 60 -t 12 http://ec2-54-221-51-114.compute-1.amazonaws.com
 
 Checking &#39;http://ec2-54-221-51-114.compute-1.amazonaws.com&#39; with: 
