@@ -367,14 +367,14 @@ documentTitles["06-documentation.html#generate-documentation-website"] = "Genera
 index.add({
     url: "06-documentation.html#generate-documentation-website",
     title: "Generate Documentation Website",
-    body: "## Generate Documentation Website  To get started with generating the documentation, you must have already clone the [git repository](https://github.com/medullan/vagrant-ansible-jenkins) and be inside the root directory with your console.  The tools need to get you started are all powered by [NPM](https://www.npmjs.org/) and [Grunt](http://gruntjs.com/). Therefore, you must have [nodejs](http://nodejs.org/) and **npm** installed with **grunt** installed globally as an **npm** package  "
+    body: "## Generate Documentation Website  To get started with generating the documentation, you must have already clone the [git repository](https://github.com/medullan/vagrant-ansible-jenkins) and be inside the root directory with your console.  The tools needed to get you started are all powered by [NPM](https://www.npmjs.org/) and [Grunt](http://gruntjs.com/). Therefore, you must have [nodejs](http://nodejs.org/) and **npm** installed with **grunt** installed globally as a **npm** package  "
 });
 
 documentTitles["06-documentation.html#step-1"] = "Step 1";
 index.add({
     url: "06-documentation.html#step-1",
     title: "Step 1",
-    body: "### Step 1  run ```bash $ npm install ```  This will install all npm modules/dependencies needed within the project to generate the documentation.  "
+    body: "### Step 1  run ```bash $ npm install ```  This will install all **npm** modules/dependencies needed within the project to generate the documentation.  "
 });
 
 documentTitles["06-documentation.html#step-2"] = "Step 2";
@@ -388,7 +388,7 @@ documentTitles["06-documentation.html#deploy-docs-to-gh-pages"] = "Deploy Docs t
 index.add({
     url: "06-documentation.html#deploy-docs-to-gh-pages",
     title: "Deploy Docs to GH-Pages",
-    body: "## Deploy Docs to GH-Pages  When the documentation is generated and parsed properly then you can deploy to the [website](http://medullan.github.io/vagrant-ansible-jenkins)  **NB.** (Please review generated docs locally before deploying)  you can do this by running: ```bash $ grunt deploy ``` "
+    body: "## Deploy Docs to GH-Pages  When the documentation is generated and parsed properly then you can deploy to the [website](http://medullan.github.io/vagrant-ansible-jenkins)  **NB.** Please review generated docs locally before deploying  You can do this by running: ```bash $ grunt deploy ``` "
 });
 
 
