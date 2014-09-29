@@ -12,7 +12,14 @@ documentTitles["home.html#home"] = "Home";
 index.add({
     url: "home.html#home",
     title: "Home",
-    body: "# Home  Welcome to the vagrant-ansible-jenkins documentation!  To get started view the Introduction page,  otherwise, select the specific topic that you require.  Jump right in!   ![github](http://ciembor.github.io/4bit/images/github.png)  [Repository](https://github.com/medullan/vagrant-ansible-jenkins)   ![wiki](http://www.altera.com/common/template/08/icon-wiki.gif)  [Edit On Guthub](https://github.com/medullan/vagrant-ansible-jenkins.wiki.git)"
+    body: "# Home  Welcome to the vagrant-ansible-jenkins documentation!  To get started view the Introduction page,  otherwise, select the specific topic that you require.  Jump right in!   ![github](http://ciembor.github.io/4bit/images/github.png)  [Repository](https://github.com/medullan/vagrant-ansible-jenkins)   ![wiki](http://www.altera.com/common/template/08/icon-wiki.gif)  [Edit On Guthub](https://github.com/medullan/vagrant-ansible-jenkins.wiki.git)   "
+});
+
+documentTitles["home.html#useful-links"] = "Useful Links:";
+index.add({
+    url: "home.html#useful-links",
+    title: "Useful Links:",
+    body: "### Useful Links: - [Ansible](http://docs.ansible.com/) - [Packer](http://www.packer.io/docs) - [Vagrant](http://docs.vagrantup.com/v2/) - [DropBox Direct Link Creation](http://techapple.net/2014/04/trick-obtain-direct-download-links-dropbox-files-dropbox-direct-link-maker-tool-cloudlinker/)"
 });
 
 
@@ -21,14 +28,7 @@ documentTitles["01-intro.html#introduction"] = "Introduction";
 index.add({
     url: "01-intro.html#introduction",
     title: "Introduction",
-    body: "# Introduction   This repository was created to provide a new team with a pre configured Jenkins environment with similar slave environments by using Amazon Web Services. Vagrant and packer was used with the help of Ansible for consistent and repeatable environments.  * If interested in pushing to this Repository please see the `Development` section below. * Please check the `Known Issues` page. * Most Instructions and problem resolutions were tested for Mac OS X. Cannot guarantee this process will work on other operating systems   "
-});
-
-documentTitles["01-intro.html#useful-links"] = "Useful Links:";
-index.add({
-    url: "01-intro.html#useful-links",
-    title: "Useful Links:",
-    body: "#### Useful Links: - [Ansible](http://docs.ansible.com/) - [Packer](http://www.packer.io/docs) - [Vagrant](http://docs.vagrantup.com/v2/) - [DropBox Direct Link Creation](http://techapple.net/2014/04/trick-obtain-direct-download-links-dropbox-files-dropbox-direct-link-maker-tool-cloudlinker/) "
+    body: "# Introduction   This repository was created to provide a new team with a pre configured Jenkins environment with similar slave environments by using Amazon Web Services. Vagrant and packer was used with the help of Ansible for consistent and repeatable environments.  * If interested in pushing to this Repository please see the `Development` section. * If problems occur, Please check the `Known Issues` page first. If there are no resolutions for your problem then feel free to submit an [issue](https://github.com/medullan/vagrant-ansible-jenkins/issues) * Most Instructions and problem resolutions were tested for Mac OS X. Cannot guarantee this process will work on other operating systems "
 });
 
 
