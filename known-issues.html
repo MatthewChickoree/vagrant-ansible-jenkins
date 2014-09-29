@@ -233,22 +233,41 @@
 </div>
 
         <div id="content">
-            <h1 id="home">Home</h1>
-<p>Welcome to the vagrant-ansible-jenkins documentation!</p>
-<p>To get started view the Introduction page, 
-otherwise, select the specific topic that you require.</p>
-<p>Jump right in!</p>
-<p><img src="http://ciembor.github.io/4bit/images/github.png" alt="github"> 
-<a href="https://github.com/medullan/vagrant-ansible-jenkins">Repository</a> </p>
-<p><img src="http://www.altera.com/common/template/08/icon-wiki.gif" alt="wiki"> 
-<a href="https://github.com/medullan/vagrant-ansible-jenkins.wiki.git">Edit On Guthub</a></p>
-<h3 id="useful-links-">Useful Links:</h3>
-<ul>
-<li><a href="http://docs.ansible.com/">Ansible</a></li>
-<li><a href="http://www.packer.io/docs">Packer</a></li>
-<li><a href="http://docs.vagrantup.com/v2/">Vagrant</a></li>
-<li><a href="http://techapple.net/2014/04/trick-obtain-direct-download-links-dropbox-files-dropbox-direct-link-maker-tool-cloudlinker/">DropBox Direct Link Creation</a></li>
-</ul>
+            <h1 id="known-issues">Known Issues</h1>
+<h2 id="issue-shared-workspace-jenkins-plugin-woes">Issue: shared-workspace Jenkins Plugin woes</h2>
+<blockquote>
+<p>The github-oauth@0.19 plugin doesnt play well with the shared-workspace plugin.
+At version 0.19, the github-oauth plugin checks each job for a git url and if this url is null then an exception is thrown. This happens when the ${SHAREDSPACE_SCM_URL} is used.
+This variable is null until a job is executed, hence the github-oauth plugin will throw a fit.</p>
+<h4 id="resolution">Resolution</h4>
+<p>Just avoid using that variable and everything will be ok.</p>
+</blockquote>
+<h2 id="issue-invalid-machine-state-when-provisioning">Issue: Invalid machine state when provisioning</h2>
+<blockquote>
+<p>With <code>VirtualBox v4.3.14</code>, when doing <code>vagrant up</code>, an error (or similar error) sometimes occurs saying:</p>
+<h4 id="exception">Exception</h4>
+<p>The guest machine entered an invalid state while waiting for it
+to boot. Valid states are &#39;starting, running&#39;. The machine is in the
+&#39;poweroff&#39; state. Please verify everything is configured
+properly and try again.</p>
+<p>If the provider you&#39;re using has a GUI that comes with it,
+it is often helpful to open that and watch the machine, since the
+GUI often has more helpful error messages than Vagrant can retrieve.
+For example, if you&#39;re using VirtualBox, run <code>vagrant up</code> while the
+VirtualBox GUI is open.</p>
+<h4 id="resolution-">Resolution:</h4>
+<p>To resolve the issue, downgrading to version <code>VirtualBox v4.3.12</code> worked</p>
+</blockquote>
+<h2 id="issue-ansible-host-turned-into-executable-file">Issue: ansible.host turned into executable file</h2>
+<blockquote>
+<p>Sometimes pulling the repository down will make <code>ansible.host</code> an executable file and will produce the following error:</p>
+<h4 id="exception">Exception</h4>
+<p>ERROR: The file provisioners/ansible/ansible.host is marked as executable,
+but failed to execute correctly. If this is not supposed to be an executable script,
+correct this with <code>chmod -x provisioners/ansible/ansible.host</code>.</p>
+<h4 id="resolution">Resolution</h4>
+<p>To resolve the issue, run <code>chmod -x provisioners/ansible/ansible.host</code></p>
+</blockquote>
 
 
 

@@ -393,30 +393,46 @@ index.add({
 
 
 
-documentTitles["07-known-issues.html#known-issues"] = "Known Issues";
+documentTitles["07-development.html#development"] = "Development";
 index.add({
-    url: "07-known-issues.html#known-issues",
+    url: "07-development.html#development",
+    title: "Development",
+    body: "# Development  "
+});
+
+documentTitles["07-development.html#rules"] = "Rules";
+index.add({
+    url: "07-development.html#rules",
+    title: "Rules",
+    body: "### Rules  - Please do not push to the master branch of this repository with code/tasks that have not been peer reviewed. - Please branch from master and make pull requests to submit changes - A conversation/pull request needs to happen before anything is merged into master - Always do a **vagrant destroy** then **vagrant up** for a final test to ensure that additions work properly end to end"
+});
+
+
+
+documentTitles["known-issues.html#known-issues"] = "Known Issues";
+index.add({
+    url: "known-issues.html#known-issues",
     title: "Known Issues",
     body: "# Known Issues  "
 });
 
-documentTitles["07-known-issues.html#issue-shared-workspace-jenkins-plugin-woes"] = "Issue: shared-workspace Jenkins Plugin woes";
+documentTitles["known-issues.html#issue-shared-workspace-jenkins-plugin-woes"] = "Issue: shared-workspace Jenkins Plugin woes";
 index.add({
-    url: "07-known-issues.html#issue-shared-workspace-jenkins-plugin-woes",
+    url: "known-issues.html#issue-shared-workspace-jenkins-plugin-woes",
     title: "Issue: shared-workspace Jenkins Plugin woes",
     body: "## Issue: shared-workspace Jenkins Plugin woes  &gt; The github-oauth@0.19 plugin doesnt play well with the shared-workspace plugin. &gt; At version 0.19, the github-oauth plugin checks each job for a git url and if this url is null then an exception is thrown. This happens when the ${SHAREDSPACE_SCM_URL} is used. This variable is null until a job is executed, hence the github-oauth plugin will throw a fit.  &gt;#### Resolution  &gt;Just avoid using that variable and everything will be ok.  "
 });
 
-documentTitles["07-known-issues.html#issue-invalid-machine-state-when-provisioning"] = "Issue: Invalid machine state when provisioning";
+documentTitles["known-issues.html#issue-invalid-machine-state-when-provisioning"] = "Issue: Invalid machine state when provisioning";
 index.add({
-    url: "07-known-issues.html#issue-invalid-machine-state-when-provisioning",
+    url: "known-issues.html#issue-invalid-machine-state-when-provisioning",
     title: "Issue: Invalid machine state when provisioning",
     body: "## Issue: Invalid machine state when provisioning  &gt; With `VirtualBox v4.3.14`, when doing `vagrant up`, an error (or similar error) sometimes occurs saying:  &gt; #### Exception  &gt; The guest machine entered an invalid state while waiting for it &gt; to boot. Valid states are 'starting, running'. The machine is in the &gt; 'poweroff' state. Please verify everything is configured &gt; properly and try again.  &gt; If the provider you're using has a GUI that comes with it, &gt; it is often helpful to open that and watch the machine, since the &gt; GUI often has more helpful error messages than Vagrant can retrieve. &gt; For example, if you're using VirtualBox, run `vagrant up` while the &gt; VirtualBox GUI is open.  &gt; #### Resolution:  &gt; To resolve the issue, downgrading to version `VirtualBox v4.3.12` worked  "
 });
 
-documentTitles["07-known-issues.html#issue-ansiblehost-turned-into-executable-file"] = "Issue: ansible.host turned into executable file";
+documentTitles["known-issues.html#issue-ansiblehost-turned-into-executable-file"] = "Issue: ansible.host turned into executable file";
 index.add({
-    url: "07-known-issues.html#issue-ansiblehost-turned-into-executable-file",
+    url: "known-issues.html#issue-ansiblehost-turned-into-executable-file",
     title: "Issue: ansible.host turned into executable file",
     body: "## Issue: ansible.host turned into executable file &gt; Sometimes pulling the repository down will make `ansible.host` an executable file and will produce the following error:  &gt; ####Exception  &gt; ERROR: The file provisioners/ansible/ansible.host is marked as executable, &gt; but failed to execute correctly. If this is not supposed to be an executable script, &gt; correct this with `chmod -x provisioners/ansible/ansible.host`.  &gt; #### Resolution  &gt; To resolve the issue, run `chmod -x provisioners/ansible/ansible.host`"
 });

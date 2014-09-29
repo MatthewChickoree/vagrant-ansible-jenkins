@@ -184,23 +184,34 @@
         </li>
     
         <li>
-            <a href="07-known-issues.html#known-issues">Known Issues</a>
+            <a href="07-development.html#development">Development</a>
+            
+                
+    <ol>
+    
+</ol>
+
+            
+        </li>
+    
+        <li>
+            <a href="known-issues.html#known-issues">Known Issues</a>
             
                 
     <ol>
     
         <li>
-            <a href="07-known-issues.html#issue-shared-workspace-jenkins-plugin-woes">Issue: shared-workspace Jenkins Plugin woes</a>
+            <a href="known-issues.html#issue-shared-workspace-jenkins-plugin-woes">Issue: shared-workspace Jenkins Plugin woes</a>
             
         </li>
     
         <li>
-            <a href="07-known-issues.html#issue-invalid-machine-state-when-provisioning">Issue: Invalid machine state when provisioning</a>
+            <a href="known-issues.html#issue-invalid-machine-state-when-provisioning">Issue: Invalid machine state when provisioning</a>
             
         </li>
     
         <li>
-            <a href="07-known-issues.html#issue-ansiblehost-turned-into-executable-file">Issue: ansible.host turned into executable file</a>
+            <a href="known-issues.html#issue-ansiblehost-turned-into-executable-file">Issue: ansible.host turned into executable file</a>
             
         </li>
     
@@ -222,41 +233,14 @@
 </div>
 
         <div id="content">
-            <h1 id="known-issues">Known Issues</h1>
-<h2 id="issue-shared-workspace-jenkins-plugin-woes">Issue: shared-workspace Jenkins Plugin woes</h2>
-<blockquote>
-<p>The github-oauth@0.19 plugin doesnt play well with the shared-workspace plugin.
-At version 0.19, the github-oauth plugin checks each job for a git url and if this url is null then an exception is thrown. This happens when the ${SHAREDSPACE_SCM_URL} is used.
-This variable is null until a job is executed, hence the github-oauth plugin will throw a fit.</p>
-<h4 id="resolution">Resolution</h4>
-<p>Just avoid using that variable and everything will be ok.</p>
-</blockquote>
-<h2 id="issue-invalid-machine-state-when-provisioning">Issue: Invalid machine state when provisioning</h2>
-<blockquote>
-<p>With <code>VirtualBox v4.3.14</code>, when doing <code>vagrant up</code>, an error (or similar error) sometimes occurs saying:</p>
-<h4 id="exception">Exception</h4>
-<p>The guest machine entered an invalid state while waiting for it
-to boot. Valid states are &#39;starting, running&#39;. The machine is in the
-&#39;poweroff&#39; state. Please verify everything is configured
-properly and try again.</p>
-<p>If the provider you&#39;re using has a GUI that comes with it,
-it is often helpful to open that and watch the machine, since the
-GUI often has more helpful error messages than Vagrant can retrieve.
-For example, if you&#39;re using VirtualBox, run <code>vagrant up</code> while the
-VirtualBox GUI is open.</p>
-<h4 id="resolution-">Resolution:</h4>
-<p>To resolve the issue, downgrading to version <code>VirtualBox v4.3.12</code> worked</p>
-</blockquote>
-<h2 id="issue-ansible-host-turned-into-executable-file">Issue: ansible.host turned into executable file</h2>
-<blockquote>
-<p>Sometimes pulling the repository down will make <code>ansible.host</code> an executable file and will produce the following error:</p>
-<h4 id="exception">Exception</h4>
-<p>ERROR: The file provisioners/ansible/ansible.host is marked as executable,
-but failed to execute correctly. If this is not supposed to be an executable script,
-correct this with <code>chmod -x provisioners/ansible/ansible.host</code>.</p>
-<h4 id="resolution">Resolution</h4>
-<p>To resolve the issue, run <code>chmod -x provisioners/ansible/ansible.host</code></p>
-</blockquote>
+            <h1 id="development">Development</h1>
+<h3 id="rules">Rules</h3>
+<ul>
+<li>Please do not push to the master branch of this repository with code/tasks that have not been peer reviewed.</li>
+<li>Please branch from master and make pull requests to submit changes</li>
+<li>A conversation/pull request needs to happen before anything is merged into master</li>
+<li>Always do a <strong>vagrant destroy</strong> then <strong>vagrant up</strong> for a final test to ensure that additions work properly end to end</li>
+</ul>
 
 
 
