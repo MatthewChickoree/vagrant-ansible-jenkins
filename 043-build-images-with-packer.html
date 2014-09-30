@@ -280,6 +280,7 @@
 <li>output file: <strong><em>packer_amazon-ebs_aws.box</em></strong></li>
 <li>eg. output image name: <strong><em>medullan-ubuntu-latest-1411750026-26-Sep-14</em></strong> (this is accompanied by an AMI id, can be seen in EC2 Console)</li>
 </ul>
+<p><br/></p>
 <h3 id="build-a-virtualbox-vagrant-box">Build a VirtualBox Vagrant Box</h3>
 <p>To build a VirtualBox Vagrant Box, run</p>
 <pre><code class="lang-bash">$ packer build -only virtualbox-iso packer.json
@@ -288,6 +289,7 @@
 <ul>
 <li>output file: <strong><em>packer_virtualbox-iso_virtualbox.box</em></strong></li>
 </ul>
+<p><br/></p>
 <h3 id="build-all-images-in-parallel">Build All Images in Parallel</h3>
 <p>run: </p>
 <pre><code class="lang-bash">$ packer build packer.json
