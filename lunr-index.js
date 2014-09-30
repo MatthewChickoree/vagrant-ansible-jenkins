@@ -358,7 +358,7 @@ documentTitles["052-provision-jenkins-with-aws.html#caveats"] = "Caveats";
 index.add({
     url: "052-provision-jenkins-with-aws.html#caveats",
     title: "Caveats",
-    body: "### Caveats  When provisioning the Jenkins environment with AWS for the first time, the provisioning will fail for SSH reasons. To see how to resolve, please section the [Known Issues](http://medullan.github.io/vagrant-ansible-jenkins/known-issues.html#issue-ansible-provisioning-with-aws-fails-with-ssh-exception) Section for this topic"
+    body: "### Caveats  When provisioning the Jenkins environment with AWS for the first time, the provisioning will fail for SSH reasons. To see how to resolve, please see the [Known Issues](http://medullan.github.io/vagrant-ansible-jenkins/known-issues.html#issue-ansible-provisioning-with-aws-fails-with-ssh-exception) section for this topic"
 });
 
 
@@ -374,7 +374,7 @@ documentTitles["06-documentation.html#about"] = "About";
 index.add({
     url: "06-documentation.html#about",
     title: "About",
-    body: "## About This documentation is hosted for editing on Github wiki and parsed into HTML for the gh-pages. These pages are parsed in the order of how they appear and will be displayed on the website in the same order.  &lt;br/&gt; "
+    body: "## About This documentation is hosted for editing on Github wiki and parsed into HTML for the gh-pages. These pages are parsed in the order of how they appear and will be displayed on the website in the same order. The **Home** Page is an exception to this rule however, it always appears first in the generated documentation. This is so because of the globbling pattern used in the **gruntfile**:  ```js var markdown = [       'vagrant-ansible-jenkins.wiki/Home.md',       'vagrant-ansible-jenkins.wiki/*.md',       '!vagrant-ansible-jenkins.wiki/_Footer.md'     ]; ```  This pattern includes the Home page first, includes all other files and then ignores the Footer page used in the wiki.  &lt;br/&gt; "
 });
 
 documentTitles["06-documentation.html#editing-the-docs"] = "Editing the Docs";

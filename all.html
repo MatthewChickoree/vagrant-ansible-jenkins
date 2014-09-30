@@ -607,11 +607,18 @@ One such role would be <strong>setup</strong>. If you wat to ignore this role wh
 </code></pre>
 <h3 id="caveats">Caveats</h3>
 <p>When provisioning the Jenkins environment with AWS for the first time, the provisioning will fail for SSH reasons.
-To see how to resolve, please section the <a href="http://medullan.github.io/vagrant-ansible-jenkins/known-issues.html#issue-ansible-provisioning-with-aws-fails-with-ssh-exception">Known Issues</a> Section for this topic</p>
+To see how to resolve, please see the <a href="http://medullan.github.io/vagrant-ansible-jenkins/known-issues.html#issue-ansible-provisioning-with-aws-fails-with-ssh-exception">Known Issues</a> section for this topic</p>
 
 <h1 id="documentation">Documentation</h1>
 <h2 id="about">About</h2>
-<p>This documentation is hosted for editing on Github wiki and parsed into HTML for the gh-pages. These pages are parsed in the order of how they appear and will be displayed on the website in the same order.</p>
+<p>This documentation is hosted for editing on Github wiki and parsed into HTML for the gh-pages. These pages are parsed in the order of how they appear and will be displayed on the website in the same order. The <strong>Home</strong> Page is an exception to this rule however, it always appears first in the generated documentation. This is so because of the globbling pattern used in the <strong>gruntfile</strong>:</p>
+<pre><code class="lang-js">var markdown = [
+      &#39;vagrant-ansible-jenkins.wiki/Home.md&#39;,
+      &#39;vagrant-ansible-jenkins.wiki/*.md&#39;,
+      &#39;!vagrant-ansible-jenkins.wiki/_Footer.md&#39;
+    ];
+</code></pre>
+<p>This pattern includes the Home page first, includes all other files and then ignores the Footer page used in the wiki.</p>
 <p><br/></p>
 <h2 id="editing-the-docs">Editing the Docs</h2>
 <p>You can edit the documentation by visiting the <a href="https://github.com/medullan/vagrant-ansible-jenkins/wiki">Github wiki</a> of this repository. The wiki is parsed and used to generate the documentation for the <a href="http://medullan.github.io/vagrant-ansible-jenkins">website</a>.</p>
