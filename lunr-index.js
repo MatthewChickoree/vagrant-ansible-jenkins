@@ -358,7 +358,7 @@ documentTitles["052-provision-jenkins-with-aws.html#caveats"] = "Caveats";
 index.add({
     url: "052-provision-jenkins-with-aws.html#caveats",
     title: "Caveats",
-    body: "### Caveats  When provisioning the Jenkins environment with AWS for the first time, the provisioning will fail for SSH reasons. To see how to resolve, please section the [Known Issues](/) Section for this topic"
+    body: "### Caveats  When provisioning the Jenkins environment with AWS for the first time, the provisioning will fail for SSH reasons. To see how to resolve, please section the [Known Issues](http://medullan.github.io/vagrant-ansible-jenkins/known-issues.html#issue-ansible-provisioning-with-aws-fails-with-ssh-exception) Section for this topic"
 });
 
 
