@@ -287,6 +287,7 @@
       }
     }
 </code></pre>
+<p>if a box is present within the directory that was created before, please remove/delete it.</p>
 <p>Then run</p>
 <pre><code class="lang-bash">$ packer build -only amazon-ebs packer.json
 </code></pre>
@@ -297,7 +298,8 @@
 </ul>
 <p><br/></p>
 <h3 id="build-a-virtualbox-vagrant-box">Build a VirtualBox Vagrant Box</h3>
-<p>To build a VirtualBox Vagrant Box, run</p>
+<p>if a box is present within the directory that was created before, please remove/delete it.
+To build a VirtualBox Vagrant Box, run</p>
 <pre><code class="lang-bash">$ packer build -only virtualbox-iso packer.json
 </code></pre>
 <p>This will execute <strong><em>packer</em></strong> to provision an Ubuntu image and produce a VirtualBox Vagrant Box at the end of the build process.</p>
