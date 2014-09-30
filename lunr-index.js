@@ -441,21 +441,63 @@ documentTitles["known-issues.html#issue-shared-workspace-jenkins-plugin-woes"] =
 index.add({
     url: "known-issues.html#issue-shared-workspace-jenkins-plugin-woes",
     title: "Issue: shared-workspace Jenkins Plugin woes",
-    body: "## Issue: shared-workspace Jenkins Plugin woes  &gt; The github-oauth@0.19 plugin doesnt play well with the shared-workspace plugin. &gt; At version 0.19, the github-oauth plugin checks each job for a git url and if this url is null then an exception is thrown. This happens when the ${SHAREDSPACE_SCM_URL} is used. This variable is null until a job is executed, hence the github-oauth plugin will throw a fit.  &gt;#### Resolution  &gt;Just avoid using that variable and everything will be ok.  "
+    body: "## Issue: shared-workspace Jenkins Plugin woes  The github-oauth@0.19 plugin doesnt play well with the shared-workspace plugin. At version 0.19, the github-oauth plugin checks each job for a git url and if this url is null then an exception is thrown. This happens when the ${SHAREDSPACE_SCM_URL} is used. This variable is null until a job is executed, hence the github-oauth plugin will throw a fit.  "
+});
+
+documentTitles["known-issues.html#resolution"] = "Resolution";
+index.add({
+    url: "known-issues.html#resolution",
+    title: "Resolution",
+    body: "#### Resolution Just avoid using that variable and everything will be ok.  &lt;br/&gt; "
 });
 
 documentTitles["known-issues.html#issue-invalid-machine-state-when-provisioning"] = "Issue: Invalid machine state when provisioning";
 index.add({
     url: "known-issues.html#issue-invalid-machine-state-when-provisioning",
     title: "Issue: Invalid machine state when provisioning",
-    body: "## Issue: Invalid machine state when provisioning  &gt; With `VirtualBox v4.3.14`, when doing `vagrant up`, an error (or similar error) sometimes occurs saying:  &gt; #### Exception  &gt; The guest machine entered an invalid state while waiting for it &gt; to boot. Valid states are 'starting, running'. The machine is in the &gt; 'poweroff' state. Please verify everything is configured &gt; properly and try again.  &gt; If the provider you're using has a GUI that comes with it, &gt; it is often helpful to open that and watch the machine, since the &gt; GUI often has more helpful error messages than Vagrant can retrieve. &gt; For example, if you're using VirtualBox, run `vagrant up` while the &gt; VirtualBox GUI is open.  &gt; #### Resolution:  &gt; To resolve the issue, downgrading to version `VirtualBox v4.3.12` worked  "
+    body: "## Issue: Invalid machine state when provisioning  With `VirtualBox v4.3.14`, when doing `vagrant up`, an error (or similar error) sometimes occurs saying: "
+});
+
+documentTitles["known-issues.html#exception"] = "Exception";
+index.add({
+    url: "known-issues.html#exception",
+    title: "Exception",
+    body: "#### Exception The guest machine entered an invalid state while waiting for it to boot. Valid states are 'starting, running'. The machine is in the 'poweroff' state. Please verify everything is configured properly and try again. If the provider you're using has a GUI that comes with it, it is often helpful to open that and watch the machine, since the GUI often has more helpful error messages than Vagrant can retrieve. For example, if you're using VirtualBox, run `vagrant up` while the VirtualBox GUI is open. "
+});
+
+documentTitles["known-issues.html#resolution"] = "Resolution:";
+index.add({
+    url: "known-issues.html#resolution",
+    title: "Resolution:",
+    body: "#### Resolution: To resolve the issue, downgrading to version `VirtualBox v4.3.12` worked  &lt;br/&gt; "
 });
 
 documentTitles["known-issues.html#issue-ansiblehost-turned-into-executable-file"] = "Issue: ansible.host turned into executable file";
 index.add({
     url: "known-issues.html#issue-ansiblehost-turned-into-executable-file",
     title: "Issue: ansible.host turned into executable file",
-    body: "## Issue: ansible.host turned into executable file &gt; Sometimes pulling the repository down will make `ansible.host` an executable file and will produce the following error:  &gt; ####Exception  &gt; ERROR: The file provisioners/ansible/ansible.host is marked as executable, &gt; but failed to execute correctly. If this is not supposed to be an executable script, &gt; correct this with `chmod -x provisioners/ansible/ansible.host`.  &gt; #### Resolution  &gt; To resolve the issue, run `chmod -x provisioners/ansible/ansible.host`"
+    body: "## Issue: ansible.host turned into executable file Sometimes pulling the repository down will make `ansible.host` an executable file and will produce the following error:  ####Exception  ERROR: The file provisioners/ansible/ansible.host is marked as executable, but failed to execute correctly. If this is not supposed to be an executable script, correct this with `chmod -x provisioners/ansible/ansible.host`.  "
+});
+
+documentTitles["known-issues.html#resolution"] = "Resolution";
+index.add({
+    url: "known-issues.html#resolution",
+    title: "Resolution",
+    body: "#### Resolution To resolve the issue, run `chmod -x provisioners/ansible/ansible.host`  &lt;br/&gt; "
+});
+
+documentTitles["known-issues.html#issue-ansible-provisioning-fails-when-using-jenkins-cli"] = "Issue: Ansible Provisioning fails when using Jenkins CLI";
+index.add({
+    url: "known-issues.html#issue-ansible-provisioning-fails-when-using-jenkins-cli",
+    title: "Issue: Ansible Provisioning fails when using Jenkins CLI",
+    body: "## Issue: Ansible Provisioning fails when using Jenkins CLI Sometimes this will happen because Jenkins is not fully online after a restart during provisioning. This is either because the sleep time isn't long enough or Jenkins takes a little longer to start.  ####Exception ```java failed: [54.69.156.112] =&gt; {\&quot;changed\&quot;: true, \&quot;cmd\&quot;: \&quot;java -jar /opt/jenkins/jenkins-cli.jar -s http://localhost:8080 list-jobs All\&quot;, \&quot;delta\&quot;: \&quot;0:00:06.720559\&quot;, \&quot;end\&quot;: \&quot;2014-09-30 14:49:18.306571\&quot;, \&quot;rc\&quot;: 1, \&quot;start\&quot;: \&quot;2014-09-30 14:49:11.586012\&quot;} stderr: Exception in thread \&quot;main\&quot; java.io.IOException: No X-Jenkins-CLI2-Port among [X-Jenkins, null, X-Hudson, X-Hudson-Theme, Content-Length, Expires, X-Jenkins-Session, Set-Cookie, Content-Type, Server, Cache-Control] 	at hudson.cli.CLI.getCliTcpPort(CLI.java:283) 	at hudson.cli.CLI.&lt;init&gt;(CLI.java:126) 	at hudson.cli.CLIConnectionFactory.connect(CLIConnectionFactory.java:72) 	at hudson.cli.CLI._main(CLI.java:466) 	at hudson.cli.CLI.main(CLI.java:382) 	Suppressed: java.io.IOException: Server returned HTTP response code: 503 for URL: http://localhost:8080/cli 		at sun.net.www.protocol.http.HttpURLConnection.getInputStream(HttpURLConnection.java:1626) 		at hudson.cli.FullDuplexHttpStream.&lt;init&gt;(FullDuplexHttpStream.java:78) 		at hudson.cli.CLI.connectViaHttp(CLI.java:156) 		at hudson.cli.CLI.&lt;init&gt;(CLI.java:130) 		... 3 more  FATAL: all hosts have already failed -- aborting ```  "
+});
+
+documentTitles["known-issues.html#resolution"] = "Resolution";
+index.add({
+    url: "known-issues.html#resolution",
+    title: "Resolution",
+    body: "#### Resolution To resolve this just run **vagrant provision** again and it will should resolve the issue"
 });
 
 
