@@ -374,7 +374,7 @@ documentTitles["06-documentation.html#editing-the-docs"] = "Editing the Docs";
 index.add({
     url: "06-documentation.html#editing-the-docs",
     title: "Editing the Docs",
-    body: "## Editing the Docs You can edit the documentation by visiting the [Github wiki](https://github.com/medullan/vagrant-ansible-jenkins/wiki) of this repository. The wiki is parsed and use to generate the documentation for the [website](http://medullan.github.io/vagrant-ansible-jenkins).  "
+    body: "## Editing the Docs You can edit the documentation by visiting the [Github wiki](https://github.com/medullan/vagrant-ansible-jenkins/wiki) of this repository. The wiki is parsed and used to generate the documentation for the [website](http://medullan.github.io/vagrant-ansible-jenkins).  "
 });
 
 documentTitles["06-documentation.html#generate-documentation-website"] = "Generate Documentation Website";
