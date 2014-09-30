@@ -225,6 +225,11 @@
             
         </li>
     
+        <li>
+            <a href="known-issues.html#issue-ansible-provisioning-with-aws-fails-with-ssh-exception">Issue: Ansible Provisioning with AWS fails with SSH Exception</a>
+            
+        </li>
+    
 </ol>
 
             
@@ -307,6 +312,27 @@ FATAL: all hosts have already failed -- aborting
 </code></pre>
 <h4 id="resolution">Resolution</h4>
 <p>To resolve this just run <strong>vagrant provision</strong> again and it will should resolve the issue</p>
+<p><br/></p>
+<h2 id="issue-ansible-provisioning-with-aws-fails-with-ssh-exception">Issue: Ansible Provisioning with AWS fails with SSH Exception</h2>
+<p>When provisioning the Jenkins environment with AWS for the first time, the provisioning will fail for SSH reasons. 
+This can be resolved by getting the <strong>Public IP Address</strong> of the created instance in your <strong>EC2 Console</strong> and replacing the Public IP Address within the <strong>/provisioners/ansible/ansible.host</strong> file.</p>
+<h4 id="exception">Exception</h4>
+<pre><code class="lang-bash">GATHERING FACTS *************************************************************** 
+fatal: [127.0.0.1] =&gt; SSH encountered an unknown error during the connection. 
+We recommend you re-run the command using -vvvv, which will enable SSH 
+debugging output to help diagnose the issue
+</code></pre>
+<h4 id="resolution">Resolution</h4>
+<p>Current File <strong>( /provisioners/ansible/ansible.host )</strong></p>
+<pre><code>[jenkins]
+127.0.0.1 ansible_ssh_port=2222
+</code></pre><p>Eg. of what to be updated to:</p>
+<pre><code>[jenkins]
+54.69.58.64
+</code></pre><p>then run:</p>
+<pre><code>$ vagrant provision
+</code></pre><p>This will now provision the machine properly (given the IP address you put is correct). </p>
+<p><strong>NB.</strong> Note that the machine is already running and we do not need to run <strong>vagrant up</strong> again. Thus running <strong>vagrant provision</strong> will work just fine</p>
 
 
 
