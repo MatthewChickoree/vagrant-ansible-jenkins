@@ -367,14 +367,21 @@ documentTitles["06-documentation.html#documentation"] = "Documentation";
 index.add({
     url: "06-documentation.html#documentation",
     title: "Documentation",
-    body: "# Documentation  "
+    body: "# Documentation "
+});
+
+documentTitles["06-documentation.html#about"] = "About";
+index.add({
+    url: "06-documentation.html#about",
+    title: "About",
+    body: "## About This documentation is hosted for editing on Github wiki and parsed into HTML for the gh-pages. These pages are parsed in the order of how they appear and will be displayed on the website in the same order.  &lt;br/&gt; "
 });
 
 documentTitles["06-documentation.html#editing-the-docs"] = "Editing the Docs";
 index.add({
     url: "06-documentation.html#editing-the-docs",
     title: "Editing the Docs",
-    body: "## Editing the Docs You can edit the documentation by visiting the [Github wiki](https://github.com/medullan/vagrant-ansible-jenkins/wiki) of this repository. The wiki is parsed and used to generate the documentation for the [website](http://medullan.github.io/vagrant-ansible-jenkins).  "
+    body: "## Editing the Docs You can edit the documentation by visiting the [Github wiki](https://github.com/medullan/vagrant-ansible-jenkins/wiki) of this repository. The wiki is parsed and used to generate the documentation for the [website](http://medullan.github.io/vagrant-ansible-jenkins).  &lt;br/&gt; "
 });
 
 documentTitles["06-documentation.html#generate-documentation-website"] = "Generate Documentation Website";
@@ -395,7 +402,7 @@ documentTitles["06-documentation.html#step-2"] = "Step 2";
 index.add({
     url: "06-documentation.html#step-2",
     title: "Step 2",
-    body: "### Step 2 run ```bash $ grunt docs ``` This will then generate the documentation locally to the **docs** folder.   "
+    body: "### Step 2 run ```bash $ grunt docs ``` This will then generate the documentation locally to the **docs** folder.  &lt;br/&gt; "
 });
 
 documentTitles["06-documentation.html#deploy-docs-to-gh-pages"] = "Deploy Docs to GH-Pages";
