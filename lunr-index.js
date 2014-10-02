@@ -81,7 +81,7 @@ documentTitles["03-whats-already-inside.html#npm-global-packages"] = "NPM Global
 index.add({
     url: "03-whats-already-inside.html#npm-global-packages",
     title: "NPM Global Packages",
-    body: "### NPM Global Packages `istanbul`, `bower`, `grunt-cli`   To see a full list of apt and pip packages installed, see the following file: https://github.com/medullan/vagrant-ansible-jenkins/blob/master/provisioners/ansible/roles/shared/vars/main.yml"
+    body: "### NPM Global Packages `istanbul`, `bower`, `grunt-cli`, `phantomjs`   To see a full list of **apt** and **pip** packages installed, see the following file:  [Shared Vars](https://github.com/medullan/vagrant-ansible-jenkins/blob/master/provisioners/ansible/roles/shared/vars/main.yml)"
 });
 
 
