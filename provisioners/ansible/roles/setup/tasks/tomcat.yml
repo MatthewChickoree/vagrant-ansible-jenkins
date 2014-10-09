@@ -1,0 +1,54 @@
+---
+# This playbook is intended to install and tomcat7 with the webapp UI
+# and an adminstrative user. Authbind is used to run tomcat7 on the specified port.
+#
+# Note: The set of tasks here may need to be updated for other versions of tomcat
+# as configurations may change. When making variable changes observe:
+#
+# - ../shared/vars/main.yml
+# - ../setup/vars/main.yml
+
+# Install apt dependencies for tomcat7
+- name: Install slave base apt dependencies for tomcat
+  sudo: yes
+  action: "{{ ansible_pkg_mgr }} pkg={{ item }} state=latest"
+  with_items: slave.apt.tomcat
+  when: slave is defined and slave.apt is defined and slave.apt.tomcat is defined and install_tomcat
+
+- name: Change default tomcat port
+  sudo: yes
+  command: sudo sed -i 's:port\=\"{{ tomcat_default_http_port | default(8080) }}\":port\=\"{{ tomcat_desired_http_port | default(80) }}\":' {{ tomcat_server_config_file }}
+  when: install_tomcat
+
+- name: Enable AUTHBIND for new tomcat port when port no. less than 1023
+  sudo: yes
+  command: sudo sed -i 's:\#AUTHBIND\=no:AUTHBIND\=yes:' {{ tomcat_default_file }}
+  when: install_tomcat and tomcat_desired_http_port < 1023
+
+- name: Create authbind file for port when port no. less than 1023
+  sudo: yes
+  command: sudo touch {{ authbind_path }}/{{ tomcat_desired_http_port }}
+  when: install_tomcat and tomcat_desired_http_port < 1023
+
+- name: Update permissions for authbind file when port no. less than 1023
+  sudo: yes
+  command: sudo chmod 500 {{ authbind_path }}/{{ tomcat_desired_http_port }}
+  when: install_tomcat and tomcat_desired_http_port < 1023
+
+- name: Change owner for Authbind file to tomcat7 user
+  sudo: yes
+  command: sudo chown {{ tomcat_user }} {{ authbind_path }}/{{ tomcat_desired_http_port }}
+  when: install_tomcat and tomcat_desired_http_port|int < 1023
+
+- name: copy tomcat user configuration to machine
+  sudo: yes
+  copy: src={{ item }} dest={{ tomcat_users_path }} owner={{ tomcat_user | default('tomcat7') }} group={{ tomcat_user | default('tomcat7') }} backup=yes  mode=640
+  with_fileglob:
+        - "{{ local_files_dir }}/tomcat/tomcat-users.xml"
+  when: install_tomcat
+  register: tomcat_user_config_copied
+  
+- name: Restart tomcat service
+  sudo: yes
+  service: name=tomcat7 state=restarted
+  when: tomcat_user_config_copied is defined and install_tomcat
