@@ -4,6 +4,7 @@ local_files_dir: '../../../files'
 machine_path: /usr/local/bin
 install_postgres: true
 install_redis: false
+install_tomcat: false
 target_jenkins_env: java
 slave:
   pip:
@@ -63,6 +64,11 @@ slave:
       - 'libffi-dev'
       - 'libxslt-dev'
       - 'libxml2'
+    tomcat:
+      - 'tomcat7'
+      - 'tomcat7-admin'
+      - 'tomcat7-docs'
+      - 'tomcat7-examples'
 
 # install jenkins plugins
 plugins:
