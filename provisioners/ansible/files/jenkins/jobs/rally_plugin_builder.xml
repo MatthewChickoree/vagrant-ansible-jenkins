@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project>
+   <actions />
+   <description>This is a utility job that is used to handle updates for Medullan's version of the rally plugin.
+      For more information see https://github.com/medullan/rally-plugin.
+   </description>
+   <logRotator class="hudson.tasks.LogRotator">
+      <daysToKeep>-1</daysToKeep>
+      <numToKeep>1</numToKeep>
+      <artifactDaysToKeep>-1</artifactDaysToKeep>
+      <artifactNumToKeep>1</artifactNumToKeep>
+   </logRotator>
+   <keepDependencies>false</keepDependencies>
+   <properties>
+      <com.nirima.jenkins.plugins.docker.DockerJobProperty plugin="docker-plugin@0.7">
+         <tagOnCompletion>false</tagOnCompletion>
+         <additionalTag />
+         <pushOnSuccess>false</pushOnSuccess>
+         <cleanImages>false</cleanImages>
+      </com.nirima.jenkins.plugins.docker.DockerJobProperty>
+      <jenkins.plugins.slack.SlackNotifier_-SlackJobProperty plugin="slack@1.2">
+         <room />
+         <startNotification>false</startNotification>
+         <notifySuccess>false</notifySuccess>
+         <notifyAborted>false</notifyAborted>
+         <notifyNotBuilt>false</notifyNotBuilt>
+         <notifyUnstable>false</notifyUnstable>
+         <notifyFailure>false</notifyFailure>
+         <notifyBackToNormal>false</notifyBackToNormal>
+      </jenkins.plugins.slack.SlackNotifier_-SlackJobProperty>
+      <hudson.plugins.heavy__job.HeavyJobProperty plugin="heavy-job@1.1">
+         <weight>1</weight>
+      </hudson.plugins.heavy__job.HeavyJobProperty>
+      <hudson.plugins.throttleconcurrents.ThrottleJobProperty plugin="throttle-concurrents@1.8.3">
+         <maxConcurrentPerNode>0</maxConcurrentPerNode>
+         <maxConcurrentTotal>0</maxConcurrentTotal>
+         <categories>
+            <string>false</string>
+         </categories>
+         <throttleEnabled>false</throttleEnabled>
+         <throttleOption>project</throttleOption>
+      </hudson.plugins.throttleconcurrents.ThrottleJobProperty>
+      <hudson.plugins.disk__usage.DiskUsageProperty plugin="disk-usage@0.24" />
+   </properties>
+   <scm class="hudson.plugins.git.GitSCM" plugin="git@2.2.5">
+      <configVersion>2</configVersion>
+      <userRemoteConfigs>
+         <hudson.plugins.git.UserRemoteConfig>
+            <url>https://github.com/medullan/rally-plugin.git</url>
+            <credentialsId>56c76726-4a8b-4852-a88c-c5378213b878</credentialsId>
+         </hudson.plugins.git.UserRemoteConfig>
+      </userRemoteConfigs>
+      <branches>
+         <hudson.plugins.git.BranchSpec>
+            <name>*/master</name>
+         </hudson.plugins.git.BranchSpec>
+      </branches>
+      <doGenerateSubmoduleConfigurations>false</doGenerateSubmoduleConfigurations>
+      <submoduleCfg class="list" />
+      <extensions />
+   </scm>
+   <assignedNode>master</assignedNode>
+   <canRoam>false</canRoam>
+   <disabled>false</disabled>
+   <blockBuildWhenDownstreamBuilding>false</blockBuildWhenDownstreamBuilding>
+   <blockBuildWhenUpstreamBuilding>false</blockBuildWhenUpstreamBuilding>
+   <triggers>
+      <com.cloudbees.jenkins.GitHubPushTrigger plugin="github@1.9.1">
+         <spec />
+      </com.cloudbees.jenkins.GitHubPushTrigger>
+   </triggers>
+   <concurrentBuild>false</concurrentBuild>
+   <builders>
+      <org.jfrog.hudson.maven3.Maven3Builder plugin="artifactory@2.2.4">
+         <mavenName>maven_3.2.1-2</mavenName>
+         <rootPom>pom.xml</rootPom>
+         <goals>clean install</goals>
+         <mavenOpts />
+      </org.jfrog.hudson.maven3.Maven3Builder>
+      <hudson.tasks.Shell>
+         <command>java -jar target/jenkins-for-test/WEB-INF/jenkins-cli.jar who-am-i java -jar target/jenkins-for-test/WEB-INF/jenkins-cli.jar install-plugin target/rally-plugin.hpi java -jar target/jenkins-for-test/WEB-INF/jenkins-cli.jar safe-restart</command>
+      </hudson.tasks.Shell>
+   </builders>
+   <publishers />
+   <buildWrappers />
+</project>
