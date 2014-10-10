@@ -105,6 +105,7 @@ plugins:
   - 'build-name-setter'
   - 'postbuild-task'
   - 'ec2'
+  - 'artifactory'
 
   # extras - remove # below to enable installation
 
@@ -124,4 +125,5 @@ plugins:
   # - stored on local machine
   # - downloaded via public urls (recommended)
 
-  - 'https://dl.dropboxusercontent.com/s/tfdple8sxnpe4sw/rally-build-notifier.hpi?dl=0'
+  - 'https://dl.dropboxusercontent.com/s/zt1nnsyxuiqr1jd/rally-build-notifier.hpi?dl=0'
+  - 'https://dl.dropboxusercontent.com/s/ihznwb61mm0oehy/rally-plugin.hpi?dl=0'
