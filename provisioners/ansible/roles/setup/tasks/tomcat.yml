@@ -13,39 +13,39 @@
   sudo: yes
   action: "{{ ansible_pkg_mgr }} pkg={{ item }} state=latest"
   with_items: slave.apt.tomcat
-  when: slave is defined and slave.apt is defined and slave.apt.tomcat is defined and install_tomcat
+  when: slave.apt.tomcat is defined and install_tomcat
 
 - name: Change default tomcat port
   sudo: yes
   command: sudo sed -i 's:port\=\"{{ tomcat.default_http_port | default(8080) }}\":port\=\"{{ tomcat.desired_http_port | default(80) }}\":' {{ tomcat.server_config_file }}
-  when: install_tomcat
+  when: install_tomcat and tomcat is defined
 
 - name: Enable AUTHBIND for new tomcat port when port no. less than 1023
   sudo: yes
   command: sudo sed -i 's:\#AUTHBIND\=no:AUTHBIND\=yes:' {{ tomcat.default_file }}
-  when: install_tomcat and tomcat.desired_http_port < 1023
+  when: install_tomcat and tomcat is defined and tomcat.desired_http_port < 1023
 
 - name: Create authbind file for port when port no. less than 1023
   sudo: yes
   command: sudo touch {{ authbind_path }}/{{ tomcat.desired_http_port }}
-  when: install_tomcat and tomcat.desired_http_port < 1023
+  when: install_tomcat and tomcat is defined and tomcat.desired_http_port < 1023
 
 - name: Update permissions for authbind file when port no. less than 1023
   sudo: yes
   command: sudo chmod 500 {{ authbind_path }}/{{ tomcat.desired_http_port }}
-  when: install_tomcat and tomcat.desired_http_port < 1023
+  when: install_tomcat and tomcat is defined and tomcat.desired_http_port < 1023
 
 - name: Change owner for Authbind file to tomcat7 user
   sudo: yes
   command: sudo chown {{ tomcat.user }} {{ authbind_path }}/{{ tomcat.desired_http_port }}
-  when: install_tomcat and tomcat.desired_http_port|int < 1023
+  when: install_tomcat and tomcat is defined and tomcat.desired_http_port < 1023
 
 - name: copy tomcat user configuration to machine
   sudo: yes
   copy: src={{ item }} dest={{ tomcat.users_path }} owner={{ tomcat.user | default('tomcat7') }} group={{ tomcat.user | default('tomcat7') }} backup=yes  mode=640
   with_fileglob:
         - "{{ local_files_dir }}/tomcat/tomcat-users.xml"
-  when: install_tomcat
+  when: install_tomcat and tomcat is defined
   register: tomcat_user_config_copied
 
 - name: Restart tomcat service
