@@ -16,3 +16,6 @@ plugin_config_files:
   publish_over_ssh: jenkins.plugins.publish_over_ssh.BapSshPublisherPlugin.xml
   rally_build_notifier: com.rallydev.integration.build.hudson.RallyBuildNotifier.xml
   git_scm: hudson.plugins.git.GitSCM.xml
+plugin_config_patterns:
+  rsa_key_file: \{+\s(rsa\_key\_file)\s\}+
+  tomcat_web_apps: \{+\s(tomcat\.web\_apps\_folder)\s\}+

@@ -8,4 +8,5 @@ tomcat:
   users_path: /etc/tomcat7
   server_config_file: /var/lib/tomcat7/conf/server.xml
   default_file: /etc/default/tomcat7
+  web_apps_folder: /var/lib/tomcat7/webapps
 authbind_path: /etc/authbind/byport
