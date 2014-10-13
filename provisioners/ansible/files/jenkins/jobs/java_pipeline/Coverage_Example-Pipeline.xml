@@ -103,7 +103,7 @@
       </com.cloudbees.jenkins.GitHubPushTrigger>
    </triggers>
    <concurrentBuild>true</concurrentBuild>
-   <customWorkspace>/var/lib/jenkins/${JOB_NAME}/workspace/${BUILD_TAG}/</customWorkspace>
+   <customWorkspace>//var//lib//jenkins//workspaces/${JOB_NAME}/workspace/${BUILD_TAG}/</customWorkspace>
    <builders>
       <com.tikal.jenkins.plugins.multijob.MultiJobBuilder>
          <phaseName>Phase: Setup (pre-test)</phaseName>
@@ -115,8 +115,8 @@
                <disableJob>false</disableJob>
                <configs>
                   <hudson.plugins.parameterizedtrigger.PredefinedBuildParameters plugin="parameterized-trigger@2.25">
-                     <properties>FIXED_PATH_WS = //var//lib//jenkins//${JOB_NAME}//workspace//${BUILD_TAG}
-                        UNESCAPED_FIXED_PATH_WS = /var/lib/jenkins/${JOB_NAME}/workspace/${BUILD_TAG}
+                     <properties>FIXED_PATH_WS = //var//lib//jenkins//workspaces//${JOB_NAME}//workspace//${BUILD_TAG}
+                        UNESCAPED_FIXED_PATH_WS = /var/lib/jenkins/workspaces/${JOB_NAME}/workspace/${BUILD_TAG}
                         MASTER_BUILD_TAG = ${BUILD_TAG}
                      </properties>
                   </hudson.plugins.parameterizedtrigger.PredefinedBuildParameters>
@@ -131,8 +131,8 @@
                <disableJob>false</disableJob>
                <configs>
                   <hudson.plugins.parameterizedtrigger.PredefinedBuildParameters plugin="parameterized-trigger@2.25">
-                     <properties>FIXED_PATH_WS = //var//lib//jenkins//${JOB_NAME}//workspace//${BUILD_TAG}
-                        UNESCAPED_FIXED_PATH_WS = /var/lib/jenkins/${JOB_NAME}/workspace/${BUILD_TAG}
+                     <properties>FIXED_PATH_WS = //var//lib//jenkins//workspaces//${JOB_NAME}//workspace//${BUILD_TAG}
+                        UNESCAPED_FIXED_PATH_WS = /var/lib/jenkins/workspaces/${JOB_NAME}/workspace/${BUILD_TAG}
                         MASTER_BUILD_TAG = ${BUILD_TAG}
                      </properties>
                   </hudson.plugins.parameterizedtrigger.PredefinedBuildParameters>
@@ -153,8 +153,8 @@
                <disableJob>false</disableJob>
                <configs>
                   <hudson.plugins.parameterizedtrigger.PredefinedBuildParameters plugin="parameterized-trigger@2.25">
-                     <properties>FIXED_PATH_WS = //var//lib//jenkins//${JOB_NAME}//workspace//${BUILD_TAG}
-                        UNESCAPED_FIXED_PATH_WS = /var/lib/jenkins/${JOB_NAME}/workspace/${BUILD_TAG}
+                     <properties>FIXED_PATH_WS = //var//lib//jenkins//workspaces//${JOB_NAME}//workspace//${BUILD_TAG}
+                        UNESCAPED_FIXED_PATH_WS = /var/lib/jenkins/workspaces/${JOB_NAME}/workspace/${BUILD_TAG}
                         MASTER_BUILD_TAG = ${BUILD_TAG}
                      </properties>
                   </hudson.plugins.parameterizedtrigger.PredefinedBuildParameters>
@@ -175,8 +175,8 @@
                <disableJob>false</disableJob>
                <configs>
                   <hudson.plugins.parameterizedtrigger.PredefinedBuildParameters plugin="parameterized-trigger@2.25">
-                     <properties>FIXED_PATH_WS = //var//lib//jenkins//${JOB_NAME}//workspace//${BUILD_TAG}
-                        UNESCAPED_FIXED_PATH_WS = /var/lib/jenkins/${JOB_NAME}/workspace/${BUILD_TAG}
+                     <properties>FIXED_PATH_WS = //var//lib//jenkins//workspaces//${JOB_NAME}//workspace//${BUILD_TAG}
+                        UNESCAPED_FIXED_PATH_WS = /var/lib/jenkins/workspaces/${JOB_NAME}/workspace/${BUILD_TAG}
                         MASTER_BUILD_TAG = ${BUILD_TAG}
                      </properties>
                   </hudson.plugins.parameterizedtrigger.PredefinedBuildParameters>
@@ -191,8 +191,8 @@
                <disableJob>false</disableJob>
                <configs>
                   <hudson.plugins.parameterizedtrigger.PredefinedBuildParameters plugin="parameterized-trigger@2.25">
-                     <properties>FIXED_PATH_WS = //var//lib//jenkins//${JOB_NAME}//workspace//${BUILD_TAG}
-                        UNESCAPED_FIXED_PATH_WS = /var/lib/jenkins/${JOB_NAME}/workspace/${BUILD_TAG}
+                     <properties>FIXED_PATH_WS = //var//lib//jenkins//workspaces//${JOB_NAME}//workspace//${BUILD_TAG}
+                        UNESCAPED_FIXED_PATH_WS = /var/lib/jenkins/workspaces/${JOB_NAME}/workspace/${BUILD_TAG}
                         MASTER_BUILD_TAG = ${BUILD_TAG}
                      </properties>
                   </hudson.plugins.parameterizedtrigger.PredefinedBuildParameters>
@@ -207,8 +207,8 @@
                <disableJob>false</disableJob>
                <configs>
                   <hudson.plugins.parameterizedtrigger.PredefinedBuildParameters plugin="parameterized-trigger@2.25">
-                     <properties>FIXED_PATH_WS = //var//lib//jenkins//${JOB_NAME}//workspace//${BUILD_TAG}
-                        UNESCAPED_FIXED_PATH_WS = /var/lib/jenkins/${JOB_NAME}/workspace/${BUILD_TAG}
+                     <properties>FIXED_PATH_WS = //var//lib//jenkins//workspaces//${JOB_NAME}//workspace//${BUILD_TAG}
+                        UNESCAPED_FIXED_PATH_WS = /var/lib/jenkins/workspaces/${JOB_NAME}/workspace/${BUILD_TAG}
                         MASTER_BUILD_TAG = ${BUILD_TAG}
                      </properties>
                   </hudson.plugins.parameterizedtrigger.PredefinedBuildParameters>
@@ -229,8 +229,8 @@
                <disableJob>false</disableJob>
                <configs>
                   <hudson.plugins.parameterizedtrigger.PredefinedBuildParameters plugin="parameterized-trigger@2.25">
-                     <properties>FIXED_PATH_WS = //var//lib//jenkins//${JOB_NAME}//workspace//${BUILD_TAG}
-                        UNESCAPED_FIXED_PATH_WS = /var/lib/jenkins/${JOB_NAME}/workspace/${BUILD_TAG}
+                     <properties>FIXED_PATH_WS = //var//lib//jenkins//workspaces//${JOB_NAME}//workspace//${BUILD_TAG}
+                        UNESCAPED_FIXED_PATH_WS = /var/lib/jenkins/workspaces/${JOB_NAME}/workspace/${BUILD_TAG}
                         MASTER_BUILD_TAG = ${BUILD_TAG}
                      </properties>
                   </hudson.plugins.parameterizedtrigger.PredefinedBuildParameters>
@@ -251,8 +251,8 @@
                <disableJob>false</disableJob>
                <configs>
                   <hudson.plugins.parameterizedtrigger.PredefinedBuildParameters plugin="parameterized-trigger@2.25">
-                     <properties>FIXED_PATH_WS = //var//lib//jenkins//${JOB_NAME}//workspace//${BUILD_TAG}
-                        UNESCAPED_FIXED_PATH_WS = /var/lib/jenkins/${JOB_NAME}/workspace/${BUILD_TAG}
+                     <properties>FIXED_PATH_WS = //var//lib//jenkins//workspaces//${JOB_NAME}//workspace//${BUILD_TAG}
+                        UNESCAPED_FIXED_PATH_WS = /var/lib/jenkins/workspaces/${JOB_NAME}/workspace/${BUILD_TAG}
                         MASTER_BUILD_TAG = ${BUILD_TAG}
                      </properties>
                   </hudson.plugins.parameterizedtrigger.PredefinedBuildParameters>
@@ -273,8 +273,8 @@
                <disableJob>false</disableJob>
                <configs>
                   <hudson.plugins.parameterizedtrigger.PredefinedBuildParameters plugin="parameterized-trigger@2.25">
-                     <properties>FIXED_PATH_WS = //var//lib//jenkins//${JOB_NAME}//workspace//${BUILD_TAG}
-                        UNESCAPED_FIXED_PATH_WS = /var/lib/jenkins/${JOB_NAME}/workspace/${BUILD_TAG}
+                     <properties>FIXED_PATH_WS = //var//lib//jenkins//workspaces//${JOB_NAME}//workspace//${BUILD_TAG}
+                        UNESCAPED_FIXED_PATH_WS = /var/lib/jenkins/workspaces/${JOB_NAME}/workspace/${BUILD_TAG}
                         MASTER_BUILD_TAG = ${BUILD_TAG}
                      </properties>
                   </hudson.plugins.parameterizedtrigger.PredefinedBuildParameters>
@@ -295,8 +295,8 @@
                <disableJob>false</disableJob>
                <configs>
                   <hudson.plugins.parameterizedtrigger.PredefinedBuildParameters plugin="parameterized-trigger@2.25">
-                     <properties>FIXED_PATH_WS = //var//lib//jenkins//${JOB_NAME}//workspace//${BUILD_TAG}
-                        UNESCAPED_FIXED_PATH_WS = /var/lib/jenkins/${JOB_NAME}/workspace/${BUILD_TAG}
+                     <properties>FIXED_PATH_WS = //var//lib//jenkins//workspaces//${JOB_NAME}//workspace//${BUILD_TAG}
+                        UNESCAPED_FIXED_PATH_WS = /var/lib/jenkins/workspaces/${JOB_NAME}/workspace/${BUILD_TAG}
                         MASTER_BUILD_TAG = ${BUILD_TAG}
                         GIT_COMMIT=${GIT_COMMIT}
                         GIT_BRANCH=${GIT_BRANCH}
@@ -380,8 +380,8 @@
          <deleteDirs>false</deleteDirs>
          <skipWhenFailed>false</skipWhenFailed>
          <cleanWhenSuccess>true</cleanWhenSuccess>
-         <cleanWhenUnstable>false</cleanWhenUnstable>
-         <cleanWhenFailure>false</cleanWhenFailure>
+         <cleanWhenUnstable>true</cleanWhenUnstable>
+         <cleanWhenFailure>true</cleanWhenFailure>
          <cleanWhenNotBuilt>true</cleanWhenNotBuilt>
          <cleanWhenAborted>true</cleanWhenAborted>
          <notFailBuild>false</notFailBuild>
