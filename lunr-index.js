@@ -376,21 +376,21 @@ documentTitles["061-meanjs-pipeline.html#meanjs-pipeline"] = "Meanjs Pipeline";
 index.add({
     url: "061-meanjs-pipeline.html#meanjs-pipeline",
     title: "Meanjs Pipeline",
-    body: "## Meanjs Pipeline  The Sample Meanjs Pipeline is a simple Jenkins pipeline that has the following phases:  1. **Phase 1**     * Install Dependencies 1. **Phase 2**     * Run Unit tests     * Run Integration tests     * Generate Documentation and Static Analysis 1. **Phase 3**     * Functional Test with code coverage 1. **Phase 4**     * Update Rally  "
+    body: "## Meanjs Pipeline  The Sample Meanjs Pipeline is a simple Jenkins pipeline that has the following phases:  1. **Phase 1**     * Install Dependencies 1. **Phase 2**     * Run Unit tests     * Run Integration tests     * Generate Documentation and Static Analysis 1. **Phase 3**     * Functional Test with code coverage 1. **Phase 4**     * Update Rally  &lt;br/&gt; "
 });
 
 documentTitles["061-meanjs-pipeline.html#post-build-steps"] = "Post Build Steps";
 index.add({
     url: "061-meanjs-pipeline.html#post-build-steps",
     title: "Post Build Steps",
-    body: "### Post Build Steps * Publish Reports (Code Coverage, Static Analysis, Documentation, etc.) * Drop database used * Publish Robot Framework Test Results * Delete workspace  "
+    body: "### Post Build Steps * Publish Reports (Code Coverage, Static Analysis, Documentation, etc.) * Drop database used * Publish Robot Framework Test Results * Delete workspace  &lt;br/&gt; "
 });
 
 documentTitles["061-meanjs-pipeline.html#thing-to-know"] = "Thing to Know";
 index.add({
     url: "061-meanjs-pipeline.html#thing-to-know",
     title: "Thing to Know",
-    body: "### Thing to Know To accomplish this pipeline structure, the [Jenkins MultiJob Plugin](https://wiki.jenkins-ci.org/display/JENKINS/Multijob+Plugin) was used. This allows for multiple jobs within a phase to be run in parallel.  Other key Jenkins plugins used are: - port-allocator - nodejs - throttle-concurrents - build-name-setter - postbuild-task  Other Dependencies: - node &amp; npm - grunt - phantomjs - bower - robotframework-selenium2library - jenkins-autojobs  NB. All plugins and dependencies listed above are all installed using Ansible by default.  "
+    body: "### Thing to Know To accomplish this pipeline structure, the [Jenkins MultiJob Plugin](https://wiki.jenkins-ci.org/display/JENKINS/Multijob+Plugin) was used. This allows for multiple jobs within a phase to be run in parallel.  Other key Jenkins plugins used are: - port-allocator - nodejs - throttle-concurrents - build-name-setter - postbuild-task  Other Dependencies: - node &amp; npm - grunt - phantomjs - bower - robotframework-selenium2library - jenkins-autojobs  NB. All plugins and dependencies listed above are all installed using Ansible by default.  &lt;br/&gt; "
 });
 
 documentTitles["061-meanjs-pipeline.html#sample-project"] = "Sample Project";
