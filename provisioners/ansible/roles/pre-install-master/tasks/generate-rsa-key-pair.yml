@@ -3,22 +3,23 @@
 # The rsa keys are used to transfer files over ssh to the tomcat webapps folder
 # using the publish over ssh Jenkins plugin.
 
-- name: Output user home directory
-  sudo: yes
-  command: ls /home/{{ user_name  | default('vagrant') }}
-  when: target_jenkins_env == 'java' and install_tomcat
-  register: user_home_dir_list
-
-- name: Results - output from directory listing
-  debug: var=user_home_dir_list.stdout_lines
-  when: user_home_dir_list is defined
-
-# Executes the shell command to generate the key files with the default settings (default file locations and no passphrase).
+# Executes the shell command to generate the key files at the file location specified (no passphrase).
 # This rsa_key is used for the java jenkins environment for deploying artifacts to tomcat
+
+- name: Output user ssh directory
+  sudo: yes
+  command: ls -la /home/{{ user_name  | default('vagrant') }}/{{ ssh_dir }}
+  when: ssh_dir is defined
+  register: user_ssh_dir_list
+
+- name: Results - output user ssh directory
+  debug: var=user_ssh_dir_list.stdout_lines
+  when: user_ssh_dir_list is defined
+
 - name: generate rsa public and private key files
   sudo: yes
-  shell: ssh-keygen -t rsa -N "" -f {{ rsa_key_file }}
-  when: target_jenkins_env == 'java' and install_tomcat and user_home_dir_list.stdout.find('{{ rsa_key_file }}') == -1
+  shell: ssh-keygen -t rsa -N "" -f {{ ssh_dir }}/{{ rsa_key_file }}
+  when: rsa_key_file is defined and user_ssh_dir_list|success and user_ssh_dir_list.stdout.find('{{ rsa_key_file }}') == -1
   register: rsa_keygen_results
 
 - name: Results - output from rsa keygen generation
