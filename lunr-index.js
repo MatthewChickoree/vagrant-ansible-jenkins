@@ -363,67 +363,76 @@ index.add({
 
 
 
-documentTitles["06-documentation.html#documentation"] = "Documentation";
+documentTitles["06-sample-build-pipelines.html#sample-build-pipelines"] = "Sample Build Pipelines";
 index.add({
-    url: "06-documentation.html#documentation",
+    url: "06-sample-build-pipelines.html#sample-build-pipelines",
+    title: "Sample Build Pipelines",
+    body: "# Sample Build Pipelines  Currently, there are two sample pipelines that can be created when provisioning the Jenkins environment. There are: - Meanjs - Java  To provision the Jenkins environment with your pipeline of choice, the **target_jenkins_env** variable should be overridden.  * Set it to **mean** to create a meanjs pipeline * Set it to **java** to create a java pipeline (Default)  To override, locate the desire override variable file, located in the **provisioners/ansible/extra_vars** folder and place the following within the yaml file  ####Example  ```yaml target_jenkins_env: mean # creates a meanjs pipeline ```  OR  ```yaml target_jenkins_env: java # creates a java pipeline ```"
+});
+
+
+
+documentTitles["07-documentation.html#documentation"] = "Documentation";
+index.add({
+    url: "07-documentation.html#documentation",
     title: "Documentation",
     body: "# Documentation "
 });
 
-documentTitles["06-documentation.html#about"] = "About";
+documentTitles["07-documentation.html#about"] = "About";
 index.add({
-    url: "06-documentation.html#about",
+    url: "07-documentation.html#about",
     title: "About",
     body: "## About This documentation is hosted for editing on Github wiki and parsed into HTML for the gh-pages. These pages are parsed in the order of how they appear and will be displayed on the website in the same order. The **Home** Page is an exception to this rule however, it always appears first in the generated documentation. This is so because of the globbling pattern used in the **gruntfile**:  ```js var markdown = [       'vagrant-ansible-jenkins.wiki/Home.md',       'vagrant-ansible-jenkins.wiki/*.md',       '!vagrant-ansible-jenkins.wiki/_Footer.md'     ]; ```  This pattern includes the Home page first, includes all other files and then ignores the Footer page used in the wiki.  &lt;br/&gt; "
 });
 
-documentTitles["06-documentation.html#editing-the-docs"] = "Editing the Docs";
+documentTitles["07-documentation.html#editing-the-docs"] = "Editing the Docs";
 index.add({
-    url: "06-documentation.html#editing-the-docs",
+    url: "07-documentation.html#editing-the-docs",
     title: "Editing the Docs",
     body: "## Editing the Docs You can edit the documentation by visiting the [Github wiki](https://github.com/medullan/vagrant-ansible-jenkins/wiki) of this repository. The wiki is parsed and used to generate the documentation for the [website](http://medullan.github.io/vagrant-ansible-jenkins).  &lt;br/&gt; "
 });
 
-documentTitles["06-documentation.html#generate-documentation-website"] = "Generate Documentation Website";
+documentTitles["07-documentation.html#generate-documentation-website"] = "Generate Documentation Website";
 index.add({
-    url: "06-documentation.html#generate-documentation-website",
+    url: "07-documentation.html#generate-documentation-website",
     title: "Generate Documentation Website",
     body: "## Generate Documentation Website  To get started with generating the documentation, you must have already cloned the [git repository](https://github.com/medullan/vagrant-ansible-jenkins) and be inside the root directory with your console.  The tools needed to get you started are all powered by:  - [Nodejs](http://nodejs.org/) - [npm](https://www.npmjs.org/)  - [Grunt](http://gruntjs.com/)   Therefore, you must have **Nodejs** and **npm** installed with [grunt](http://gruntjs.com/getting-started#installing-the-cli) installed globally as a **npm** package  Assuming all the dependencies above are installed and ready to use, the following steps will show you how to generate documentation for the repository. &lt;br/&gt; "
 });
 
-documentTitles["06-documentation.html#step-1"] = "Step 1";
+documentTitles["07-documentation.html#step-1"] = "Step 1";
 index.add({
-    url: "06-documentation.html#step-1",
+    url: "07-documentation.html#step-1",
     title: "Step 1",
     body: "### Step 1  run ```bash $ npm install ```  This will install all **npm** modules/dependencies needed within the project to generate the documentation.  "
 });
 
-documentTitles["06-documentation.html#step-2"] = "Step 2";
+documentTitles["07-documentation.html#step-2"] = "Step 2";
 index.add({
-    url: "06-documentation.html#step-2",
+    url: "07-documentation.html#step-2",
     title: "Step 2",
     body: "### Step 2 run ```bash $ grunt docs ``` This will then generate the documentation locally to the **docs** folder.  &lt;br/&gt; "
 });
 
-documentTitles["06-documentation.html#deploy-docs-to-gh-pages"] = "Deploy Docs to GH-Pages";
+documentTitles["07-documentation.html#deploy-docs-to-gh-pages"] = "Deploy Docs to GH-Pages";
 index.add({
-    url: "06-documentation.html#deploy-docs-to-gh-pages",
+    url: "07-documentation.html#deploy-docs-to-gh-pages",
     title: "Deploy Docs to GH-Pages",
     body: "## Deploy Docs to GH-Pages  When the documentation is generated and parsed properly then you can deploy to the [website](http://medullan.github.io/vagrant-ansible-jenkins)  **NB.** Please review generated docs locally before deploying  You can deploy by running: ```bash $ grunt deploy ``` "
 });
 
 
 
-documentTitles["07-development.html#development"] = "Development";
+documentTitles["08-development.html#development"] = "Development";
 index.add({
-    url: "07-development.html#development",
+    url: "08-development.html#development",
     title: "Development",
     body: "# Development  "
 });
 
-documentTitles["07-development.html#rules"] = "Rules";
+documentTitles["08-development.html#rules"] = "Rules";
 index.add({
-    url: "07-development.html#rules",
+    url: "08-development.html#rules",
     title: "Rules",
     body: "### Rules  - Please do not push to the master branch of this repository with code/tasks that have not been peer reviewed. - Please branch from master and make pull requests to submit changes - A conversation/pull request needs to happen before anything is merged into master - Always do a **vagrant destroy** then **vagrant up** for a final test to ensure that additions work properly end to end"
 });
