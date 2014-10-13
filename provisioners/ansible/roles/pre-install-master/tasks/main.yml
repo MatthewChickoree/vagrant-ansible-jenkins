@@ -5,3 +5,6 @@
 
 - include: jenkins-master-install.yml tags=presetupmaster
   when: ansible_distribution in [ 'Debian', 'Ubuntu' ]
+
+- include: generate-rsa-key-pair.yml tags=presetupmaster
+  when: ansible_distribution in [ 'Debian', 'Ubuntu' ] and install_tomcat
