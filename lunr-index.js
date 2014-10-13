@@ -372,6 +372,22 @@ index.add({
 
 
 
+documentTitles["061-meanjs-pipeline.html#meanjs-pipeline"] = "Meanjs Pipeline";
+index.add({
+    url: "061-meanjs-pipeline.html#meanjs-pipeline",
+    title: "Meanjs Pipeline",
+    body: "## Meanjs Pipeline  The Sample Meanjs Pipeline is a simple Jenkins pipeline that has the following phases:  1. **Phase 1**     * Install Dependencies 1. **Phase 2**     * Run Unit tests     * Run Integration tests     * Generate Documentation and Static Analysis 1. **Phase 3**     * Functional Test with code coverage 1. **Phase 4**     * Update Rally  "
+});
+
+documentTitles["061-meanjs-pipeline.html#post-build-steps"] = "Post Build Steps";
+index.add({
+    url: "061-meanjs-pipeline.html#post-build-steps",
+    title: "Post Build Steps",
+    body: "### Post Build Steps * Publish Reports (Code Coverage, Static Analysis, Documentation, etc.) * Drop database used * Publish Robot Framework Test Results * Delete workspace  To accomplish this pipeline structure, the [Jenkins MultiJob Plugin](https://wiki.jenkins-ci.org/display/JENKINS/Multijob+Plugin) was used. This allows for multiple jobs within a phase to be run in parallel.  The sample project used is located at: https://github.com/medullan/mean  There are also advanced documentation for this template project located at: https://github.com/medullan/mean/wiki "
+});
+
+
+
 documentTitles["07-documentation.html#documentation"] = "Documentation";
 index.add({
     url: "07-documentation.html#documentation",

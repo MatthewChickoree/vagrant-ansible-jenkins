@@ -275,58 +275,38 @@
 </div>
 
         <div id="content">
-            <h2 id="build-images-with-packer">Build Images with Packer</h2>
-<h3 id="build-an-aws-vagrant-box-and-ami-image">Build an AWS Vagrant Box and AMI image</h3>
-<p>To build an AWS Vagrant Box and AMI image: </p>
-<p>Edit the <strong><em>packer.json</em></strong> file</p>
-<ul>
-<li>put your access key</li>
-<li>put your secret access key </li>
-<li>edit the description for the image, if necessary</li>
-<li>edit the tags, if necessary</li>
-<li>edit the region</li>
+            <h2 id="meanjs-pipeline">Meanjs Pipeline</h2>
+<p>The Sample Meanjs Pipeline is a simple Jenkins pipeline that has the following phases:</p>
+<ol>
+<li><strong>Phase 1</strong><ul>
+<li>Install Dependencies</li>
 </ul>
-<pre><code class="lang-json">{
-      &quot;type&quot;: &quot;amazon-ebs&quot;,
-      &quot;access_key&quot;: &quot;&quot;, # put your access key here
-      &quot;secret_key&quot;: &quot;&quot;, # put your secret access key here
-      &quot;region&quot;: &quot;us-west-2&quot;,
-      &quot;source_ami&quot;: &quot;ami-cf397aff&quot;,
-      &quot;instance_type&quot;: &quot;t1.micro&quot;,
-      &quot;ssh_username&quot;: &quot;ubuntu&quot;,
-      &quot;ami_name&quot;: &quot;medullan-ubuntu-latest-{{timestamp}}-{{isotime \&quot;02-Jan-06\&quot;}}&quot;,
-      &quot;ami_description&quot;: &quot;......&quot;, 
-      &quot;tags&quot;: {
-        &quot;OS_Version&quot;: &quot;Ubuntu&quot;,
-        &quot;Release&quot;: &quot;Latest&quot;,
-        &quot;Provisioner&quot;: &quot;Medullan&quot;
-      }
-    }
-</code></pre>
-<p>if a box is present within the directory that was created before, please remove/delete it.</p>
-<p>Then run</p>
-<pre><code class="lang-bash">$ packer build -only amazon-ebs packer.json
-</code></pre>
-<p>This will execute <strong><em>packer</em></strong> to provision an AMI image and create an AWS Vagrant Box at the end of the build process.</p>
-<ul>
-<li>output file: <strong><em>packer_amazon-ebs_aws.box</em></strong></li>
-<li>eg. output image name: <strong><em>medullan-ubuntu-latest-1411750026-26-Sep-14</em></strong> (this is accompanied by an AMI id, can be seen in EC2 Console)</li>
+</li>
+<li><strong>Phase 2</strong><ul>
+<li>Run Unit tests</li>
+<li>Run Integration tests</li>
+<li>Generate Documentation and Static Analysis</li>
 </ul>
-<p><br/></p>
-<h3 id="build-a-virtualbox-vagrant-box">Build a VirtualBox Vagrant Box</h3>
-<p>if a box is present within the directory that was created before, please remove/delete it.
-To build a VirtualBox Vagrant Box, run</p>
-<pre><code class="lang-bash">$ packer build -only virtualbox-iso packer.json
-</code></pre>
-<p>This will execute <strong><em>packer</em></strong> to provision an Ubuntu image and produce a VirtualBox Vagrant Box at the end of the build process.</p>
-<ul>
-<li>output file: <strong><em>packer_virtualbox-iso_virtualbox.box</em></strong></li>
+</li>
+<li><strong>Phase 3</strong><ul>
+<li>Functional Test with code coverage</li>
 </ul>
-<p><br/></p>
-<h3 id="build-all-images-in-parallel">Build All Images in Parallel</h3>
-<p>run: </p>
-<pre><code class="lang-bash">$ packer build packer.json
-</code></pre>
+</li>
+<li><strong>Phase 4</strong><ul>
+<li>Update Rally</li>
+</ul>
+</li>
+</ol>
+<h3 id="post-build-steps">Post Build Steps</h3>
+<ul>
+<li>Publish Reports (Code Coverage, Static Analysis, Documentation, etc.)</li>
+<li>Drop database used</li>
+<li>Publish Robot Framework Test Results</li>
+<li>Delete workspace</li>
+</ul>
+<p>To accomplish this pipeline structure, the <a href="https://wiki.jenkins-ci.org/display/JENKINS/Multijob+Plugin">Jenkins MultiJob Plugin</a> was used. This allows for multiple jobs within a phase to be run in parallel.</p>
+<p>The sample project used is located at: <a href="https://github.com/medullan/mean">https://github.com/medullan/mean</a></p>
+<p>There are also advanced documentation for this template project located at: <a href="https://github.com/medullan/mean/wiki">https://github.com/medullan/mean/wiki</a></p>
 
 
 

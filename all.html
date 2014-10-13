@@ -163,6 +163,11 @@
                 
     <ol>
     
+        <li>
+            <a href="061-meanjs-pipeline.html#meanjs-pipeline">Meanjs Pipeline</a>
+            
+        </li>
+    
 </ol>
 
             
@@ -641,6 +646,39 @@ These are:</p>
 <p>OR</p>
 <pre><code class="lang-yaml">target_jenkins_env: java # creates a java pipeline
 </code></pre>
+
+<h2 id="meanjs-pipeline">Meanjs Pipeline</h2>
+<p>The Sample Meanjs Pipeline is a simple Jenkins pipeline that has the following phases:</p>
+<ol>
+<li><strong>Phase 1</strong><ul>
+<li>Install Dependencies</li>
+</ul>
+</li>
+<li><strong>Phase 2</strong><ul>
+<li>Run Unit tests</li>
+<li>Run Integration tests</li>
+<li>Generate Documentation and Static Analysis</li>
+</ul>
+</li>
+<li><strong>Phase 3</strong><ul>
+<li>Functional Test with code coverage</li>
+</ul>
+</li>
+<li><strong>Phase 4</strong><ul>
+<li>Update Rally</li>
+</ul>
+</li>
+</ol>
+<h3 id="post-build-steps">Post Build Steps</h3>
+<ul>
+<li>Publish Reports (Code Coverage, Static Analysis, Documentation, etc.)</li>
+<li>Drop database used</li>
+<li>Publish Robot Framework Test Results</li>
+<li>Delete workspace</li>
+</ul>
+<p>To accomplish this pipeline structure, the <a href="https://wiki.jenkins-ci.org/display/JENKINS/Multijob+Plugin">Jenkins MultiJob Plugin</a> was used. This allows for multiple jobs within a phase to be run in parallel.</p>
+<p>The sample project used is located at: <a href="https://github.com/medullan/mean">https://github.com/medullan/mean</a></p>
+<p>There are also advanced documentation for this template project located at: <a href="https://github.com/medullan/mean/wiki">https://github.com/medullan/mean/wiki</a></p>
 
 <h1 id="documentation">Documentation</h1>
 <h2 id="about">About</h2>
