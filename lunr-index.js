@@ -397,7 +397,7 @@ documentTitles["061-meanjs-pipeline.html#sample-project"] = "Sample Project";
 index.add({
     url: "061-meanjs-pipeline.html#sample-project",
     title: "Sample Project",
-    body: "### Sample Project The sample project used is located at: https://github.com/medullan/mean  There are also advanced documentation for this template project located at: https://github.com/medullan/mean/wiki"
+    body: "### Sample Project The sample project used is located at: https://github.com/medullan/mean  There is advanced documentation for this template project located at: https://github.com/medullan/mean/wiki"
 });
 
 
