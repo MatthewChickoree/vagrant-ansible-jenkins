@@ -383,7 +383,14 @@ documentTitles["061-meanjs-pipeline.html#post-build-steps"] = "Post Build Steps"
 index.add({
     url: "061-meanjs-pipeline.html#post-build-steps",
     title: "Post Build Steps",
-    body: "### Post Build Steps * Publish Reports (Code Coverage, Static Analysis, Documentation, etc.) * Drop database used * Publish Robot Framework Test Results * Delete workspace  To accomplish this pipeline structure, the [Jenkins MultiJob Plugin](https://wiki.jenkins-ci.org/display/JENKINS/Multijob+Plugin) was used. This allows for multiple jobs within a phase to be run in parallel.  The sample project used is located at: https://github.com/medullan/mean  There are also advanced documentation for this template project located at: https://github.com/medullan/mean/wiki "
+    body: "### Post Build Steps * Publish Reports (Code Coverage, Static Analysis, Documentation, etc.) * Drop database used * Publish Robot Framework Test Results * Delete workspace  To accomplish this pipeline structure, the [Jenkins MultiJob Plugin](https://wiki.jenkins-ci.org/display/JENKINS/Multijob+Plugin) was used. This allows for multiple jobs within a phase to be run in parallel.  Other key Jenkins plugins used are: - port-allocator - nodejs - throttle-concurrents - build-name-setter - postbuild-task  Other Dependencies: - node &amp; npm - grunt - phantomjs - bower - robotframework-selenium2library - jenkins-autojobs  NB. All plugins and dependencies listed above are all installed using Ansible by default.  "
+});
+
+documentTitles["061-meanjs-pipeline.html#sample-project"] = "Sample Project";
+index.add({
+    url: "061-meanjs-pipeline.html#sample-project",
+    title: "Sample Project",
+    body: "### Sample Project The sample project used is located at: https://github.com/medullan/mean  There are also advanced documentation for this template project located at: https://github.com/medullan/mean/wiki"
 });
 
 
