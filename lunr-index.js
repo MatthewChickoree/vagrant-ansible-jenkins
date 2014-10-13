@@ -367,7 +367,7 @@ documentTitles["06-sample-build-pipelines.html#sample-build-pipelines"] = "Sampl
 index.add({
     url: "06-sample-build-pipelines.html#sample-build-pipelines",
     title: "Sample Build Pipelines",
-    body: "# Sample Build Pipelines  Currently, there are two sample pipelines that can be created when provisioning the Jenkins environment. These are: - Meanjs - Java  To provision the Jenkins environment with your pipeline of choice, the **target_jenkins_env** variable should be overridden.  * Set it to **mean** to create a meanjs pipeline * Set it to **java** to create a java pipeline (Default)  To override, locate the desire override variable file, located in the **provisioners/ansible/extra_vars** folder and place the following within the yaml file  ####Example  ```yaml target_jenkins_env: mean # creates a meanjs pipeline ```  OR  ```yaml target_jenkins_env: java # creates a java pipeline ```"
+    body: "# Sample Build Pipelines  Currently, there are two sample pipelines that can be created when provisioning the Jenkins environment. These are: - Meanjs - Java  To provision the Jenkins environment with your pipeline of choice, the **target_jenkins_env** variable should be overridden.  * Set it to **mean** to create a meanjs pipeline * Set it to **java** to create a java pipeline (Default)  To override, locate the desired override variable file in the **provisioners/ansible/extra_vars** folder and place the following within the yaml file  ####Example  ```yaml target_jenkins_env: mean # creates a meanjs pipeline ```  OR  ```yaml target_jenkins_env: java # creates a java pipeline ```"
 });
 
 
