@@ -14,6 +14,14 @@
   when: "target_jenkins_env == 'java'"
   register: java_pipeline_jobs_copied
 
+- name: copy database utility jobs for java pipeline to machine
+  sudo: yes
+  copy: src={{ item }} dest={{ remote_tmp_folder }}/jobs/java_pipeline owner={{ user_name  | default('vagrant') }} mode=600
+  with_fileglob:
+        - "{{ local_files_dir }}/jenkins/jobs/java_pipeline/db_utilities/*.xml"
+  when: "target_jenkins_env == 'java'"
+  register: java_db_util_jobs_copied
+
 - name: copy mean pipeline jobs to machine
   sudo: yes
   copy: src={{ item }} dest={{ remote_tmp_folder }}/jobs/mean_pipeline owner={{ user_name  | default('vagrant') }} mode=600
