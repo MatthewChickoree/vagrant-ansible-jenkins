@@ -45,4 +45,4 @@
 
 # Playbook for installing and configuring tomcat
 - include: tomcat.yml tags=setup
-  when: slave is defined and slave.apt is defined and slave.apt.tomcat is defined and install_tomcat
+  when: slave.apt.tomcat is defined and install_tomcat and tomcat is defined
