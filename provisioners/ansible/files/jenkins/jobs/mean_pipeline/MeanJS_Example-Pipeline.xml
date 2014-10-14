@@ -54,7 +54,6 @@
     <userRemoteConfigs>
       <hudson.plugins.git.UserRemoteConfig>
         <url>https://github.com/medullan/mean.git</url>
-        <credentialsId>78ebbcc0-bc6e-45d7-846c-8af2d23a3b21</credentialsId>
       </hudson.plugins.git.UserRemoteConfig>
     </userRemoteConfigs>
     <branches>
@@ -305,7 +304,7 @@ MASTER_BUILD_TAG = ${BUILD_TAG}</properties>
   </publishers>
   <buildWrappers>
     <jenkins.plugins.nodejs.tools.NpmPackagesBuildWrapper plugin="nodejs@0.2.1">
-      <nodeJSInstallationName>node</nodeJSInstallationName>
+      <nodeJSInstallationName>node-10-32</nodeJSInstallationName>
     </jenkins.plugins.nodejs.tools.NpmPackagesBuildWrapper>
   </buildWrappers>
 </com.tikal.jenkins.plugins.multijob.MultiJobProject>
