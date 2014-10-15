@@ -56,11 +56,11 @@
 - name: Set keyPath for publish over ssh config with rsa key file location
   sudo: yes
   replace: dest={{ jenkins_home }}/{{ plugin_config_files.publish_over_ssh }} regexp='{{ plugin_config_patterns.rsa_key_file }}' replace={{ jenkins_home }}/{{ ssh_dir }}/{{ rsa_key_file }}
-  when: plugin_config_patterns is defined and plugin_config_patterns.rsa_key_file is defined
+  when: jenkins_dir_list.stdout.find('{{ plugin_config_files.publish_over_ssh }}') != -1 and plugin_config_patterns is defined and plugin_config_patterns.rsa_key_file is defined
   register: publish_over_SSH_configs_rsa_key_update
 
 - name: Set remoteRootDir for publish over ssh config with tomcat web apps folder
   sudo: yes
   replace: dest={{ jenkins_home }}/{{ plugin_config_files.publish_over_ssh }} regexp='{{ plugin_config_patterns.tomcat_web_apps }}' replace={{ tomcat.web_apps_folder }}
-  when: tomcat.web_apps_folder is defined and plugin_config_patterns.tomcat_web_apps is defined
+  when: jenkins_dir_list.stdout.find('{{ plugin_config_files.publish_over_ssh }}') != -1 and tomcat.web_apps_folder is defined and plugin_config_patterns.tomcat_web_apps is defined
   register: publish_over_SSH_configs_remote_root_dir_update
