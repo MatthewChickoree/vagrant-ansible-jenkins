@@ -44,8 +44,8 @@
       <configVersion>2</configVersion>
       <userRemoteConfigs>
          <hudson.plugins.git.UserRemoteConfig>
-            <url>https://github.com/medullan/autojobs-config</url>
-            <credentialsId>56c76726-4a8b-4852-a88c-c5378213b878</credentialsId>
+            <url>https://github.com/medullan/autojobs-config-sample</url>
+            <credentialsId>ac1ca2f5-1fe6-421b-bf2d-cf527f6c9a21</credentialsId>
          </hudson.plugins.git.UserRemoteConfig>
       </userRemoteConfigs>
       <branches>
