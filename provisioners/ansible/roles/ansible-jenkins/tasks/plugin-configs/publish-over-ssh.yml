@@ -5,12 +5,11 @@
 - name: Output jenkins directory
   sudo: yes
   command: ls -la {{ jenkins_home }}
-  when: rsa_pub_copied.changed and tomcat_installed.changed
   register: jenkins_dir_list
 
 - name: Results - output jenkins directory
   debug: var=jenkins_dir_list.stdout_lines
-  when: jenkins_dir_list.changed
+  when: jenkins_dir_list is defined
 
 - name: Make directory for rsa ssh key if needed
   sudo: yes
@@ -31,19 +30,19 @@
 - name: Copy rsa key to jenkins ssh directory
   sudo: yes
   command: cp /home/{{ user_name  | default('vagrant') }}/{{ ssh_dir }}/{{ rsa_key_file }} {{ jenkins_home }}/{{ ssh_dir }}
-  when: jenkins_ssh_dir_list.stdout.find('{{ rsa_key_file }}') == -1
+  when: jenkins_ssh_dir_list.stdout.find('{{ rsa_key_file }}') == -1 and rsa_keygen_results is defined
   register: jenkins_rsa_key_copied
 
-- name: Update permissions for copied rsa_key
+- name: Update permissions for rsa_key located in jenkins ssh directory
   sudo: yes
   command: chmod 400 {{ jenkins_home }}/{{ ssh_dir }}/{{ rsa_key_file }}
-  when: jenkins_rsa_key_copied.changed
+  when: jenkins_ssh_dir_list.stdout.find('{{ rsa_key_file }}') != -1
   register: jenkins_rsa_key_chmod
 
-- name: Change owner and group of copied rsa key to jenkins
+- name: Change owner and group of rsa_key located in jenkins ssh directory
   sudo: yes
   command: chown jenkins:jenkins {{ jenkins_home }}/{{ ssh_dir }}/{{ rsa_key_file }}
-  when: jenkins_rsa_key_copied.changed
+  when: jenkins_ssh_dir_list.stdout.find('{{ rsa_key_file }}') != -1
   register: jenkins_key_chown
 
 - name: Copy publish over ssh config XML's to jenkins home
@@ -51,16 +50,17 @@
   copy: src={{ item }} dest={{ jenkins_home }} owner=jenkins mode=600
   with_fileglob:
         - "{{ local_files_dir_four_levels }}/jenkins/config/publish-over-ssh/{{ plugin_config_files.publish_over_ssh }}"
-  when: jenkins_rsa_key_copied.changed and plugin_config_files is defined and plugin_config_files.publish_over_ssh is defined
+  when: jenkins_dir_list.stdout.find('{{ plugin_config_files.publish_over_ssh }}') == -1 and plugin_config_files is defined and plugin_config_files.publish_over_ssh is defined
   register: publish_over_SSH_configs_copied
 
 - name: Set keyPath for publish over ssh config with rsa key file location
   sudo: yes
   replace: dest={{ jenkins_home }}/{{ plugin_config_files.publish_over_ssh }} regexp='{{ plugin_config_patterns.rsa_key_file }}' replace={{ jenkins_home }}/{{ ssh_dir }}/{{ rsa_key_file }}
-  when: publish_over_SSH_configs_copied.changed and plugin_config_patterns is defined and plugin_config_patterns.rsa_key_file is defined
+  when: plugin_config_patterns is defined and plugin_config_patterns.rsa_key_file is defined
   register: publish_over_SSH_configs_rsa_key_update
 
 - name: Set remoteRootDir for publish over ssh config with tomcat web apps folder
   sudo: yes
   replace: dest={{ jenkins_home }}/{{ plugin_config_files.publish_over_ssh }} regexp='{{ plugin_config_patterns.tomcat_web_apps }}' replace={{ tomcat.web_apps_folder }}
-  when: jenkins_rsa_key_copied.changed and tomcat.web_apps_folder is defined and plugin_config_patterns.tomcat_web_apps is defined
+  when: tomcat.web_apps_folder is defined and plugin_config_patterns.tomcat_web_apps is defined
+  register: publish_over_SSH_configs_remote_root_dir_update

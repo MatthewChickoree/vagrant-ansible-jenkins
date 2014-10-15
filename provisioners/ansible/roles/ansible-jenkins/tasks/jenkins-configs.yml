@@ -8,7 +8,7 @@
   register: default_configs_copied
 
 - include: plugin-configs/publish-over-ssh.yml
-  when: ansible_distribution in [ 'Debian', 'Ubuntu' ] and tomcat_installed.changed
+  when: ansible_distribution in [ 'Debian', 'Ubuntu' ] and install_tomcat
 
 - include: plugin-configs/git.yml
   when: ansible_distribution in [ 'Debian', 'Ubuntu' ] and git.enable_configure

@@ -32,8 +32,8 @@
   when: user_ssh_dir_list.stdout.find('authorized_keys') == -1
   register: rsa_pub_auth_created
 
-- name: Copy public key to machine
+- name: Add public key to machine
   sudo: yes
   shell: cat {{ ssh_dir }}/{{ rsa_key_file }}.pub >> {{ ssh_dir }}/authorized_keys
   when: rsa_pub_auth_created is defined and rsa_keygen_results.changed
-  register: rsa_pub_copied
+  register: rsa_pub_added
