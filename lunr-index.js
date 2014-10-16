@@ -367,14 +367,21 @@ documentTitles["06-sample-build-pipelines.html#sample-build-pipelines"] = "Sampl
 index.add({
     url: "06-sample-build-pipelines.html#sample-build-pipelines",
     title: "Sample Build Pipelines",
-    body: "# Sample Build Pipelines  Currently, there are two sample pipelines that can be created when provisioning the Jenkins environment. These are: - Meanjs - Java  To provision the Jenkins environment with your pipeline of choice, the **target_jenkins_env** variable should be overridden.  * Set it to **mean** to create a meanjs pipeline * Set it to **java** to create a java pipeline (Default)  To override, locate the desired override variable file in the **provisioners/ansible/roles/shared/vars** folder and place the following within the yaml file  ####Example  ```yaml target_jenkins_env: mean # creates a meanjs pipeline ```  OR  ```yaml target_jenkins_env: java # creates a java pipeline ```  &lt;br/&gt; "
+    body: "# Sample Build Pipelines  Currently, there are two sample pipelines that can be created when provisioning the Jenkins environment. These are: - Meanjs - Java  To provision the Jenkins environment with your pipeline of choice, the **target_jenkins_env** variable should be overridden.  * Set it to **mean** to create a meanjs pipeline * Set it to **java** to create a java pipeline (Default)  To override, locate the desired override variable file in the **provisioners/ansible/roles/shared/vars** folder and place the following within the yaml file  "
+});
+
+documentTitles["06-sample-build-pipelines.html#example"] = "Example";
+index.add({
+    url: "06-sample-build-pipelines.html#example",
+    title: "Example",
+    body: "#### Example  ```yaml target_jenkins_env: mean # creates a meanjs pipeline ```  OR  ```yaml target_jenkins_env: java # creates a java pipeline ```  &lt;br/&gt; "
 });
 
 documentTitles["06-sample-build-pipelines.html#note"] = "Note";
 index.add({
     url: "06-sample-build-pipelines.html#note",
     title: "Note",
-    body: "### Note   Build pipelines use the [Jenkins Auto-jobs package](https://pythonhosted.org/jenkins-autojobs/) along with the repository located [here](https://github.com/medullan/autojobs-config-sample) to generate new pipelines for each branch via the `Generate_Auto_Jobs_*` utility job. To generate new pipelines, add the credentials for the `os-medullan-ci` github user located [here](https://docs.google.com/a/medullan.com/spreadsheets/d/1g9JoLX6Hw10T-ih93lccAwUpojbvWsXmwktZAT8oE10/edit#gid=0) as global git credentials to the `Generate_Auto_Jobs_*` utility job before triggering a build."
+    body: "#### Note   Build pipelines use the [Jenkins Auto-jobs package](https://pythonhosted.org/jenkins-autojobs/) along with the repository located [here](https://github.com/medullan/autojobs-config-sample) to generate new pipelines for each branch via the `Generate_Auto_Jobs_*` utility job. To generate new pipelines, add the credentials for the `os-medullan-ci` github user located [here](https://docs.google.com/a/medullan.com/spreadsheets/d/1g9JoLX6Hw10T-ih93lccAwUpojbvWsXmwktZAT8oE10/edit#gid=0) as global git credentials to the `Generate_Auto_Jobs_*` utility job before triggering a build."
 });
 
 
