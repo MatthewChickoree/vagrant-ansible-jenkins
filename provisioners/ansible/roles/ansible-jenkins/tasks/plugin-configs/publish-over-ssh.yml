@@ -60,7 +60,7 @@
   copy: src={{ item }} dest={{ jenkins_home }} owner=jenkins mode=600
   with_fileglob:
         - "{{ local_files_dir_four_levels }}/jenkins/config/publish-over-ssh/{{ plugin_config_files.publish_over_ssh }}"
-  when: jenkins_dir_list.stdout_updated.find('{{ plugin_config_files.publish_over_ssh }}') == -1 and plugin_config_files is defined and plugin_config_files.publish_over_ssh is defined
+  when: jenkins_dir_list.stdout.find('{{ plugin_config_files.publish_over_ssh }}') == -1 and plugin_config_files is defined and plugin_config_files.publish_over_ssh is defined
   register: publish_over_SSH_configs_copied
 
 - name: Output updated jenkins directory
