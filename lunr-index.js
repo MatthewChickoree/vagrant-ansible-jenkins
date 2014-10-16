@@ -367,7 +367,7 @@ documentTitles["06-sample-build-pipelines.html#sample-build-pipelines"] = "Sampl
 index.add({
     url: "06-sample-build-pipelines.html#sample-build-pipelines",
     title: "Sample Build Pipelines",
-    body: "# Sample Build Pipelines  Currently, there are two sample pipelines that can be created when provisioning the Jenkins environment. These are: - Meanjs - Java  To provision the Jenkins environment with your pipeline of choice, the **target_jenkins_env** variable should be overridden.  * Set it to **mean** to create a meanjs pipeline * Set it to **java** to create a java pipeline (Default)  To override, locate the desired override variable file in the **provisioners/ansible/extra_vars** folder and place the following within the yaml file  ####Example  ```yaml target_jenkins_env: mean # creates a meanjs pipeline ```  OR  ```yaml target_jenkins_env: java # creates a java pipeline ```"
+    body: "# Sample Build Pipelines  Currently, there are two sample pipelines that can be created when provisioning the Jenkins environment. These are: - Meanjs - Java  To provision the Jenkins environment with your pipeline of choice, the **target_jenkins_env** variable should be overridden.  * Set it to **mean** to create a meanjs pipeline * Set it to **java** to create a java pipeline (Default)  To override, locate the desired override variable file in the **provisioners/ansible/roles/shared/vars** folder and place the following within the yaml file  ####Example  ```yaml target_jenkins_env: mean # creates a meanjs pipeline ```  OR  ```yaml target_jenkins_env: java # creates a java pipeline ```"
 });
 
 
@@ -420,7 +420,7 @@ documentTitles["062-java-pipeline.html#post-build-steps"] = "Post Build Steps";
 index.add({
     url: "062-java-pipeline.html#post-build-steps",
     title: "Post Build Steps",
-    body: "### Post Build Steps - Publish robot framework results to Jenkins UI via plugin [Robot Framework Plugin](https://wiki.jenkins-ci.org/display/JENKINS/Robot+Framework+Plugin) - Push changes to github remote branch - Drop test databases (via [rdb-build](https://github.com/medullan/rdb-build)) - Reset user npm configurations (restore registry and authentication defaults via [rdb-build](https://github.com/medullan/rdb-build)) - Delete workspace  &lt;br/&gt; "
+    body: "### Post Build Steps - Publish robot framework results to Jenkins UI via plugin [Robot Framework Plugin](https://wiki.jenkins-ci.org/display/JENKINS/Robot+Framework+Plugin) - Push changes to github remote branch - *TODO*: Drop test databases (via [rdb-build](https://github.com/medullan/rdb-build)) - *TODO*: Reset user npm configurations (restore registry and authentication defaults via [rdb-build](https://github.com/medullan/rdb-build)) - Delete workspace  &lt;br/&gt; "
 });
 
 documentTitles["062-java-pipeline.html#things-to-know"] = "Things to Know";

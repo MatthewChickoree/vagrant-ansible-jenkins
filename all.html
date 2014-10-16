@@ -644,7 +644,7 @@ These are:</p>
 <li>Set it to <strong>mean</strong> to create a meanjs pipeline</li>
 <li>Set it to <strong>java</strong> to create a java pipeline (Default)</li>
 </ul>
-<p>To override, locate the desired override variable file in the <strong>provisioners/ansible/extra_vars</strong> folder and place the following within the yaml file</p>
+<p>To override, locate the desired override variable file in the <strong>provisioners/ansible/roles/shared/vars</strong> folder and place the following within the yaml file</p>
 <h4 id="example">Example</h4>
 <pre><code class="lang-yaml">target_jenkins_env: mean # creates a meanjs pipeline
 </code></pre>
@@ -750,8 +750,8 @@ These are:</p>
 <ul>
 <li>Publish robot framework results to Jenkins UI via plugin <a href="https://wiki.jenkins-ci.org/display/JENKINS/Robot+Framework+Plugin">Robot Framework Plugin</a></li>
 <li>Push changes to github remote branch</li>
-<li>Drop test databases (via <a href="https://github.com/medullan/rdb-build">rdb-build</a>)</li>
-<li>Reset user npm configurations (restore registry and authentication defaults via <a href="https://github.com/medullan/rdb-build">rdb-build</a>)</li>
+<li><em>TODO</em>: Drop test databases (via <a href="https://github.com/medullan/rdb-build">rdb-build</a>)</li>
+<li><em>TODO</em>: Reset user npm configurations (restore registry and authentication defaults via <a href="https://github.com/medullan/rdb-build">rdb-build</a>)</li>
 <li>Delete workspace</li>
 </ul>
 <p><br/></p>
