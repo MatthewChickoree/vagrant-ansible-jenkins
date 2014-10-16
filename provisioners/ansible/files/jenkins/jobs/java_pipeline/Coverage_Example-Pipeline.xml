@@ -69,7 +69,7 @@
       <userRemoteConfigs>
          <hudson.plugins.git.UserRemoteConfig>
             <url>https://github.com/medullan/coverage-example.git</url>
-            <credentialsId>ac1ca2f5-1fe6-421b-bf2d-cf527f6c9a21</credentialsId>
+            <credentialsId></credentialsId>
          </hudson.plugins.git.UserRemoteConfig>
       </userRemoteConfigs>
       <branches>
