@@ -374,7 +374,7 @@ documentTitles["06-sample-build-pipelines.html#note"] = "Note";
 index.add({
     url: "06-sample-build-pipelines.html#note",
     title: "Note",
-    body: "## Note   Build pipelines use the [Jenkins Auto-jobs package](https://pythonhosted.org/jenkins-autojobs/) along with the repository located [here](https://github.com/medullan/autojobs-config-sample) to generate new pipelines for each branch via the `Generate_Auto_Jobs_*` utility job. To generate new pipelines, add the credentials for the `os-medullan-ci` github user located [here](https://docs.google.com/a/medullan.com/spreadsheets/d/1g9JoLX6Hw10T-ih93lccAwUpojbvWsXmwktZAT8oE10/edit#gid=0) as global git credentials to the `Generate_Auto_Jobs_*` utility job before triggering a build."
+    body: "### Note   Build pipelines use the [Jenkins Auto-jobs package](https://pythonhosted.org/jenkins-autojobs/) along with the repository located [here](https://github.com/medullan/autojobs-config-sample) to generate new pipelines for each branch via the `Generate_Auto_Jobs_*` utility job. To generate new pipelines, add the credentials for the `os-medullan-ci` github user located [here](https://docs.google.com/a/medullan.com/spreadsheets/d/1g9JoLX6Hw10T-ih93lccAwUpojbvWsXmwktZAT8oE10/edit#gid=0) as global git credentials to the `Generate_Auto_Jobs_*` utility job before triggering a build."
 });
 
 
