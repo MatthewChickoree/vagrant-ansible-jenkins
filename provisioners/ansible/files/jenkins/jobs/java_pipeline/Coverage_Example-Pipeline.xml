@@ -216,12 +216,6 @@
                </configs>
                <killPhaseOnJobResultCondition>FAILURE</killPhaseOnJobResultCondition>
             </com.tikal.jenkins.plugins.multijob.PhaseJobsConfig>
-         </phaseJobs>
-         <continuationCondition>SUCCESSFUL</continuationCondition>
-      </com.tikal.jenkins.plugins.multijob.MultiJobBuilder>
-      <com.tikal.jenkins.plugins.multijob.MultiJobBuilder>
-         <phaseName>Phase: Integration Test</phaseName>
-         <phaseJobs>
             <com.tikal.jenkins.plugins.multijob.PhaseJobsConfig>
                <jobName>Pipeline-Run_Integration_Tests</jobName>
                <currParams>true</currParams>
@@ -327,6 +321,7 @@
          <configVersion>2</configVersion>
          <pushMerge>false</pushMerge>
          <pushOnlyIfSuccess>true</pushOnlyIfSuccess>
+         <forcePush>false</forcePush>
          <branchesToPush>
             <hudson.plugins.git.GitPublisher_-BranchToPush>
                <targetRepoName>origin</targetRepoName>
@@ -338,8 +333,8 @@
          <workspaceName>CPI</workspaceName>
          <projectName>Automation</projectName>
          <service>
-            <username>mchickoree@medullan.com</username>
-            <password>matthew@medullan</password>
+            <username>noreply@gmail.com</username>
+            <password />
             <host>rally1.rallydev.com</host>
             <version>1.21</version>
             <port>-1</port>
