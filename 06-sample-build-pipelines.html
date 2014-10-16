@@ -164,6 +164,11 @@
     <ol>
     
         <li>
+            <a href="06-sample-build-pipelines.html#note">Note</a>
+            
+        </li>
+    
+        <li>
             <a href="061-meanjs-pipeline.html#meanjs-pipeline">Meanjs Pipeline</a>
             
         </li>
@@ -299,6 +304,9 @@ These are:</p>
 <p>OR</p>
 <pre><code class="lang-yaml">target_jenkins_env: java # creates a java pipeline
 </code></pre>
+<p><br/></p>
+<h2 id="note">Note</h2>
+<p>Build pipelines use the <a href="https://pythonhosted.org/jenkins-autojobs/">Jenkins Auto-jobs package</a> along with the repository located <a href="https://github.com/medullan/autojobs-config-sample">here</a> to generate new pipelines for each branch via the <code>Generate_Auto_Jobs_*</code> utility job. To generate new pipelines, add the credentials for the <code>os-medullan-ci</code> github user located <a href="https://docs.google.com/a/medullan.com/spreadsheets/d/1g9JoLX6Hw10T-ih93lccAwUpojbvWsXmwktZAT8oE10/edit#gid=0">here</a> as global git credentials to the <code>Generate_Auto_Jobs_*</code> utility job before triggering a build.</p>
 
 
 

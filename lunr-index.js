@@ -367,7 +367,14 @@ documentTitles["06-sample-build-pipelines.html#sample-build-pipelines"] = "Sampl
 index.add({
     url: "06-sample-build-pipelines.html#sample-build-pipelines",
     title: "Sample Build Pipelines",
-    body: "# Sample Build Pipelines  Currently, there are two sample pipelines that can be created when provisioning the Jenkins environment. These are: - Meanjs - Java  To provision the Jenkins environment with your pipeline of choice, the **target_jenkins_env** variable should be overridden.  * Set it to **mean** to create a meanjs pipeline * Set it to **java** to create a java pipeline (Default)  To override, locate the desired override variable file in the **provisioners/ansible/roles/shared/vars** folder and place the following within the yaml file  ####Example  ```yaml target_jenkins_env: mean # creates a meanjs pipeline ```  OR  ```yaml target_jenkins_env: java # creates a java pipeline ```"
+    body: "# Sample Build Pipelines  Currently, there are two sample pipelines that can be created when provisioning the Jenkins environment. These are: - Meanjs - Java  To provision the Jenkins environment with your pipeline of choice, the **target_jenkins_env** variable should be overridden.  * Set it to **mean** to create a meanjs pipeline * Set it to **java** to create a java pipeline (Default)  To override, locate the desired override variable file in the **provisioners/ansible/roles/shared/vars** folder and place the following within the yaml file  ####Example  ```yaml target_jenkins_env: mean # creates a meanjs pipeline ```  OR  ```yaml target_jenkins_env: java # creates a java pipeline ```  &lt;br/&gt; "
+});
+
+documentTitles["06-sample-build-pipelines.html#note"] = "Note";
+index.add({
+    url: "06-sample-build-pipelines.html#note",
+    title: "Note",
+    body: "## Note   Build pipelines use the [Jenkins Auto-jobs package](https://pythonhosted.org/jenkins-autojobs/) along with the repository located [here](https://github.com/medullan/autojobs-config-sample) to generate new pipelines for each branch via the `Generate_Auto_Jobs_*` utility job. To generate new pipelines, add the credentials for the `os-medullan-ci` github user located [here](https://docs.google.com/a/medullan.com/spreadsheets/d/1g9JoLX6Hw10T-ih93lccAwUpojbvWsXmwktZAT8oE10/edit#gid=0) as global git credentials to the `Generate_Auto_Jobs_*` utility job before triggering a build."
 });
 
 
@@ -390,7 +397,7 @@ documentTitles["061-meanjs-pipeline.html#things-to-know"] = "Things to Know";
 index.add({
     url: "061-meanjs-pipeline.html#things-to-know",
     title: "Things to Know",
-    body: "### Things to Know To accomplish this pipeline structure, the [Jenkins MultiJob Plugin](https://wiki.jenkins-ci.org/display/JENKINS/Multijob+Plugin) was used. This allows for multiple jobs within a phase to be run in parallel.  Other key Jenkins plugins used are: - port-allocator - nodejs - throttle-concurrents - build-name-setter - postbuild-task  Other Dependencies: - node &amp; npm - grunt - phantomjs - bower - robotframework-selenium2library - jenkins-autojobs  NB. All plugins and dependencies listed above are all installed using Ansible by default.  &lt;br/&gt; "
+    body: "### Things to Know To accomplish this pipeline structure, the [Jenkins MultiJob Plugin](https://wiki.jenkins-ci.org/display/JENKINS/Multijob+Plugin) was used. This allows for multiple jobs within a phase to be run in parallel. To run this pipeline please add the credentials for the `os-medullan-ci` github user located [here](https://docs.google.com/a/medullan.com/spreadsheets/d/1g9JoLX6Hw10T-ih93lccAwUpojbvWsXmwktZAT8oE10/edit#gid=0) as global git credentials.  Other key Jenkins plugins used are: - port-allocator - nodejs - throttle-concurrents - build-name-setter - postbuild-task  Other Dependencies: - node &amp; npm - grunt - phantomjs - bower - robotframework-selenium2library - jenkins-autojobs  NB. All plugins and dependencies listed above are all installed using Ansible by default.  &lt;br/&gt; "
 });
 
 documentTitles["061-meanjs-pipeline.html#sample-project"] = "Sample Project";
@@ -427,7 +434,7 @@ documentTitles["062-java-pipeline.html#things-to-know"] = "Things to Know";
 index.add({
     url: "062-java-pipeline.html#things-to-know",
     title: "Things to Know",
-    body: "### Things to Know To accomplish this pipeline structure, the [Jenkins MultiJob Plugin](https://wiki.jenkins-ci.org/display/JENKINS/Multijob+Plugin) was used. This allows for multiple jobs within a phase to be run in parallel.  Other key Jenkins plugins used are: - publish over ssh - artifactory - build-name-setter - postbuild-task - rally-plugin: [Medullan's version](https://medullan.atlassian.net/wiki/display/QA/Rally+Update+Jenkins+Plugin+Configuration) - groovy - groovy-postbuild  Other Dependencies: - node &amp; npm - maven - robot framework - phantomjs - robotframework-selenium2library - jenkins-autojobs  NB. All plugins and dependencies listed above are all installed using Ansible by default.  &lt;br/&gt; "
+    body: "### Things to Know To accomplish this pipeline structure, the [Jenkins MultiJob Plugin](https://wiki.jenkins-ci.org/display/JENKINS/Multijob+Plugin) was used. This allows for multiple jobs within a phase to be run in parallel. To run this pipeline please add the credentials for the `os-medullan-ci` github user located [here](https://docs.google.com/a/medullan.com/spreadsheets/d/1g9JoLX6Hw10T-ih93lccAwUpojbvWsXmwktZAT8oE10/edit#gid=0) as global git credentials.  Other key Jenkins plugins used are: - publish over ssh - artifactory - build-name-setter - postbuild-task - rally-plugin: [Medullan's version](https://medullan.atlassian.net/wiki/display/QA/Rally+Update+Jenkins+Plugin+Configuration) - groovy - groovy-postbuild  Other Dependencies: - node &amp; npm - maven - robot framework - phantomjs - robotframework-selenium2library - jenkins-autojobs  NB. All plugins and dependencies listed above are all installed using Ansible by default.  &lt;br/&gt; "
 });
 
 documentTitles["062-java-pipeline.html#sample-project"] = "Sample Project";
