@@ -406,7 +406,7 @@ documentTitles["062-java-pipeline.html#java-pipeline"] = "Java Pipeline";
 index.add({
     url: "062-java-pipeline.html#java-pipeline",
     title: "Java Pipeline",
-    body: "## Java Pipeline  The Java Pipeline is a set of jobs that represents a typical continuous integration workflow for a Java project. The collection of jobs are divided into the following phases:  1. **Phase 1**   - Compile project (download maven dependencies, compile source code).   - *TODO*: Update the database templates with new change sets/migrations (will use [rdb-build] (https://github.com/medullan/rdb-build), updates npm user configurations). 2. **Phase 2**   - *TODO*: Create a test database(s) with required data, defined by `.json` or `.js` files (will use [rdb-build] (https://github.com/medullan/rdb-build)). 3. **Phase 3**   - Unit tests   - Static analysis   - Documentation   - Integration tests 4. **Phase 4**   - Install and Archive (install artifacts to local maven repository and upload artifacts to binary repository manager). 5. **Phase 5**   - Functional Tests (deploy and run functional tests with robot). 6. **Update Rally**   - Update Rally (upload test results, update tasks, update change sets).  &lt;br/&gt; "
+    body: "## Java Pipeline  The Java Pipeline is a set of jobs that represents a typical continuous integration workflow for a Java project. The collection of jobs are divided into the following phases:  1. **Phase 1**   - Compile project (download maven dependencies, compile source code).   - *TODO*: Update the database templates with new change sets/migrations (will use [rdb-build](https://github.com/medullan/rdb-build), updates npm user configurations). 2. **Phase 2**   - *TODO*: Create a test database(s) with required data, defined by `.json` or `.js` files (will use [rdb-build](https://github.com/medullan/rdb-build)). 3. **Phase 3**   - Unit tests   - Static analysis   - Documentation   - Integration tests 4. **Phase 4**   - Install and Archive (install artifacts to local maven repository and upload artifacts to binary repository manager). 5. **Phase 5**   - Functional Tests (deploy and run functional tests with robot). 6. **Update Rally**   - Update Rally (upload test results, update tasks, update change sets).  &lt;br/&gt; "
 });
 
 documentTitles["062-java-pipeline.html#pre-build-steps"] = "Pre-Build Steps";
@@ -420,7 +420,7 @@ documentTitles["062-java-pipeline.html#post-build-steps"] = "Post Build Steps";
 index.add({
     url: "062-java-pipeline.html#post-build-steps",
     title: "Post Build Steps",
-    body: "### Post Build Steps - Publish robot framework results to Jenkins UI via plugin [Robot Framework Plugin](https://wiki.jenkins-ci.org/display/JENKINS/Robot+Framework+Plugin) - Push changes to github remote branch - Drop test databases (via [rdb-build] (https://github.com/medullan/rdb-build)) - Reset user npm configurations (restore registry and authentication defaults via [rdb-build] (https://github.com/medullan/rdb-build)) - Delete workspace  &lt;br/&gt; "
+    body: "### Post Build Steps - Publish robot framework results to Jenkins UI via plugin [Robot Framework Plugin](https://wiki.jenkins-ci.org/display/JENKINS/Robot+Framework+Plugin) - Push changes to github remote branch - Drop test databases (via [rdb-build](https://github.com/medullan/rdb-build)) - Reset user npm configurations (restore registry and authentication defaults via [rdb-build](https://github.com/medullan/rdb-build)) - Delete workspace  &lt;br/&gt; "
 });
 
 documentTitles["062-java-pipeline.html#things-to-know"] = "Things to Know";
