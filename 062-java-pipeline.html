@@ -280,17 +280,78 @@
 </div>
 
         <div id="content">
-            <h1 id="introduction">Introduction</h1>
-<p>This repository was created to provide a new team with a pre configured Jenkins environment with similar slave environments by using Amazon Web Services. Vagrant and packer was used with the help of Ansible for consistent and repeatable environments.</p>
+            <h2 id="java-pipeline">Java Pipeline</h2>
+<p>The Java Pipeline is a set of jobs that represents a typical continuous integration workflow for a Java project. The collection of jobs are divided into the following phases:</p>
+<ol>
+<li><strong>Phase 1</strong><ul>
+<li>Compile project (download maven dependencies, compile source code).</li>
+<li><em>TODO</em>: Update the database templates with new change sets/migrations (will use [rdb-build] (<a href="https://github.com/medullan/rdb-build">https://github.com/medullan/rdb-build</a>), updates npm user configurations).</li>
+</ul>
+</li>
+<li><strong>Phase 2</strong><ul>
+<li><em>TODO</em>: Create a test database(s) with required data, defined by <code>.json</code> or <code>.js</code> files (will use [rdb-build] (<a href="https://github.com/medullan/rdb-build">https://github.com/medullan/rdb-build</a>)).</li>
+</ul>
+</li>
+<li><strong>Phase 3</strong><ul>
+<li>Unit tests</li>
+<li>Static analysis</li>
+<li>Documentation</li>
+<li>Integration tests</li>
+</ul>
+</li>
+<li><strong>Phase 4</strong><ul>
+<li>Install and Archive (install artifacts to local maven repository and upload artifacts to binary repository manager).</li>
+</ul>
+</li>
+<li><strong>Phase 5</strong><ul>
+<li>Functional Tests (deploy and run functional tests with robot).</li>
+</ul>
+</li>
+<li><strong>Update Rally</strong><ul>
+<li>Update Rally (upload test results, update tasks, update change sets).</li>
+</ul>
+</li>
+</ol>
+<p><br/></p>
+<h3 id="pre-build-steps">Pre-Build Steps</h3>
 <ul>
-<li>If interested in pushing to this Repository please see the <code>Development</code> section.</li>
-<li>If problems occur, Please check the <code>Known Issues</code> page first. If there are no resolutions for your problem then feel free to submit an <a href="https://github.com/medullan/vagrant-ansible-jenkins/issues">issue</a></li>
-<li>Most Instructions and problem resolutions were tested for Mac OS X. Cannot guarantee this process will work on other operating systems</li>
+<li>Merge changes from remote master branch</li>
 </ul>
 <p><br/></p>
-<h3 id="credits">Credits</h3>
-<p>This repository was inspired and designed around ansible-jenkins:</p>
-<p><a href="https://github.com/ICTO/ansible-jenkins">https://github.com/ICTO/ansible-jenkins</a></p>
+<h3 id="post-build-steps">Post Build Steps</h3>
+<ul>
+<li>Publish robot framework results to Jenkins UI via plugin <a href="https://wiki.jenkins-ci.org/display/JENKINS/Robot+Framework+Plugin">Robot Framework Plugin</a></li>
+<li>Push changes to github remote branch</li>
+<li>Drop test databases (via [rdb-build] (<a href="https://github.com/medullan/rdb-build">https://github.com/medullan/rdb-build</a>))</li>
+<li>Reset user npm configurations (restore registry and authentication defaults via [rdb-build] (<a href="https://github.com/medullan/rdb-build">https://github.com/medullan/rdb-build</a>))</li>
+<li>Delete workspace</li>
+</ul>
+<p><br/></p>
+<h3 id="things-to-know">Things to Know</h3>
+<p>To accomplish this pipeline structure, the <a href="https://wiki.jenkins-ci.org/display/JENKINS/Multijob+Plugin">Jenkins MultiJob Plugin</a> was used. This allows for multiple jobs within a phase to be run in parallel.</p>
+<p>Other key Jenkins plugins used are:</p>
+<ul>
+<li>publish over ssh</li>
+<li>artifactory</li>
+<li>build-name-setter</li>
+<li>postbuild-task</li>
+<li>rally-plugin: <a href="https://medullan.atlassian.net/wiki/display/QA/Rally+Update+Jenkins+Plugin+Configuration">Medullan&#39;s version</a></li>
+<li>groovy</li>
+<li>groovy-postbuild</li>
+</ul>
+<p>Other Dependencies:</p>
+<ul>
+<li>node &amp; npm</li>
+<li>maven</li>
+<li>robot framework</li>
+<li>phantomjs</li>
+<li>robotframework-selenium2library</li>
+<li>jenkins-autojobs</li>
+</ul>
+<p>NB. All plugins and dependencies listed above are all installed using Ansible by default.</p>
+<p><br/></p>
+<h3 id="sample-project">Sample Project</h3>
+<p>The sample project used is located at: <a href="https://github.com/medullan/coverage-example">https://github.com/medullan/coverage-example</a></p>
 
 
 
