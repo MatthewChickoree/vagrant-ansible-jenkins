@@ -103,7 +103,7 @@
       </com.cloudbees.jenkins.GitHubPushTrigger>
    </triggers>
    <concurrentBuild>true</concurrentBuild>
-   <customWorkspace>//var//lib//jenkins//workspaces/${JOB_NAME}/workspace/${BUILD_TAG}/</customWorkspace>
+   <customWorkspace>//var//lib//jenkins//workspaces//${JOB_NAME}//workspace//${BUILD_TAG}//</customWorkspace>
    <builders>
       <com.tikal.jenkins.plugins.multijob.MultiJobBuilder>
          <phaseName>Phase: Setup (pre-test)</phaseName>
