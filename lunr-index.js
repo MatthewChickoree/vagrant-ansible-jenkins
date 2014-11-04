@@ -363,11 +363,11 @@ index.add({
 
 
 
-documentTitles["06-create-jenkins-slave-or-development-environment-with-vagrant.html#06-create-jenkins-slave-or-development-environment-with-vagrant"] = "06. create jenkins slave or development environment with vagrant";
+documentTitles["06-create-jenkins-slave-or-development-environment-with-vagrant.html#create-jenkins-slave-or-development-environment-with-vagrant"] = "Create Jenkins Slave or Development Environment with Vagrant";
 index.add({
-    url: "06-create-jenkins-slave-or-development-environment-with-vagrant.html#06-create-jenkins-slave-or-development-environment-with-vagrant",
-    title: "06. create jenkins slave or development environment with vagrant",
-    body: "There are currently two options for creating a Jenkins Slave or a development environment (`environment without Jenkins installation`) with Vagrant:  - Locally with VirtualBox - Remotely in AWS (Amazon Web Services)"
+    url: "06-create-jenkins-slave-or-development-environment-with-vagrant.html#create-jenkins-slave-or-development-environment-with-vagrant",
+    title: "Create Jenkins Slave or Development Environment with Vagrant",
+    body: "# Create Jenkins Slave or Development Environment with Vagrant  There are currently two options for creating a Jenkins Slave or a development environment (`environment without Jenkins installation`) with Vagrant:  - Locally with VirtualBox - Remotely in AWS (Amazon Web Services)"
 });
 
 
