@@ -148,7 +148,7 @@
         </li>
     
         <li>
-            <a href="052-provision-jenkins-with-aws.html#provision-with-aws-amazon-web-service">Provision with AWS (Amazon Web Service)</a>
+            <a href="052-provision-with-aws.html#provision-with-aws-amazon-web-service">Provision with AWS (Amazon Web Service)</a>
             
         </li>
     
@@ -158,18 +158,18 @@
         </li>
     
         <li>
-            <a href="06-sample-build-pipelines.html#sample-build-pipelines">Sample Build Pipelines</a>
+            <a href="06-create-jenkins-slave-or-development-environment-with-vagrant.html#06-create-jenkins-slave-or-development-environment-with-vagrant">06. create jenkins slave or development environment with vagrant</a>
             
                 
     <ol>
     
         <li>
-            <a href="061-meanjs-pipeline.html#meanjs-pipeline">Meanjs Pipeline</a>
+            <a href="061-provision-with-virtualbox.html#local-provisioning-with-virtualbox">Local provisioning with VirtualBox</a>
             
         </li>
     
         <li>
-            <a href="062-java-pipeline.html#java-pipeline">Java Pipeline</a>
+            <a href="062-provision-with-aws.html#provision-with-aws-amazon-web-service">Provision with AWS (Amazon Web Service)</a>
             
         </li>
     
@@ -179,28 +179,18 @@
         </li>
     
         <li>
-            <a href="07-documentation.html#documentation">Documentation</a>
+            <a href="07-sample-build-pipelines.html#sample-build-pipelines">Sample Build Pipelines</a>
             
                 
     <ol>
     
         <li>
-            <a href="07-documentation.html#about">About</a>
+            <a href="071-meanjs-pipeline.html#meanjs-pipeline">Meanjs Pipeline</a>
             
         </li>
     
         <li>
-            <a href="07-documentation.html#editing-the-docs">Editing the Docs</a>
-            
-        </li>
-    
-        <li>
-            <a href="07-documentation.html#generate-documentation-website">Generate Documentation Website</a>
-            
-        </li>
-    
-        <li>
-            <a href="07-documentation.html#deploy-docs-to-gh-pages">Deploy Docs to GH-Pages</a>
+            <a href="072-java-pipeline.html#java-pipeline">Java Pipeline</a>
             
         </li>
     
@@ -214,6 +204,37 @@
             
                 
     <ol>
+    
+</ol>
+
+            
+        </li>
+    
+        <li>
+            <a href="09-documentation.html#documentation">Documentation</a>
+            
+                
+    <ol>
+    
+        <li>
+            <a href="09-documentation.html#about">About</a>
+            
+        </li>
+    
+        <li>
+            <a href="09-documentation.html#editing-the-docs">Editing the Docs</a>
+            
+        </li>
+    
+        <li>
+            <a href="09-documentation.html#generate-documentation-website">Generate Documentation Website</a>
+            
+        </li>
+    
+        <li>
+            <a href="09-documentation.html#deploy-docs-to-gh-pages">Deploy Docs to GH-Pages</a>
+            
+        </li>
     
 </ol>
 
@@ -632,6 +653,99 @@ One such role would be <strong>setup</strong>. If you wat to ignore this role wh
 <p>When provisioning the Jenkins environment with AWS for the first time, the provisioning will fail for SSH reasons.
 To see how to resolve, please see the <a href="http://medullan.github.io/vagrant-ansible-jenkins/known-issues.html#issue-ansible-provisioning-with-aws-fails-with-ssh-exception">Known Issues</a> section for this topic</p>
 
+<p>There are currently two options for creating a Jenkins Slave or a development environment (<code>environment without Jenkins installation</code>) with Vagrant:</p>
+<ul>
+<li>Locally with VirtualBox</li>
+<li>Remotely in AWS (Amazon Web Services)</li>
+</ul>
+
+<h2 id="local-provisioning-with-virtualbox">Local provisioning with VirtualBox</h2>
+<p>By default, the Vagrantfile is setup to provision using VirtualBox and a clean ubuntu box from VagrantCloud.</p>
+<p>Before provisioning:</p>
+<ul>
+<li><p>edit the Ansible provisioning configuration in the Vagrant file. The default settings are:</p>
+<pre><code class="lang-yaml">ansible.playbook = &quot;provisioners/ansible/jenkins-master-playbook.yml&quot;
+</code></pre>
+<p>And</p>
+<pre><code class="lang-yml">ansible.extra_vars = &quot;provisioners/ansible/extra_vars/jenkins-master-playbook-vars.yml&quot;
+</code></pre>
+<p>These settings should be updated to:</p>
+<pre><code class="lang-yaml">ansible.playbook = &quot;provisioners/ansible/jenkins-slave-playbook.yml&quot;
+</code></pre>
+<p>And</p>
+<pre><code class="lang-yaml">ansible.extra_vars = &quot;provisioners/ansible/extra_vars/jenkins-slave-vb-playbook-vars.yml&quot;
+</code></pre>
+</li>
+</ul>
+<p>To provision:</p>
+<ul>
+<li>run <strong><em>vagrant up</em></strong> to get the environment going</li>
+<li>Get a drink, this will take approx. 30 mins for the first time you do <strong>vagrant up</strong> (excluding the time to retrieve the base box image)</li>
+</ul>
+<h3 id="using-the-box-built-with-packer">Using the Box Built with Packer</h3>
+<p>if you built a shiny new box with <strong>packer</strong>, then to use it, you must change the box being referenced in the Vagrantfile.</p>
+<p>default: </p>
+<pre><code class="lang-yaml">config.vm.box = &quot;ubuntu/trusty64&quot;
+</code></pre>
+<p>should be updated to:</p>
+<pre><code class="lang-yaml">config.vm.box = &quot;packer_virtualbox-iso_virtualbox.box&quot;
+</code></pre>
+<p>then run </p>
+<pre><code class="lang-bash">$ vagrant up
+</code></pre>
+
+<h2 id="provision-with-aws-amazon-web-service-">Provision with AWS (Amazon Web Service)</h2>
+<h3 id="step-1-change-the-vm-box-to-be-used">Step 1 - Change the vm box to be used</h3>
+<p>To provision with AWS, the AWS box built with <strong><em>packer</em></strong> or a referenced AWS vagrant box from some archive must be used. If the box was built update the base box in the Vagrantfile</p>
+<p>for eg. </p>
+<pre><code class="lang-yaml">config.vm.box = &quot;packer_amazon-ebs_aws.box&quot;
+</code></pre>
+<h3 id="step-2-change-ansible-override-variables">Step 2 - Change Ansible Override Variables</h3>
+<p>from:</p>
+<pre><code class="lang-yaml">ansible.playbook = &quot;provisioners/ansible/jenkins-master-playbook.yml&quot;
+</code></pre>
+<p>to:</p>
+<pre><code class="lang-yaml">ansible.extra_vars = &quot;provisioners/ansible/jenkins-slave-playbook.yml&quot;
+</code></pre>
+<p>from:</p>
+<pre><code class="lang-yaml">ansible.extra_vars = &quot;provisioners/ansible/extra_vars/jenkins-master-playbook-vars.yml&quot;
+</code></pre>
+<p>to:</p>
+<pre><code class="lang-yaml">ansible.extra_vars = &quot;provisioners/ansible/extra_vars/jenkins-slave-playbook-vars.yml&quot;
+</code></pre>
+<h3 id="step-3-fill-in-required-aws-info">Step 3 - Fill in required AWS info</h3>
+<p>if you already understand what to do, please edit the AWS provider section in the Vagrantfile:</p>
+<pre><code class="lang-yaml">config.vm.provider :aws do |aws, override|
+      override.ssh.username = &quot;ubuntu&quot;
+      override.ssh.private_key_path = &quot;&quot; # location of rsa private key file here
+
+      aws.access_key_id = &quot;&quot; # Your access key id here
+      aws.secret_access_key = &quot;&quot; # Your secret access key here
+      aws.keypair_name = &quot;&quot;
+
+      aws.ami = &quot;ami-8bda99bb&quot; # replace with AMI id generated with packer if necessary
+      aws.security_groups = [&quot;launch-wizard-1&quot;] # replace with preferred security group, must have an ssh port
+      aws.region = &quot;us-west-2&quot; # replace with your region
+  end
+</code></pre>
+<h3 id="step-4-uncomment-rsync-folder-sharing">Step 4 - Uncomment Rsync Folder sharing</h3>
+<p>This step is important. The rsync line lists files that should be ignore when syncing files on the local machine with the AWS machine. If these are not ignore then the process will attempt to transfer very huge files and you may wait a very long time before seeing any progress. </p>
+<pre><code class="lang-yaml">config.vm.synced_folder &quot;.&quot;, &quot;/vagrant&quot;, type: &quot;rsync&quot;, :rsync_excludes =&gt; [&#39;packer_cache/&#39;, &#39;http/&#39;, ... ]
+</code></pre>
+<p>then run:</p>
+<pre><code>$ vagrant up --provider=aws
+</code></pre><p>This will create and run an AWS instance in your account.</p>
+<p>For more information on provisioning with AWS please view the following repository:</p>
+<p><a href="https://github.com/mitchellh/vagrant-aws">https://github.com/mitchellh/vagrant-aws</a></p>
+<h3 id="extras">Extras</h3>
+<p>There are some Ansible roles that are shared when provisioning the base image and the Jenkins environments.
+One such role would be <strong>setup</strong>. If you wat to ignore this role when provisioning the Jenkins environments, Then uncomment the following line in the Vagrantfile:</p>
+<pre><code class="lang-yaml">ansible.skip_tags = [&#39;setup&#39;]
+</code></pre>
+<h3 id="caveats">Caveats</h3>
+<p>When provisioning the Jenkins environment with AWS for the first time, the provisioning will fail for SSH reasons.
+To see how to resolve, please see the <a href="http://medullan.github.io/vagrant-ansible-jenkins/known-issues.html#issue-ansible-provisioning-with-aws-fails-with-ssh-exception">Known Issues</a> section for this topic</p>
+
 <h1 id="sample-build-pipelines">Sample Build Pipelines</h1>
 <p>Currently, there are two sample pipelines that can be created when provisioning the Jenkins environment.
 These are:</p>
@@ -784,6 +898,15 @@ These are:</p>
 <h3 id="sample-project">Sample Project</h3>
 <p>The sample project used is located at: <a href="https://github.com/medullan/coverage-example">https://github.com/medullan/coverage-example</a></p>
 
+<h1 id="development">Development</h1>
+<h3 id="rules">Rules</h3>
+<ul>
+<li>Please do not push to the master branch of this repository with code/tasks that have not been peer reviewed.</li>
+<li>Please branch from master and make pull requests to submit changes</li>
+<li>A conversation/pull request needs to happen before anything is merged into master</li>
+<li>Always do a <strong>vagrant destroy</strong> then <strong>vagrant up</strong> for a final test to ensure that additions work properly end to end</li>
+</ul>
+
 <h1 id="documentation">Documentation</h1>
 <h2 id="about">About</h2>
 <p>This documentation is hosted for editing on Github wiki and parsed into HTML for the gh-pages. These pages are parsed in the order of how they appear and will be displayed on the website in the same order. The <strong>Home</strong> Page is an exception to this rule however, it always appears first in the generated documentation. This is so because of the globbling pattern used in the <strong>gruntfile</strong>:</p>
@@ -826,15 +949,6 @@ These are:</p>
 <p>You can deploy by running:</p>
 <pre><code class="lang-bash">$ grunt deploy
 </code></pre>
-
-<h1 id="development">Development</h1>
-<h3 id="rules">Rules</h3>
-<ul>
-<li>Please do not push to the master branch of this repository with code/tasks that have not been peer reviewed.</li>
-<li>Please branch from master and make pull requests to submit changes</li>
-<li>A conversation/pull request needs to happen before anything is merged into master</li>
-<li>Always do a <strong>vagrant destroy</strong> then <strong>vagrant up</strong> for a final test to ensure that additions work properly end to end</li>
-</ul>
 
 <h1 id="known-issues">Known Issues</h1>
 <h2 id="issue-shared-workspace-jenkins-plugin-woes">Issue: shared-workspace Jenkins Plugin woes</h2>

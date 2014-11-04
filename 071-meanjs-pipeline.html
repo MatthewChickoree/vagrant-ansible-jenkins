@@ -148,7 +148,7 @@
         </li>
     
         <li>
-            <a href="052-provision-jenkins-with-aws.html#provision-with-aws-amazon-web-service">Provision with AWS (Amazon Web Service)</a>
+            <a href="052-provision-with-aws.html#provision-with-aws-amazon-web-service">Provision with AWS (Amazon Web Service)</a>
             
         </li>
     
@@ -158,18 +158,18 @@
         </li>
     
         <li>
-            <a href="06-sample-build-pipelines.html#sample-build-pipelines">Sample Build Pipelines</a>
+            <a href="06-create-jenkins-slave-or-development-environment-with-vagrant.html#06-create-jenkins-slave-or-development-environment-with-vagrant">06. create jenkins slave or development environment with vagrant</a>
             
                 
     <ol>
     
         <li>
-            <a href="061-meanjs-pipeline.html#meanjs-pipeline">Meanjs Pipeline</a>
+            <a href="061-provision-with-virtualbox.html#local-provisioning-with-virtualbox">Local provisioning with VirtualBox</a>
             
         </li>
     
         <li>
-            <a href="062-java-pipeline.html#java-pipeline">Java Pipeline</a>
+            <a href="062-provision-with-aws.html#provision-with-aws-amazon-web-service">Provision with AWS (Amazon Web Service)</a>
             
         </li>
     
@@ -179,28 +179,18 @@
         </li>
     
         <li>
-            <a href="07-documentation.html#documentation">Documentation</a>
+            <a href="07-sample-build-pipelines.html#sample-build-pipelines">Sample Build Pipelines</a>
             
                 
     <ol>
     
         <li>
-            <a href="07-documentation.html#about">About</a>
+            <a href="071-meanjs-pipeline.html#meanjs-pipeline">Meanjs Pipeline</a>
             
         </li>
     
         <li>
-            <a href="07-documentation.html#editing-the-docs">Editing the Docs</a>
-            
-        </li>
-    
-        <li>
-            <a href="07-documentation.html#generate-documentation-website">Generate Documentation Website</a>
-            
-        </li>
-    
-        <li>
-            <a href="07-documentation.html#deploy-docs-to-gh-pages">Deploy Docs to GH-Pages</a>
+            <a href="072-java-pipeline.html#java-pipeline">Java Pipeline</a>
             
         </li>
     
@@ -214,6 +204,37 @@
             
                 
     <ol>
+    
+</ol>
+
+            
+        </li>
+    
+        <li>
+            <a href="09-documentation.html#documentation">Documentation</a>
+            
+                
+    <ol>
+    
+        <li>
+            <a href="09-documentation.html#about">About</a>
+            
+        </li>
+    
+        <li>
+            <a href="09-documentation.html#editing-the-docs">Editing the Docs</a>
+            
+        </li>
+    
+        <li>
+            <a href="09-documentation.html#generate-documentation-website">Generate Documentation Website</a>
+            
+        </li>
+    
+        <li>
+            <a href="09-documentation.html#deploy-docs-to-gh-pages">Deploy Docs to GH-Pages</a>
+            
+        </li>
     
 </ol>
 
@@ -280,28 +301,61 @@
 </div>
 
         <div id="content">
-            <h1 id="sample-build-pipelines">Sample Build Pipelines</h1>
-<p>Currently, there are two sample pipelines that can be created when provisioning the Jenkins environment.
-These are:</p>
-<ul>
-<li>Meanjs</li>
-<li>Java</li>
+            <h2 id="meanjs-pipeline">Meanjs Pipeline</h2>
+<p>The Sample Meanjs Pipeline is a simple Jenkins pipeline that has the following phases:</p>
+<ol>
+<li><strong>Phase 1</strong><ul>
+<li>Install Dependencies</li>
 </ul>
-<p>To provision the Jenkins environment with your pipeline of choice, the <strong>target_jenkins_env</strong> variable should be overridden.</p>
-<ul>
-<li>Set it to <strong>mean</strong> to create a meanjs pipeline</li>
-<li>Set it to <strong>java</strong> to create a java pipeline (Default)</li>
+</li>
+<li><strong>Phase 2</strong><ul>
+<li>Run Unit tests</li>
+<li>Run Integration tests</li>
+<li>Generate Documentation and Static Analysis</li>
 </ul>
-<p>To override, locate the desired override variable file in the <strong>provisioners/ansible/roles/shared/vars</strong> folder and place the following within the yaml file</p>
-<h4 id="example">Example</h4>
-<pre><code class="lang-yaml">target_jenkins_env: mean # creates a meanjs pipeline
-</code></pre>
-<p>OR</p>
-<pre><code class="lang-yaml">target_jenkins_env: java # creates a java pipeline
-</code></pre>
+</li>
+<li><strong>Phase 3</strong><ul>
+<li>Functional Test with code coverage</li>
+</ul>
+</li>
+<li><strong>Phase 4</strong><ul>
+<li>Update Rally</li>
+</ul>
+</li>
+</ol>
 <p><br/></p>
-<h4 id="note">Note</h4>
-<p>Build pipelines use the <a href="https://pythonhosted.org/jenkins-autojobs/">Jenkins Auto-jobs package</a> along with the repository located <a href="https://github.com/medullan/autojobs-config-sample">here</a> to generate new pipelines for each branch via the <code>Generate_Auto_Jobs_*</code> utility job. To generate new pipelines, add the credentials for the <code>os-medullan-ci</code> github user located <a href="https://docs.google.com/a/medullan.com/spreadsheets/d/1g9JoLX6Hw10T-ih93lccAwUpojbvWsXmwktZAT8oE10/edit#gid=0">here</a> as global git credentials to the <code>Generate_Auto_Jobs_*</code> utility job before triggering a build.</p>
+<h3 id="post-build-steps">Post Build Steps</h3>
+<ul>
+<li>Publish Reports (Code Coverage, Static Analysis, Documentation, etc.)</li>
+<li>Drop database used</li>
+<li>Publish Robot Framework Test Results</li>
+<li>Delete workspace</li>
+</ul>
+<p><br/></p>
+<h3 id="things-to-know">Things to Know</h3>
+<p>To accomplish this pipeline structure, the <a href="https://wiki.jenkins-ci.org/display/JENKINS/Multijob+Plugin">Jenkins MultiJob Plugin</a> was used. This allows for multiple jobs within a phase to be run in parallel. To run this pipeline please add the credentials for the <code>os-medullan-ci</code> github user located <a href="https://docs.google.com/a/medullan.com/spreadsheets/d/1g9JoLX6Hw10T-ih93lccAwUpojbvWsXmwktZAT8oE10/edit#gid=0">here</a> as global git credentials.</p>
+<p>Other key Jenkins plugins used are:</p>
+<ul>
+<li>port-allocator</li>
+<li>nodejs</li>
+<li>throttle-concurrents</li>
+<li>build-name-setter</li>
+<li>postbuild-task</li>
+</ul>
+<p>Other Dependencies:</p>
+<ul>
+<li>node &amp; npm</li>
+<li>grunt</li>
+<li>phantomjs</li>
+<li>bower</li>
+<li>robotframework-selenium2library</li>
+<li>jenkins-autojobs</li>
+</ul>
+<p>NB. All plugins and dependencies listed above are all installed using Ansible by default.</p>
+<p><br/></p>
+<h3 id="sample-project">Sample Project</h3>
+<p>The sample project used is located at: <a href="https://github.com/medullan/mean">https://github.com/medullan/mean</a></p>
+<p>There is advanced documentation for this template project located at: <a href="https://github.com/medullan/mean/wiki">https://github.com/medullan/mean/wiki</a></p>
 
 
 

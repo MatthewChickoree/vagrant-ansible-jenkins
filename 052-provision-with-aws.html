@@ -301,16 +301,51 @@
 </div>
 
         <div id="content">
-            <h2 id="saucelabs-python-script">SauceLabs Python Script</h2>
-<p>The <code>SauceLabs.py</code> script, discovered in a <a href="http://datakurre.pandala.org/2014/03/cross-browser-selenium-testing-with.html">blog</a>, is used to run robotframework tests on SauceLabs while creating the outputs on the machine that executed the command.</p>
-<p>This Requires the following pip packages: </p>
-<ul>
-<li><code>robotframework-selenium2library</code></li>
-<li><code>simplejson</code></li>
-<li><code>requests</code></li>
-</ul>
-<h3 id="where-is-it-">Where is it?</h3>
-<p>The script is copied to the <strong><em>/usr/local/bin</em></strong> directory where it can be referenced by python when a script is run that imports the SauceLabs library</p>
+            <h2 id="provision-with-aws-amazon-web-service-">Provision with AWS (Amazon Web Service)</h2>
+<h3 id="step-1-change-the-vm-box-to-be-used">Step 1 - Change the vm box to be used</h3>
+<p>To provision with AWS, the AWS box built with <strong><em>packer</em></strong> or a referenced AWS vagrant box from some archive must be used. If the box was built update the base box in the Vagrantfile</p>
+<p>for eg. </p>
+<pre><code class="lang-yaml">config.vm.box = &quot;packer_amazon-ebs_aws.box&quot;
+</code></pre>
+<h3 id="step-2-change-ansible-override-variables">Step 2 - Change Ansible Override Variables</h3>
+<p>from:</p>
+<pre><code class="lang-yaml">ansible.extra_vars = &quot;provisioners/ansible/extra_vars/jenkins-master-playbook-vars.yml&quot;
+</code></pre>
+<p>to:</p>
+<pre><code class="lang-yaml">ansible.extra_vars = &quot;provisioners/ansible/extra_vars/jenkins-master-aws-playbook-vars.yml&quot;
+</code></pre>
+<h3 id="step-3-fill-in-required-aws-info">Step 3 - Fill in required AWS info</h3>
+<p>if you already understand what to do, please edit the AWS provider section in the Vagrantfile:</p>
+<pre><code class="lang-yaml">config.vm.provider :aws do |aws, override|
+      override.ssh.username = &quot;ubuntu&quot;
+      override.ssh.private_key_path = &quot;&quot; # location of rsa private key file here
+
+      aws.access_key_id = &quot;&quot; # Your access key id here
+      aws.secret_access_key = &quot;&quot; # Your secret access key here
+      aws.keypair_name = &quot;&quot;
+
+      aws.ami = &quot;ami-8bda99bb&quot; # replace with AMI id generated with packer if necessary
+      aws.security_groups = [&quot;launch-wizard-1&quot;] # replace with preferred security group, must have an ssh port
+      aws.region = &quot;us-west-2&quot; # replace with your region
+  end
+</code></pre>
+<h3 id="step-4-uncomment-rsync-folder-sharing">Step 4 - Uncomment Rsync Folder sharing</h3>
+<p>This step is important. The rsync line lists files that should be ignore when syncing files on the local machine with the AWS machine. If these are not ignore then the process will attempt to transfer very huge files and you may wait a very long time before seeing any progress. </p>
+<pre><code class="lang-yaml">config.vm.synced_folder &quot;.&quot;, &quot;/vagrant&quot;, type: &quot;rsync&quot;, :rsync_excludes =&gt; [&#39;packer_cache/&#39;, &#39;http/&#39;, ... ]
+</code></pre>
+<p>then run:</p>
+<pre><code>$ vagrant up --provider=aws
+</code></pre><p>This will create and run an AWS instance in your account.</p>
+<p>For more information on provisioning with AWS please view the following repository:</p>
+<p><a href="https://github.com/mitchellh/vagrant-aws">https://github.com/mitchellh/vagrant-aws</a></p>
+<h3 id="extras">Extras</h3>
+<p>There are some Ansible roles that are shared when provisioning the base image and the Jenkins environments.
+One such role would be <strong>setup</strong>. If you wat to ignore this role when provisioning the Jenkins environments, Then uncomment the following line in the Vagrantfile:</p>
+<pre><code class="lang-yaml">ansible.skip_tags = [&#39;setup&#39;]
+</code></pre>
+<h3 id="caveats">Caveats</h3>
+<p>When provisioning the Jenkins environment with AWS for the first time, the provisioning will fail for SSH reasons.
+To see how to resolve, please see the <a href="http://medullan.github.io/vagrant-ansible-jenkins/known-issues.html#issue-ansible-provisioning-with-aws-fails-with-ssh-exception">Known Issues</a> section for this topic</p>
 
 
 

@@ -312,194 +312,219 @@ index.add({
 
 
 
-documentTitles["052-provision-jenkins-with-aws.html#provision-with-aws-amazon-web-service"] = "Provision with AWS (Amazon Web Service)";
+documentTitles["052-provision-with-aws.html#provision-with-aws-amazon-web-service"] = "Provision with AWS (Amazon Web Service)";
 index.add({
-    url: "052-provision-jenkins-with-aws.html#provision-with-aws-amazon-web-service",
+    url: "052-provision-with-aws.html#provision-with-aws-amazon-web-service",
     title: "Provision with AWS (Amazon Web Service)",
     body: "## Provision with AWS (Amazon Web Service)  "
 });
 
-documentTitles["052-provision-jenkins-with-aws.html#step-1-change-the-vm-box-to-be-used"] = "Step 1 - Change the vm box to be used";
+documentTitles["052-provision-with-aws.html#step-1-change-the-vm-box-to-be-used"] = "Step 1 - Change the vm box to be used";
 index.add({
-    url: "052-provision-jenkins-with-aws.html#step-1-change-the-vm-box-to-be-used",
+    url: "052-provision-with-aws.html#step-1-change-the-vm-box-to-be-used",
     title: "Step 1 - Change the vm box to be used",
     body: "### Step 1 - Change the vm box to be used  To provision with AWS, the AWS box built with ***packer*** or a referenced AWS vagrant box from some archive must be used. If the box was built update the base box in the Vagrantfile  for eg.   ```yaml config.vm.box = \&quot;packer_amazon-ebs_aws.box\&quot; ``` "
 });
 
-documentTitles["052-provision-jenkins-with-aws.html#step-2-change-ansible-override-variables"] = "Step 2 - Change Ansible Override Variables";
+documentTitles["052-provision-with-aws.html#step-2-change-ansible-override-variables"] = "Step 2 - Change Ansible Override Variables";
 index.add({
-    url: "052-provision-jenkins-with-aws.html#step-2-change-ansible-override-variables",
+    url: "052-provision-with-aws.html#step-2-change-ansible-override-variables",
     title: "Step 2 - Change Ansible Override Variables",
     body: "### Step 2 - Change Ansible Override Variables  from: ```yaml ansible.extra_vars = \&quot;provisioners/ansible/extra_vars/jenkins-master-playbook-vars.yml\&quot; ``` to: ```yaml ansible.extra_vars = \&quot;provisioners/ansible/extra_vars/jenkins-master-aws-playbook-vars.yml\&quot; ```  "
 });
 
-documentTitles["052-provision-jenkins-with-aws.html#step-3-fill-in-required-aws-info"] = "Step 3 - Fill in required AWS info";
+documentTitles["052-provision-with-aws.html#step-3-fill-in-required-aws-info"] = "Step 3 - Fill in required AWS info";
 index.add({
-    url: "052-provision-jenkins-with-aws.html#step-3-fill-in-required-aws-info",
+    url: "052-provision-with-aws.html#step-3-fill-in-required-aws-info",
     title: "Step 3 - Fill in required AWS info",
     body: "### Step 3 - Fill in required AWS info  if you already understand what to do, please edit the AWS provider section in the Vagrantfile: ```yaml config.vm.provider :aws do |aws, override|       override.ssh.username = \&quot;ubuntu\&quot;       override.ssh.private_key_path = \&quot;\&quot; # location of rsa private key file here        aws.access_key_id = \&quot;\&quot; # Your access key id here       aws.secret_access_key = \&quot;\&quot; # Your secret access key here       aws.keypair_name = \&quot;\&quot;        aws.ami = \&quot;ami-8bda99bb\&quot; # replace with AMI id generated with packer if necessary       aws.security_groups = [\&quot;launch-wizard-1\&quot;] # replace with preferred security group, must have an ssh port       aws.region = \&quot;us-west-2\&quot; # replace with your region   end ``` "
 });
 
-documentTitles["052-provision-jenkins-with-aws.html#step-4-uncomment-rsync-folder-sharing"] = "Step 4 - Uncomment Rsync Folder sharing";
+documentTitles["052-provision-with-aws.html#step-4-uncomment-rsync-folder-sharing"] = "Step 4 - Uncomment Rsync Folder sharing";
 index.add({
-    url: "052-provision-jenkins-with-aws.html#step-4-uncomment-rsync-folder-sharing",
+    url: "052-provision-with-aws.html#step-4-uncomment-rsync-folder-sharing",
     title: "Step 4 - Uncomment Rsync Folder sharing",
     body: "### Step 4 - Uncomment Rsync Folder sharing  This step is important. The rsync line lists files that should be ignore when syncing files on the local machine with the AWS machine. If these are not ignore then the process will attempt to transfer very huge files and you may wait a very long time before seeing any progress.   ```yaml config.vm.synced_folder \&quot;.\&quot;, \&quot;/vagrant\&quot;, type: \&quot;rsync\&quot;, :rsync_excludes =&gt; ['packer_cache/', 'http/', ... ] ```  then run: ``` $ vagrant up --provider=aws ```  This will create and run an AWS instance in your account.  For more information on provisioning with AWS please view the following repository:  https://github.com/mitchellh/vagrant-aws  "
 });
 
-documentTitles["052-provision-jenkins-with-aws.html#extras"] = "Extras";
+documentTitles["052-provision-with-aws.html#extras"] = "Extras";
 index.add({
-    url: "052-provision-jenkins-with-aws.html#extras",
+    url: "052-provision-with-aws.html#extras",
     title: "Extras",
     body: "### Extras There are some Ansible roles that are shared when provisioning the base image and the Jenkins environments. One such role would be **setup**. If you wat to ignore this role when provisioning the Jenkins environments, Then uncomment the following line in the Vagrantfile:  ```yaml ansible.skip_tags = ['setup'] ```  "
 });
 
-documentTitles["052-provision-jenkins-with-aws.html#caveats"] = "Caveats";
+documentTitles["052-provision-with-aws.html#caveats"] = "Caveats";
 index.add({
-    url: "052-provision-jenkins-with-aws.html#caveats",
+    url: "052-provision-with-aws.html#caveats",
     title: "Caveats",
     body: "### Caveats  When provisioning the Jenkins environment with AWS for the first time, the provisioning will fail for SSH reasons. To see how to resolve, please see the [Known Issues](http://medullan.github.io/vagrant-ansible-jenkins/known-issues.html#issue-ansible-provisioning-with-aws-fails-with-ssh-exception) section for this topic"
 });
 
 
 
-documentTitles["06-sample-build-pipelines.html#sample-build-pipelines"] = "Sample Build Pipelines";
+documentTitles["06-create-jenkins-slave-or-development-environment-with-vagrant.html#06-create-jenkins-slave-or-development-environment-with-vagrant"] = "06. create jenkins slave or development environment with vagrant";
 index.add({
-    url: "06-sample-build-pipelines.html#sample-build-pipelines",
+    url: "06-create-jenkins-slave-or-development-environment-with-vagrant.html#06-create-jenkins-slave-or-development-environment-with-vagrant",
+    title: "06. create jenkins slave or development environment with vagrant",
+    body: "There are currently two options for creating a Jenkins Slave or a development environment (`environment without Jenkins installation`) with Vagrant:  - Locally with VirtualBox - Remotely in AWS (Amazon Web Services)"
+});
+
+
+
+documentTitles["061-provision-with-virtualbox.html#local-provisioning-with-virtualbox"] = "Local provisioning with VirtualBox";
+index.add({
+    url: "061-provision-with-virtualbox.html#local-provisioning-with-virtualbox",
+    title: "Local provisioning with VirtualBox",
+    body: "## Local provisioning with VirtualBox  By default, the Vagrantfile is setup to provision using VirtualBox and a clean ubuntu box from VagrantCloud.  Before provisioning: - edit the Ansible provisioning configuration in the Vagrant file. The default settings are:    ```yaml   ansible.playbook = \&quot;provisioners/ansible/jenkins-master-playbook.yml\&quot;   ```    And    ```yml   ansible.extra_vars = \&quot;provisioners/ansible/extra_vars/jenkins-master-playbook-vars.yml\&quot;   ```    These settings should be updated to:    ```yaml   ansible.playbook = \&quot;provisioners/ansible/jenkins-slave-playbook.yml\&quot;   ```    And     ```yaml   ansible.extra_vars = \&quot;provisioners/ansible/extra_vars/jenkins-slave-vb-playbook-vars.yml\&quot;   ```  To provision: - run ***vagrant up*** to get the environment going - Get a drink, this will take approx. 30 mins for the first time you do **vagrant up** (excluding the time to retrieve the base box image)  "
+});
+
+documentTitles["061-provision-with-virtualbox.html#using-the-box-built-with-packer"] = "Using the Box Built with Packer";
+index.add({
+    url: "061-provision-with-virtualbox.html#using-the-box-built-with-packer",
+    title: "Using the Box Built with Packer",
+    body: "### Using the Box Built with Packer  if you built a shiny new box with **packer**, then to use it, you must change the box being referenced in the Vagrantfile.  default:  ```yaml config.vm.box = \&quot;ubuntu/trusty64\&quot; ```  should be updated to: ```yaml config.vm.box = \&quot;packer_virtualbox-iso_virtualbox.box\&quot; ```  then run  ```bash $ vagrant up ``` "
+});
+
+
+
+documentTitles["062-provision-with-aws.html#provision-with-aws-amazon-web-service"] = "Provision with AWS (Amazon Web Service)";
+index.add({
+    url: "062-provision-with-aws.html#provision-with-aws-amazon-web-service",
+    title: "Provision with AWS (Amazon Web Service)",
+    body: "## Provision with AWS (Amazon Web Service)  "
+});
+
+documentTitles["062-provision-with-aws.html#step-1-change-the-vm-box-to-be-used"] = "Step 1 - Change the vm box to be used";
+index.add({
+    url: "062-provision-with-aws.html#step-1-change-the-vm-box-to-be-used",
+    title: "Step 1 - Change the vm box to be used",
+    body: "### Step 1 - Change the vm box to be used  To provision with AWS, the AWS box built with ***packer*** or a referenced AWS vagrant box from some archive must be used. If the box was built update the base box in the Vagrantfile  for eg.   ```yaml config.vm.box = \&quot;packer_amazon-ebs_aws.box\&quot; ``` "
+});
+
+documentTitles["062-provision-with-aws.html#step-2-change-ansible-override-variables"] = "Step 2 - Change Ansible Override Variables";
+index.add({
+    url: "062-provision-with-aws.html#step-2-change-ansible-override-variables",
+    title: "Step 2 - Change Ansible Override Variables",
+    body: "### Step 2 - Change Ansible Override Variables  from: ```yaml ansible.playbook = \&quot;provisioners/ansible/jenkins-master-playbook.yml\&quot; ``` to: ```yaml ansible.extra_vars = \&quot;provisioners/ansible/jenkins-slave-playbook.yml\&quot; ```  from: ```yaml ansible.extra_vars = \&quot;provisioners/ansible/extra_vars/jenkins-master-playbook-vars.yml\&quot; ``` to: ```yaml ansible.extra_vars = \&quot;provisioners/ansible/extra_vars/jenkins-slave-playbook-vars.yml\&quot; ```  "
+});
+
+documentTitles["062-provision-with-aws.html#step-3-fill-in-required-aws-info"] = "Step 3 - Fill in required AWS info";
+index.add({
+    url: "062-provision-with-aws.html#step-3-fill-in-required-aws-info",
+    title: "Step 3 - Fill in required AWS info",
+    body: "### Step 3 - Fill in required AWS info  if you already understand what to do, please edit the AWS provider section in the Vagrantfile: ```yaml config.vm.provider :aws do |aws, override|       override.ssh.username = \&quot;ubuntu\&quot;       override.ssh.private_key_path = \&quot;\&quot; # location of rsa private key file here        aws.access_key_id = \&quot;\&quot; # Your access key id here       aws.secret_access_key = \&quot;\&quot; # Your secret access key here       aws.keypair_name = \&quot;\&quot;        aws.ami = \&quot;ami-8bda99bb\&quot; # replace with AMI id generated with packer if necessary       aws.security_groups = [\&quot;launch-wizard-1\&quot;] # replace with preferred security group, must have an ssh port       aws.region = \&quot;us-west-2\&quot; # replace with your region   end ``` "
+});
+
+documentTitles["062-provision-with-aws.html#step-4-uncomment-rsync-folder-sharing"] = "Step 4 - Uncomment Rsync Folder sharing";
+index.add({
+    url: "062-provision-with-aws.html#step-4-uncomment-rsync-folder-sharing",
+    title: "Step 4 - Uncomment Rsync Folder sharing",
+    body: "### Step 4 - Uncomment Rsync Folder sharing  This step is important. The rsync line lists files that should be ignore when syncing files on the local machine with the AWS machine. If these are not ignore then the process will attempt to transfer very huge files and you may wait a very long time before seeing any progress.   ```yaml config.vm.synced_folder \&quot;.\&quot;, \&quot;/vagrant\&quot;, type: \&quot;rsync\&quot;, :rsync_excludes =&gt; ['packer_cache/', 'http/', ... ] ```  then run: ``` $ vagrant up --provider=aws ```  This will create and run an AWS instance in your account.  For more information on provisioning with AWS please view the following repository:  https://github.com/mitchellh/vagrant-aws  "
+});
+
+documentTitles["062-provision-with-aws.html#extras"] = "Extras";
+index.add({
+    url: "062-provision-with-aws.html#extras",
+    title: "Extras",
+    body: "### Extras There are some Ansible roles that are shared when provisioning the base image and the Jenkins environments. One such role would be **setup**. If you wat to ignore this role when provisioning the Jenkins environments, Then uncomment the following line in the Vagrantfile:  ```yaml ansible.skip_tags = ['setup'] ```  "
+});
+
+documentTitles["062-provision-with-aws.html#caveats"] = "Caveats";
+index.add({
+    url: "062-provision-with-aws.html#caveats",
+    title: "Caveats",
+    body: "### Caveats  When provisioning the Jenkins environment with AWS for the first time, the provisioning will fail for SSH reasons. To see how to resolve, please see the [Known Issues](http://medullan.github.io/vagrant-ansible-jenkins/known-issues.html#issue-ansible-provisioning-with-aws-fails-with-ssh-exception) section for this topic"
+});
+
+
+
+documentTitles["07-sample-build-pipelines.html#sample-build-pipelines"] = "Sample Build Pipelines";
+index.add({
+    url: "07-sample-build-pipelines.html#sample-build-pipelines",
     title: "Sample Build Pipelines",
     body: "# Sample Build Pipelines  Currently, there are two sample pipelines that can be created when provisioning the Jenkins environment. These are: - Meanjs - Java  To provision the Jenkins environment with your pipeline of choice, the **target_jenkins_env** variable should be overridden.  * Set it to **mean** to create a meanjs pipeline * Set it to **java** to create a java pipeline (Default)  To override, locate the desired override variable file in the **provisioners/ansible/roles/shared/vars** folder and place the following within the yaml file  "
 });
 
-documentTitles["06-sample-build-pipelines.html#example"] = "Example";
+documentTitles["07-sample-build-pipelines.html#example"] = "Example";
 index.add({
-    url: "06-sample-build-pipelines.html#example",
+    url: "07-sample-build-pipelines.html#example",
     title: "Example",
     body: "#### Example  ```yaml target_jenkins_env: mean # creates a meanjs pipeline ```  OR  ```yaml target_jenkins_env: java # creates a java pipeline ```  &lt;br/&gt; "
 });
 
-documentTitles["06-sample-build-pipelines.html#note"] = "Note";
+documentTitles["07-sample-build-pipelines.html#note"] = "Note";
 index.add({
-    url: "06-sample-build-pipelines.html#note",
+    url: "07-sample-build-pipelines.html#note",
     title: "Note",
     body: "#### Note   Build pipelines use the [Jenkins Auto-jobs package](https://pythonhosted.org/jenkins-autojobs/) along with the repository located [here](https://github.com/medullan/autojobs-config-sample) to generate new pipelines for each branch via the `Generate_Auto_Jobs_*` utility job. To generate new pipelines, add the credentials for the `os-medullan-ci` github user located [here](https://docs.google.com/a/medullan.com/spreadsheets/d/1g9JoLX6Hw10T-ih93lccAwUpojbvWsXmwktZAT8oE10/edit#gid=0) as global git credentials to the `Generate_Auto_Jobs_*` utility job before triggering a build."
 });
 
 
 
-documentTitles["061-meanjs-pipeline.html#meanjs-pipeline"] = "Meanjs Pipeline";
+documentTitles["071-meanjs-pipeline.html#meanjs-pipeline"] = "Meanjs Pipeline";
 index.add({
-    url: "061-meanjs-pipeline.html#meanjs-pipeline",
+    url: "071-meanjs-pipeline.html#meanjs-pipeline",
     title: "Meanjs Pipeline",
     body: "## Meanjs Pipeline  The Sample Meanjs Pipeline is a simple Jenkins pipeline that has the following phases:  1. **Phase 1**     * Install Dependencies 1. **Phase 2**     * Run Unit tests     * Run Integration tests     * Generate Documentation and Static Analysis 1. **Phase 3**     * Functional Test with code coverage 1. **Phase 4**     * Update Rally  &lt;br/&gt; "
 });
 
-documentTitles["061-meanjs-pipeline.html#post-build-steps"] = "Post Build Steps";
+documentTitles["071-meanjs-pipeline.html#post-build-steps"] = "Post Build Steps";
 index.add({
-    url: "061-meanjs-pipeline.html#post-build-steps",
+    url: "071-meanjs-pipeline.html#post-build-steps",
     title: "Post Build Steps",
     body: "### Post Build Steps * Publish Reports (Code Coverage, Static Analysis, Documentation, etc.) * Drop database used * Publish Robot Framework Test Results * Delete workspace  &lt;br/&gt; "
 });
 
-documentTitles["061-meanjs-pipeline.html#things-to-know"] = "Things to Know";
+documentTitles["071-meanjs-pipeline.html#things-to-know"] = "Things to Know";
 index.add({
-    url: "061-meanjs-pipeline.html#things-to-know",
+    url: "071-meanjs-pipeline.html#things-to-know",
     title: "Things to Know",
     body: "### Things to Know To accomplish this pipeline structure, the [Jenkins MultiJob Plugin](https://wiki.jenkins-ci.org/display/JENKINS/Multijob+Plugin) was used. This allows for multiple jobs within a phase to be run in parallel. To run this pipeline please add the credentials for the `os-medullan-ci` github user located [here](https://docs.google.com/a/medullan.com/spreadsheets/d/1g9JoLX6Hw10T-ih93lccAwUpojbvWsXmwktZAT8oE10/edit#gid=0) as global git credentials.  Other key Jenkins plugins used are: - port-allocator - nodejs - throttle-concurrents - build-name-setter - postbuild-task  Other Dependencies: - node &amp; npm - grunt - phantomjs - bower - robotframework-selenium2library - jenkins-autojobs  NB. All plugins and dependencies listed above are all installed using Ansible by default.  &lt;br/&gt; "
 });
 
-documentTitles["061-meanjs-pipeline.html#sample-project"] = "Sample Project";
+documentTitles["071-meanjs-pipeline.html#sample-project"] = "Sample Project";
 index.add({
-    url: "061-meanjs-pipeline.html#sample-project",
+    url: "071-meanjs-pipeline.html#sample-project",
     title: "Sample Project",
     body: "### Sample Project The sample project used is located at: https://github.com/medullan/mean  There is advanced documentation for this template project located at: https://github.com/medullan/mean/wiki"
 });
 
 
 
-documentTitles["062-java-pipeline.html#java-pipeline"] = "Java Pipeline";
+documentTitles["072-java-pipeline.html#java-pipeline"] = "Java Pipeline";
 index.add({
-    url: "062-java-pipeline.html#java-pipeline",
+    url: "072-java-pipeline.html#java-pipeline",
     title: "Java Pipeline",
     body: "## Java Pipeline  The Java Pipeline is a set of jobs that represents a typical continuous integration workflow for a Java project. The collection of jobs are divided into the following phases:  1. **Phase 1**   - Compile project (download maven dependencies, compile source code).   - *TODO*: Update the database templates with new change sets/migrations (will use [rdb-build](https://github.com/medullan/rdb-build), updates npm user configurations). 2. **Phase 2**   - *TODO*: Create a test database(s) with required data, defined by `.json` or `.js` files (will use [rdb-build](https://github.com/medullan/rdb-build)). 3. **Phase 3**   - Unit tests   - Static analysis   - *TODO*: Documentation   - Integration tests 4. **Phase 4**   - Install and Archive (install artifacts to local maven repository and upload artifacts to binary repository manager). 5. **Phase 5**   - Functional Tests (deploy and run functional tests with robot). 6. **Update Rally**   - Update Rally (upload test results, update tasks, update change sets).  &lt;br/&gt; "
 });
 
-documentTitles["062-java-pipeline.html#pre-build-steps"] = "Pre-Build Steps";
+documentTitles["072-java-pipeline.html#pre-build-steps"] = "Pre-Build Steps";
 index.add({
-    url: "062-java-pipeline.html#pre-build-steps",
+    url: "072-java-pipeline.html#pre-build-steps",
     title: "Pre-Build Steps",
     body: "### Pre-Build Steps - Merge changes from remote master branch  &lt;br/&gt; "
 });
 
-documentTitles["062-java-pipeline.html#post-build-steps"] = "Post Build Steps";
+documentTitles["072-java-pipeline.html#post-build-steps"] = "Post Build Steps";
 index.add({
-    url: "062-java-pipeline.html#post-build-steps",
+    url: "072-java-pipeline.html#post-build-steps",
     title: "Post Build Steps",
     body: "### Post Build Steps - Publish robot framework results to Jenkins UI via plugin [Robot Framework Plugin](https://wiki.jenkins-ci.org/display/JENKINS/Robot+Framework+Plugin) - Push changes to github remote branch - *TODO*: Drop test databases (via [rdb-build](https://github.com/medullan/rdb-build)) - *TODO*: Reset user npm configurations (restore registry and authentication defaults via [rdb-build](https://github.com/medullan/rdb-build)) - Delete workspace  &lt;br/&gt; "
 });
 
-documentTitles["062-java-pipeline.html#things-to-know"] = "Things to Know";
+documentTitles["072-java-pipeline.html#things-to-know"] = "Things to Know";
 index.add({
-    url: "062-java-pipeline.html#things-to-know",
+    url: "072-java-pipeline.html#things-to-know",
     title: "Things to Know",
     body: "### Things to Know To accomplish this pipeline structure, the [Jenkins MultiJob Plugin](https://wiki.jenkins-ci.org/display/JENKINS/Multijob+Plugin) was used. This allows for multiple jobs within a phase to be run in parallel. To run this pipeline please add the credentials for the `os-medullan-ci` github user located [here](https://docs.google.com/a/medullan.com/spreadsheets/d/1g9JoLX6Hw10T-ih93lccAwUpojbvWsXmwktZAT8oE10/edit#gid=0) as global git credentials.  Other key Jenkins plugins used are: - publish over ssh - artifactory - build-name-setter - postbuild-task - rally-plugin: [Medullan's version](https://medullan.atlassian.net/wiki/display/QA/Rally+Update+Jenkins+Plugin+Configuration) - groovy - groovy-postbuild  Other Dependencies: - node &amp; npm - maven - robot framework - phantomjs - robotframework-selenium2library - jenkins-autojobs  NB. All plugins and dependencies listed above are all installed using Ansible by default.  &lt;br/&gt; "
 });
 
-documentTitles["062-java-pipeline.html#sample-project"] = "Sample Project";
+documentTitles["072-java-pipeline.html#sample-project"] = "Sample Project";
 index.add({
-    url: "062-java-pipeline.html#sample-project",
+    url: "072-java-pipeline.html#sample-project",
     title: "Sample Project",
     body: "### Sample Project The sample project used is located at: https://github.com/medullan/coverage-example"
-});
-
-
-
-documentTitles["07-documentation.html#documentation"] = "Documentation";
-index.add({
-    url: "07-documentation.html#documentation",
-    title: "Documentation",
-    body: "# Documentation "
-});
-
-documentTitles["07-documentation.html#about"] = "About";
-index.add({
-    url: "07-documentation.html#about",
-    title: "About",
-    body: "## About This documentation is hosted for editing on Github wiki and parsed into HTML for the gh-pages. These pages are parsed in the order of how they appear and will be displayed on the website in the same order. The **Home** Page is an exception to this rule however, it always appears first in the generated documentation. This is so because of the globbling pattern used in the **gruntfile**:  ```js var markdown = [       'vagrant-ansible-jenkins.wiki/Home.md',       'vagrant-ansible-jenkins.wiki/*.md',       '!vagrant-ansible-jenkins.wiki/_Footer.md'     ]; ```  This pattern includes the Home page first, includes all other files and then ignores the Footer page used in the wiki.  &lt;br/&gt; "
-});
-
-documentTitles["07-documentation.html#editing-the-docs"] = "Editing the Docs";
-index.add({
-    url: "07-documentation.html#editing-the-docs",
-    title: "Editing the Docs",
-    body: "## Editing the Docs You can edit the documentation by visiting the [Github wiki](https://github.com/medullan/vagrant-ansible-jenkins/wiki) of this repository. The wiki is parsed and used to generate the documentation for the [website](http://medullan.github.io/vagrant-ansible-jenkins).  &lt;br/&gt; "
-});
-
-documentTitles["07-documentation.html#generate-documentation-website"] = "Generate Documentation Website";
-index.add({
-    url: "07-documentation.html#generate-documentation-website",
-    title: "Generate Documentation Website",
-    body: "## Generate Documentation Website  To get started with generating the documentation, you must have already cloned the [git repository](https://github.com/medullan/vagrant-ansible-jenkins) and be inside the root directory with your console.  The tools needed to get you started are all powered by:  - [Nodejs](http://nodejs.org/) - [npm](https://www.npmjs.org/)  - [Grunt](http://gruntjs.com/)   Therefore, you must have **Nodejs** and **npm** installed with [grunt](http://gruntjs.com/getting-started#installing-the-cli) installed globally as a **npm** package  Assuming all the dependencies above are installed and ready to use, the following steps will show you how to generate documentation for the repository. &lt;br/&gt; "
-});
-
-documentTitles["07-documentation.html#step-1"] = "Step 1";
-index.add({
-    url: "07-documentation.html#step-1",
-    title: "Step 1",
-    body: "### Step 1  run ```bash $ npm install ```  This will install all **npm** modules/dependencies needed within the project to generate the documentation.  "
-});
-
-documentTitles["07-documentation.html#step-2"] = "Step 2";
-index.add({
-    url: "07-documentation.html#step-2",
-    title: "Step 2",
-    body: "### Step 2 run ```bash $ grunt docs ``` This will then generate the documentation locally to the **docs** folder.  &lt;br/&gt; "
-});
-
-documentTitles["07-documentation.html#deploy-docs-to-gh-pages"] = "Deploy Docs to GH-Pages";
-index.add({
-    url: "07-documentation.html#deploy-docs-to-gh-pages",
-    title: "Deploy Docs to GH-Pages",
-    body: "## Deploy Docs to GH-Pages  When the documentation is generated and parsed properly then you can deploy to the [website](http://medullan.github.io/vagrant-ansible-jenkins)  **NB.** Please review generated docs locally before deploying  You can deploy by running: ```bash $ grunt deploy ``` "
 });
 
 
@@ -516,6 +541,57 @@ index.add({
     url: "08-development.html#rules",
     title: "Rules",
     body: "### Rules  - Please do not push to the master branch of this repository with code/tasks that have not been peer reviewed. - Please branch from master and make pull requests to submit changes - A conversation/pull request needs to happen before anything is merged into master - Always do a **vagrant destroy** then **vagrant up** for a final test to ensure that additions work properly end to end"
+});
+
+
+
+documentTitles["09-documentation.html#documentation"] = "Documentation";
+index.add({
+    url: "09-documentation.html#documentation",
+    title: "Documentation",
+    body: "# Documentation "
+});
+
+documentTitles["09-documentation.html#about"] = "About";
+index.add({
+    url: "09-documentation.html#about",
+    title: "About",
+    body: "## About This documentation is hosted for editing on Github wiki and parsed into HTML for the gh-pages. These pages are parsed in the order of how they appear and will be displayed on the website in the same order. The **Home** Page is an exception to this rule however, it always appears first in the generated documentation. This is so because of the globbling pattern used in the **gruntfile**:  ```js var markdown = [       'vagrant-ansible-jenkins.wiki/Home.md',       'vagrant-ansible-jenkins.wiki/*.md',       '!vagrant-ansible-jenkins.wiki/_Footer.md'     ]; ```  This pattern includes the Home page first, includes all other files and then ignores the Footer page used in the wiki.  &lt;br/&gt; "
+});
+
+documentTitles["09-documentation.html#editing-the-docs"] = "Editing the Docs";
+index.add({
+    url: "09-documentation.html#editing-the-docs",
+    title: "Editing the Docs",
+    body: "## Editing the Docs You can edit the documentation by visiting the [Github wiki](https://github.com/medullan/vagrant-ansible-jenkins/wiki) of this repository. The wiki is parsed and used to generate the documentation for the [website](http://medullan.github.io/vagrant-ansible-jenkins).  &lt;br/&gt; "
+});
+
+documentTitles["09-documentation.html#generate-documentation-website"] = "Generate Documentation Website";
+index.add({
+    url: "09-documentation.html#generate-documentation-website",
+    title: "Generate Documentation Website",
+    body: "## Generate Documentation Website  To get started with generating the documentation, you must have already cloned the [git repository](https://github.com/medullan/vagrant-ansible-jenkins) and be inside the root directory with your console.  The tools needed to get you started are all powered by:  - [Nodejs](http://nodejs.org/) - [npm](https://www.npmjs.org/)  - [Grunt](http://gruntjs.com/)   Therefore, you must have **Nodejs** and **npm** installed with [grunt](http://gruntjs.com/getting-started#installing-the-cli) installed globally as a **npm** package  Assuming all the dependencies above are installed and ready to use, the following steps will show you how to generate documentation for the repository. &lt;br/&gt; "
+});
+
+documentTitles["09-documentation.html#step-1"] = "Step 1";
+index.add({
+    url: "09-documentation.html#step-1",
+    title: "Step 1",
+    body: "### Step 1  run ```bash $ npm install ```  This will install all **npm** modules/dependencies needed within the project to generate the documentation.  "
+});
+
+documentTitles["09-documentation.html#step-2"] = "Step 2";
+index.add({
+    url: "09-documentation.html#step-2",
+    title: "Step 2",
+    body: "### Step 2 run ```bash $ grunt docs ``` This will then generate the documentation locally to the **docs** folder.  &lt;br/&gt; "
+});
+
+documentTitles["09-documentation.html#deploy-docs-to-gh-pages"] = "Deploy Docs to GH-Pages";
+index.add({
+    url: "09-documentation.html#deploy-docs-to-gh-pages",
+    title: "Deploy Docs to GH-Pages",
+    body: "## Deploy Docs to GH-Pages  When the documentation is generated and parsed properly then you can deploy to the [website](http://medullan.github.io/vagrant-ansible-jenkins)  **NB.** Please review generated docs locally before deploying  You can deploy by running: ```bash $ grunt deploy ``` "
 });
 
 
