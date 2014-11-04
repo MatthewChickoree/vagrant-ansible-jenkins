@@ -307,14 +307,14 @@
 <p>for eg. </p>
 <pre><code class="lang-yaml">config.vm.box = &quot;packer_amazon-ebs_aws.box&quot;
 </code></pre>
-<h3 id="step-2-change-ansible-override-variables">Step 2 - Change Ansible Override Variables</h3>
+<h3 id="step-2-change-ansible-configurations">Step 2 - Change Ansible Configurations</h3>
 <p>from:</p>
 <pre><code class="lang-yaml">ansible.playbook = &quot;provisioners/ansible/jenkins-master-playbook.yml&quot;
 </code></pre>
 <p>to:</p>
 <pre><code class="lang-yaml">ansible.extra_vars = &quot;provisioners/ansible/jenkins-slave-playbook.yml&quot;
 </code></pre>
-<p>from:</p>
+<p>And from:</p>
 <pre><code class="lang-yaml">ansible.extra_vars = &quot;provisioners/ansible/extra_vars/jenkins-master-playbook-vars.yml&quot;
 </code></pre>
 <p>to:</p>

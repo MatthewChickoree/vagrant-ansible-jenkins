@@ -402,11 +402,11 @@ index.add({
     body: "### Step 1 - Change the vm box to be used  To provision with AWS, the AWS box built with ***packer*** or a referenced AWS vagrant box from some archive must be used. If the box was built update the base box in the Vagrantfile  for eg.   ```yaml config.vm.box = \&quot;packer_amazon-ebs_aws.box\&quot; ``` "
 });
 
-documentTitles["062-provision-with-aws.html#step-2-change-ansible-override-variables"] = "Step 2 - Change Ansible Override Variables";
+documentTitles["062-provision-with-aws.html#step-2-change-ansible-configurations"] = "Step 2 - Change Ansible Configurations";
 index.add({
-    url: "062-provision-with-aws.html#step-2-change-ansible-override-variables",
-    title: "Step 2 - Change Ansible Override Variables",
-    body: "### Step 2 - Change Ansible Override Variables  from: ```yaml ansible.playbook = \&quot;provisioners/ansible/jenkins-master-playbook.yml\&quot; ``` to: ```yaml ansible.extra_vars = \&quot;provisioners/ansible/jenkins-slave-playbook.yml\&quot; ```  from: ```yaml ansible.extra_vars = \&quot;provisioners/ansible/extra_vars/jenkins-master-playbook-vars.yml\&quot; ``` to: ```yaml ansible.extra_vars = \&quot;provisioners/ansible/extra_vars/jenkins-slave-playbook-vars.yml\&quot; ```  "
+    url: "062-provision-with-aws.html#step-2-change-ansible-configurations",
+    title: "Step 2 - Change Ansible Configurations",
+    body: "### Step 2 - Change Ansible Configurations  from: ```yaml ansible.playbook = \&quot;provisioners/ansible/jenkins-master-playbook.yml\&quot; ``` to: ```yaml ansible.extra_vars = \&quot;provisioners/ansible/jenkins-slave-playbook.yml\&quot; ```  And from: ```yaml ansible.extra_vars = \&quot;provisioners/ansible/extra_vars/jenkins-master-playbook-vars.yml\&quot; ``` to: ```yaml ansible.extra_vars = \&quot;provisioners/ansible/extra_vars/jenkins-slave-playbook-vars.yml\&quot; ```  "
 });
 
 documentTitles["062-provision-with-aws.html#step-3-fill-in-required-aws-info"] = "Step 3 - Fill in required AWS info";
