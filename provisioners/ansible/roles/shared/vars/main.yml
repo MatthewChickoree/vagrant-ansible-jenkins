@@ -109,6 +109,7 @@ plugins:
   - 'ec2'
   - 'port-allocator'
   - 'artifactory'
+  - 'ci-skip'
 
   # extras - remove # below to enable installation
 
