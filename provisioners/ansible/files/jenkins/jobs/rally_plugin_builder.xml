@@ -1,12 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project>
    <actions />
-   <description>Job to run unit tests for the project</description>
+   <description>This is a utility job that is used to handle updates for Medullan's version of the rally plugin.
+      For more information see https://github.com/medullan/rally-plugin.
+   </description>
    <logRotator class="hudson.tasks.LogRotator">
-      <daysToKeep>1</daysToKeep>
-      <numToKeep>3</numToKeep>
+      <daysToKeep>-1</daysToKeep>
+      <numToKeep>1</numToKeep>
       <artifactDaysToKeep>-1</artifactDaysToKeep>
-      <artifactNumToKeep>-1</artifactNumToKeep>
+      <artifactNumToKeep>1</artifactNumToKeep>
    </logRotator>
    <keepDependencies>false</keepDependencies>
    <properties>
@@ -40,28 +42,45 @@
       </hudson.plugins.throttleconcurrents.ThrottleJobProperty>
       <hudson.plugins.disk__usage.DiskUsageProperty plugin="disk-usage@0.24" />
    </properties>
-   <scm class="hudson.scm.NullSCM" />
+   <scm class="hudson.plugins.git.GitSCM" plugin="git@2.2.5">
+      <configVersion>2</configVersion>
+      <userRemoteConfigs>
+         <hudson.plugins.git.UserRemoteConfig>
+            <url>https://github.com/medullan/rally-plugin.git</url>
+            <credentialsId>56c76726-4a8b-4852-a88c-c5378213b878</credentialsId>
+         </hudson.plugins.git.UserRemoteConfig>
+      </userRemoteConfigs>
+      <branches>
+         <hudson.plugins.git.BranchSpec>
+            <name>*/master</name>
+         </hudson.plugins.git.BranchSpec>
+      </branches>
+      <doGenerateSubmoduleConfigurations>false</doGenerateSubmoduleConfigurations>
+      <submoduleCfg class="list" />
+      <extensions />
+   </scm>
    <assignedNode>master</assignedNode>
    <canRoam>false</canRoam>
    <disabled>false</disabled>
    <blockBuildWhenDownstreamBuilding>false</blockBuildWhenDownstreamBuilding>
    <blockBuildWhenUpstreamBuilding>false</blockBuildWhenUpstreamBuilding>
-   <triggers />
-   <concurrentBuild>true</concurrentBuild>
-   <customWorkspace>${FIXED_PATH_WS}</customWorkspace>
+   <triggers>
+      <com.cloudbees.jenkins.GitHubPushTrigger plugin="github@1.9.1">
+         <spec />
+      </com.cloudbees.jenkins.GitHubPushTrigger>
+   </triggers>
+   <concurrentBuild>false</concurrentBuild>
    <builders>
       <org.jfrog.hudson.maven3.Maven3Builder plugin="artifactory@2.2.4">
-         <mavenName>maven_3.2.2</mavenName>
+         <mavenName>maven_3.2.1-2</mavenName>
          <rootPom>pom.xml</rootPom>
-         <goals>test</goals>
+         <goals>clean install</goals>
          <mavenOpts />
       </org.jfrog.hudson.maven3.Maven3Builder>
+      <hudson.tasks.Shell>
+         <command>java -jar target/jenkins-for-test/WEB-INF/jenkins-cli.jar who-am-i java -jar target/jenkins-for-test/WEB-INF/jenkins-cli.jar install-plugin target/rally-plugin.hpi java -jar target/jenkins-for-test/WEB-INF/jenkins-cli.jar safe-restart</command>
+      </hudson.tasks.Shell>
    </builders>
    <publishers />
-   <buildWrappers>
-      <hudson.plugins.timestamper.TimestamperBuildWrapper plugin="timestamper@1.5.14" />
-      <org.jenkinsci.plugins.buildnamesetter.BuildNameSetter plugin="build-name-setter@1.3">
-         <template>#${BUILD_NUMBER}-${ENV,var="MASTER_BUILD_TAG"}</template>
-      </org.jenkinsci.plugins.buildnamesetter.BuildNameSetter>
-   </buildWrappers>
+   <buildWrappers />
 </project>

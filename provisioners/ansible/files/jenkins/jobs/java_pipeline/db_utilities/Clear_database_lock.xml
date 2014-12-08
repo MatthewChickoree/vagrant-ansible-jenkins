@@ -1,12 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project>
    <actions />
-   <description />
+   <description>This job is used to drop the database lock table when a liquibase update was unsuccessful.
+
+      Steps to execute:
+
+      Export Password --&gt; export PGPASSWORD=123qwe
+
+      Run on Profile Db --&gt; psql -U enable -d cp-carepass-test-template -c 'DROP TABLE IF EXISTS DATABASECHANGELOCK';
+
+      Run Identity Db --&gt; psql -U enable -d cp-carepass-identity-test-template -c 'DROP TABLE IF EXISTS DATABASECHANGELOCK';
+   </description>
    <logRotator class="hudson.tasks.LogRotator">
-      <daysToKeep>1</daysToKeep>
+      <daysToKeep>-1</daysToKeep>
       <numToKeep>1</numToKeep>
       <artifactDaysToKeep>-1</artifactDaysToKeep>
-      <artifactNumToKeep>-1</artifactNumToKeep>
+      <artifactNumToKeep>1</artifactNumToKeep>
    </logRotator>
    <keepDependencies>false</keepDependencies>
    <properties>
@@ -14,7 +23,7 @@
          <tagOnCompletion>false</tagOnCompletion>
          <additionalTag />
          <pushOnSuccess>false</pushOnSuccess>
-         <cleanImages>true</cleanImages>
+         <cleanImages>false</cleanImages>
       </com.nirima.jenkins.plugins.docker.DockerJobProperty>
       <jenkins.plugins.slack.SlackNotifier_-SlackJobProperty plugin="slack@1.2">
          <room />
@@ -40,36 +49,17 @@
       </hudson.plugins.throttleconcurrents.ThrottleJobProperty>
       <hudson.plugins.disk__usage.DiskUsageProperty plugin="disk-usage@0.24" />
    </properties>
-   <scm class="hudson.plugins.git.GitSCM" plugin="git@2.2.5">
-      <configVersion>2</configVersion>
-      <userRemoteConfigs>
-         <hudson.plugins.git.UserRemoteConfig>
-            <url>https://github.com/medullan/autojobs-config</url>
-            <credentialsId>56c76726-4a8b-4852-a88c-c5378213b878</credentialsId>
-         </hudson.plugins.git.UserRemoteConfig>
-      </userRemoteConfigs>
-      <branches>
-         <hudson.plugins.git.BranchSpec>
-            <name>*/sample-java-project</name>
-         </hudson.plugins.git.BranchSpec>
-      </branches>
-      <doGenerateSubmoduleConfigurations>false</doGenerateSubmoduleConfigurations>
-      <submoduleCfg class="list" />
-      <extensions />
-   </scm>
+   <scm class="hudson.scm.NullSCM" />
    <assignedNode>master</assignedNode>
    <canRoam>false</canRoam>
+   <disabled>false</disabled>
    <blockBuildWhenDownstreamBuilding>false</blockBuildWhenDownstreamBuilding>
    <blockBuildWhenUpstreamBuilding>false</blockBuildWhenUpstreamBuilding>
-   <triggers>
-      <hudson.triggers.TimerTrigger>
-         <spec>H * * * *</spec>
-      </hudson.triggers.TimerTrigger>
-   </triggers>
+   <triggers />
    <concurrentBuild>false</concurrentBuild>
    <builders>
       <hudson.tasks.Shell>
-         <command>jenkins-makejobs-git -u lwhiteley -p 2951fa1a41693ca9b1d112637cb2c7a0 config.yaml</command>
+         <command>export PGPASSWORD=123qwe psql -U enable -d cp-carepass-test-template -c 'DROP TABLE IF EXISTS DATABASECHANGELOCK'; psql -U enable -d cp-carepass-identity-test-template -c 'DROP TABLE IF EXISTS DATABASECHANGELOCK';</command>
       </hudson.tasks.Shell>
    </builders>
    <publishers />

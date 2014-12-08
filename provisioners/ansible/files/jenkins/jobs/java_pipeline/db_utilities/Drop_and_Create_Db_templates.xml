@@ -1,12 +1,25 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project>
    <actions />
-   <description>Job to run unit tests for the project</description>
+   <description>This job is used to drop and create the CarePass template databases.
+
+      Steps to execute:
+
+      Export Password --&gt; export PGPASSWORD=123qwe
+
+      Drop template Profile Db if it exists --&gt; psql -U enable -d postgres -c 'DROP DATABASE IF EXISTS "cp-carepass-test-template" ';
+
+      Create template Profile Db --&gt; psql -U enable -d postgres -c 'CREATE DATABASE "cp-carepass-test-template" WITH OWNER enable ENCODING='UTF8' LC_COLLATE='en_US.UTF-8' LC_CTYPE='en_US.UTF-8' CONNECTION LIMIT = -1;'
+
+      Drop template Identity Db if it exists --&gt; psql -U enable -d postgres -c 'DROP DATABASE IF EXISTS "cp-carepass-identity-test-template" ';
+
+      Create template Identity Db --&gt; psql -U enable -d postgres -c 'CREATE DATABASE "cp-carepass-identity-test-template" WITH OWNER enable ENCODING='UTF8' LC_COLLATE='en_US.UTF-8' LC_CTYPE='en_US.UTF-8' CONNECTION LIMIT = -1;'
+   </description>
    <logRotator class="hudson.tasks.LogRotator">
       <daysToKeep>1</daysToKeep>
-      <numToKeep>3</numToKeep>
+      <numToKeep>2</numToKeep>
       <artifactDaysToKeep>-1</artifactDaysToKeep>
-      <artifactNumToKeep>-1</artifactNumToKeep>
+      <artifactNumToKeep>1</artifactNumToKeep>
    </logRotator>
    <keepDependencies>false</keepDependencies>
    <properties>
@@ -37,6 +50,7 @@
          </categories>
          <throttleEnabled>false</throttleEnabled>
          <throttleOption>project</throttleOption>
+         <configVersion>1</configVersion>
       </hudson.plugins.throttleconcurrents.ThrottleJobProperty>
       <hudson.plugins.disk__usage.DiskUsageProperty plugin="disk-usage@0.24" />
    </properties>
@@ -47,21 +61,12 @@
    <blockBuildWhenDownstreamBuilding>false</blockBuildWhenDownstreamBuilding>
    <blockBuildWhenUpstreamBuilding>false</blockBuildWhenUpstreamBuilding>
    <triggers />
-   <concurrentBuild>true</concurrentBuild>
-   <customWorkspace>${FIXED_PATH_WS}</customWorkspace>
+   <concurrentBuild>false</concurrentBuild>
    <builders>
-      <org.jfrog.hudson.maven3.Maven3Builder plugin="artifactory@2.2.4">
-         <mavenName>maven_3.2.2</mavenName>
-         <rootPom>pom.xml</rootPom>
-         <goals>test</goals>
-         <mavenOpts />
-      </org.jfrog.hudson.maven3.Maven3Builder>
+      <hudson.tasks.Shell>
+         <command>export PGPASSWORD=123qwe psql -U enable -d postgres -c 'DROP DATABASE IF EXISTS "cp-carepass-test-template" '; psql -U enable -d postgres -c "CREATE DATABASE \"cp-carepass-test-template\" WITH OWNER enable ENCODING 'UTF8' LC_COLLATE 'en_US.UTF-8' LC_CTYPE 'en_US.UTF-8' CONNECTION LIMIT = -1;" psql -U enable -d postgres -c 'DROP DATABASE IF EXISTS "cp-carepass-identity-test-template" '; psql -U enable -d postgres -c "CREATE DATABASE \"cp-carepass-identity-test-template\" WITH OWNER enable ENCODING 'UTF-8' LC_COLLATE 'en_US.UTF-8' LC_CTYPE 'en_US.UTF-8' CONNECTION LIMIT = -1;"</command>
+      </hudson.tasks.Shell>
    </builders>
    <publishers />
-   <buildWrappers>
-      <hudson.plugins.timestamper.TimestamperBuildWrapper plugin="timestamper@1.5.14" />
-      <org.jenkinsci.plugins.buildnamesetter.BuildNameSetter plugin="build-name-setter@1.3">
-         <template>#${BUILD_NUMBER}-${ENV,var="MASTER_BUILD_TAG"}</template>
-      </org.jenkinsci.plugins.buildnamesetter.BuildNameSetter>
-   </buildWrappers>
+   <buildWrappers />
 </project>

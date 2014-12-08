@@ -1,0 +1,39 @@
+---
+# Playbook that generates rsa_key pair for the Jenkins master machine.
+# The rsa keys are used to transfer files over ssh to the tomcat webapps folder
+# using the publish over ssh Jenkins plugin.
+
+# Executes the shell command to generate the key files at the file location specified (no passphrase).
+# This rsa_key is used for the java jenkins environment for deploying artifacts to tomcat
+
+- name: Output user ssh directory
+  sudo: yes
+  command: ls -la /home/{{ user_name  | default('vagrant') }}/{{ ssh_dir }}
+  when: ssh_dir is defined
+  register: user_ssh_dir_list
+
+- name: Results - output user ssh directory
+  debug: var=user_ssh_dir_list.stdout_lines
+  when: user_ssh_dir_list is defined
+
+- name: Generate rsa public and private key files if they do not exist
+  sudo: yes
+  command: ssh-keygen -t rsa -N "" -f {{ ssh_dir }}/{{ rsa_key_file }}
+  when: rsa_key_file is defined and user_ssh_dir_list is defined and user_ssh_dir_list.stdout.find('{{ rsa_key_file }}') == -1
+  register: rsa_keygen_results
+
+- name: Results - output from rsa keygen generation
+  debug: var=rsa_keygen_results.stdout_lines
+  when: rsa_keygen_results.changed
+
+- name: Make authorized_keys file if necessary
+  sudo: yes
+  command: touch {{ ssh_dir }}/authorized_keys
+  when: user_ssh_dir_list.stdout.find('authorized_keys') == -1
+  register: rsa_pub_auth_created
+
+- name: Add public key to machine
+  sudo: yes
+  shell: cat {{ ssh_dir }}/{{ rsa_key_file }}.pub >> {{ ssh_dir }}/authorized_keys
+  when: rsa_pub_auth_created is defined and rsa_keygen_results.changed
+  register: rsa_pub_added

@@ -1,0 +1,14 @@
+---
+# Playbook to create jobs and views for java pipeline
+
+- name: list java jobs to be created
+  sudo: yes
+  shell: groovy {{ remote_tmp_folder }}/script/jobs.groovy -j '{{ remote_tmp_folder }}/jobs/java_pipeline'
+  register: java_jobs_list
+
+- name: create jobs for java pipeline
+  sudo: yes
+  shell: java -jar {{ jenkins.cli_dest }} -s http://localhost:8080 create-job {{ item }} < {{ remote_tmp_folder }}/jobs/java_pipeline/{{ item }}.xml
+  with_items: java_jobs_list.stdout_lines
+  when: "existing_jobs.changed and java_jobs_list is defined and existing_jobs.stdout.find('{{ item }}') == -1"
+  register: java_pipeline_jobs_created

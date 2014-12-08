@@ -5,7 +5,10 @@
   copy: src={{ item }} dest={{ jenkins_home }} owner=jenkins mode=600
   with_fileglob:
         - "{{ local_files_dir }}/jenkins/config/*.xml"
-  register: configs_copied
+  register: default_configs_copied
+
+- include: plugin-configs/publish-over-ssh.yml
+  when: ansible_distribution in [ 'Debian', 'Ubuntu' ] and install_tomcat
 
 - include: plugin-configs/git.yml
   when: ansible_distribution in [ 'Debian', 'Ubuntu' ] and git.enable_configure

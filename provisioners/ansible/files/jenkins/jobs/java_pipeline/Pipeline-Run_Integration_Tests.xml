@@ -51,9 +51,9 @@
    <customWorkspace>${FIXED_PATH_WS}</customWorkspace>
    <builders>
       <org.jfrog.hudson.maven3.Maven3Builder plugin="artifactory@2.2.4">
-         <mavenName>maven_3.2.1-2</mavenName>
+         <mavenName>maven_3.2.2</mavenName>
          <rootPom>pom.xml</rootPom>
-         <goals>-Dskip.unit.tests=true -Dmaven.test.failure.ignore=false verify -Dmaven.wagon.http.ssl.insecure=true -Dmaven.wagon.http.ssl.allowall=true</goals>
+         <goals>verify -Dskip.unit.tests=true</goals>
          <mavenOpts />
       </org.jfrog.hudson.maven3.Maven3Builder>
    </builders>

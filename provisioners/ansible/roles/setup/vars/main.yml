@@ -1,3 +1,13 @@
 ---
 remote_tmp_folder: /home/vagrant/tmp
 local_files_dir: '../../../files'
+tomcat:
+  user: tomcat7
+  group: tomcat7
+  default_http_port: 8080
+  desired_http_port: 80
+  users_path: /etc/tomcat7
+  server_config_file: /var/lib/tomcat7/conf/server.xml
+  defaults_file: /etc/default/tomcat7
+  web_apps_folder: /var/lib/tomcat7/webapps
+authbind_path: /etc/authbind/byport

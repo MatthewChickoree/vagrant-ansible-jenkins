@@ -1,10 +1,14 @@
 ---
 remote_tmp_folder: /home/vagrant/tmp
 local_files_dir: '../../../files'
+local_files_dir_four_levels: '../../../../files'
 machine_path: /usr/local/bin
 install_postgres: true
 install_redis: false
+install_tomcat: true
 target_jenkins_env: java
+rsa_key_file: rsa_key
+ssh_dir: .ssh
 slave:
   pip:
     packages:
@@ -63,6 +67,11 @@ slave:
       - 'libffi-dev'
       - 'libxslt-dev'
       - 'libxml2'
+    tomcat:
+      - 'tomcat7'
+      - 'tomcat7-admin'
+      - 'tomcat7-docs'
+      - 'tomcat7-examples'
 
 # install jenkins plugins
 plugins:
@@ -120,4 +129,5 @@ plugins:
   # - stored on local machine
   # - downloaded via public urls (recommended)
 
+  - 'https://dl.dropboxusercontent.com/s/ihznwb61mm0oehy/rally-plugin.hpi?dl=0'
   - 'https://dl.dropboxusercontent.com/s/n5lmlponr8w4c22/rally-build-notifier.hpi?dl=0'

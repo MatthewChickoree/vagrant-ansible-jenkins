@@ -42,3 +42,7 @@
   sudo: yes
   shell: sudo -u postgres psql -c "ALTER USER postgres WITH PASSWORD 'enter';"
   when: install_postgres
+
+# Playbook for installing and configuring tomcat
+- include: tomcat.yml tags=setup
+  when: slave.apt.tomcat is defined and install_tomcat and tomcat is defined

@@ -97,13 +97,13 @@
          </scriptSource>
          <groovyName>(Default)</groovyName>
          <parameters />
-         <scriptParameters>-m 30 -s 60 -t 5 http://ec2-54-221-51-114.compute-1.amazonaws.com/helloworld</scriptParameters>
+         <scriptParameters>-m 30 -s 60 -t 5 http://localhost:80/helloworld</scriptParameters>
          <properties />
          <javaOpts />
          <classPath />
       </hudson.plugins.groovy.Groovy>
       <hudson.tasks.Shell>
-         <command>pybot -d ${WORKSPACE}/robot_tests/phantomjs -v APP_URL:http://ec2-54-221-51-114.compute-1.amazonaws.com ${WORKSPACE}/src/functional-test/tests/test.robot</command>
+         <command>pybot -d ${WORKSPACE}/robot_tests/phantomjs -v APP_URL:http://localhost:80 ${WORKSPACE}/src/functional-test/tests/test.robot</command>
       </hudson.tasks.Shell>
    </builders>
    <publishers />

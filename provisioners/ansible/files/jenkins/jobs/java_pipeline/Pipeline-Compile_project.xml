@@ -53,7 +53,7 @@
    <customWorkspace>${FIXED_PATH_WS}</customWorkspace>
    <builders>
       <org.jfrog.hudson.maven3.Maven3Builder plugin="artifactory@2.2.4">
-         <mavenName>maven_3.2.1-2</mavenName>
+         <mavenName>maven_3.2.2</mavenName>
          <rootPom>pom.xml</rootPom>
          <goals>clean compile</goals>
          <mavenOpts />

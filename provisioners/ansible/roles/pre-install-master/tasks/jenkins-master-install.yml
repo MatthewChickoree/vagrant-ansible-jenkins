@@ -12,6 +12,12 @@
   notify:
     - 'Delete Remote Temporary Folder'
 
+- name: make tmp directory to place utility database jobs for java pipeline
+  sudo: yes
+  shell: mkdir -p {{ remote_tmp_folder }}/jobs/java_pipeline/db_utilities
+  notify:
+    - 'Delete Remote Temporary Folder'
+
 - name: make tmp directory to place mean pipeline job files
   sudo: yes
   shell: mkdir -p {{ remote_tmp_folder }}/jobs/mean_pipeline

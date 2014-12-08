@@ -58,7 +58,7 @@
          <command>echo "Enter commands to RUN static analysis tools here" echo "Printing the directory listing" ls -la</command>
       </hudson.tasks.Shell>
       <org.jfrog.hudson.maven3.Maven3Builder plugin="artifactory@2.2.4">
-         <mavenName>maven_3.2.1-2</mavenName>
+         <mavenName>maven_3.2.2</mavenName>
          <rootPom>pom.xml</rootPom>
          <goals>checkstyle:checkstyle</goals>
          <mavenOpts />

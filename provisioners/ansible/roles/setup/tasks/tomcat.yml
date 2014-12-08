@@ -1,0 +1,62 @@
+---
+# This playbook is intended to install tomcat7 with the webapp UI
+# and includes users defined in tomcat-users.xml. Authbind is used to run tomcat7 on the specified port.
+#
+# Note: The set of tasks here may need to be updated for other versions of tomcat
+# as configurations may change. When making variable changes observe:
+#
+# - ../shared/vars/main.yml
+# - ../setup/vars/main.yml
+
+# Install apt dependencies for tomcat7
+- name: Install slave base apt dependencies for tomcat
+  sudo: yes
+  action: "{{ ansible_pkg_mgr }} pkg={{ item }} state=latest"
+  with_items: slave.apt.tomcat
+  register: tomcat_installed
+
+- name: Change default tomcat port
+  sudo: yes
+  command: sed -i 's:port\=\"{{ tomcat.default_http_port | default(8080) }}\":port\=\"{{ tomcat.desired_http_port | default(80) }}\":' {{ tomcat.server_config_file }}
+  when: tomcat_installed.changed and tomcat.default_http_port is defined and tomcat.desired_http_port is defined
+  register: tomcat_default_port_updated
+
+- name: Enable AUTHBIND for new tomcat port when port no. less than 1023
+  sudo: yes
+  command: sed -i 's:\#AUTHBIND\=no:AUTHBIND\=yes:' {{ tomcat.defaults_file }}
+  when: tomcat_default_port_updated.changed and tomcat.desired_http_port < 1023 and tomcat.defaults_file is defined
+  register: tomcat_enable_authbind
+
+- name: Create authbind file for port when port no. less than 1023
+  sudo: yes
+  command: touch {{ authbind_path }}/{{ tomcat.desired_http_port }}
+  when: tomcat_enable_authbind.changed and authbind_path is defined
+  register: tomcat_authbind_file_created
+
+- name: Update permissions for authbind file when port no. less than 1023
+  sudo: yes
+  command: chmod 500 {{ authbind_path }}/{{ tomcat.desired_http_port }}
+  when: tomcat_authbind_file_created.changed
+
+- name: Change owner for Authbind file to tomcat user
+  sudo: yes
+  command: chown {{ tomcat.user | default('tomcat7') }}:{{ tomcat.user | default('tomcat7') }} {{ authbind_path }}/{{ tomcat.desired_http_port }}
+  when: tomcat_authbind_file_created.changed
+
+- name: Copy tomcat user configuration to machine
+  sudo: yes
+  copy: src={{ item }} dest={{ tomcat.users_path }} owner={{ tomcat.user | default('tomcat7') }} group={{ tomcat.group | default('tomcat7') }} backup=yes  mode=640
+  with_fileglob:
+        - "{{ local_files_dir }}/tomcat/tomcat-users.xml"
+  when: tomcat_default_port_updated.changed and tomcat.users_path is defined and tomcat.user is defined and tomcat.group is defined
+  register: tomcat_user_config_copied
+
+- name: Add default or specified user to secondary tomcat group
+  sudo: yes
+  command: usermod -a -G {{ tomcat.group }} {{ user_name  | default('vagrant') }}
+  when: tomcat_user_config_copied.changed
+
+- name: Restart tomcat service
+  sudo: yes
+  service: name=tomcat7 state=restarted
+  when: tomcat_user_config_copied.changed

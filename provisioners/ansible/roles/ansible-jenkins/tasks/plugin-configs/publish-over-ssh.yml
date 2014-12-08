@@ -1,0 +1,85 @@
+---
+# Playbook to copy the publish over ssh plugin configs to jenkins
+# and update it with the machine's rsa key and tomcat web apps folder
+# The playbook begins by copying and updating the generated rsa key, if it exists.
+- name: Output jenkins directory
+  sudo: yes
+  command: ls -la {{ jenkins_home }}
+  register: jenkins_dir_list
+
+- name: Results - output jenkins directory
+  debug: var=jenkins_dir_list.stdout_lines
+  when: jenkins_dir_list is defined
+
+- name: Make directory for rsa ssh key if needed
+  sudo: yes
+  command: mkdir {{ jenkins_home }}/{{ ssh_dir }}
+  when: jenkins_dir_list is defined and jenkins_dir_list.stdout.find('{{ ssh_dir }}') == -1
+  register: jenkins_rsa_key_dir_created
+
+- name: Output jenkins ssh directory
+  sudo: yes
+  command: ls -la {{ jenkins_home }}/{{ ssh_dir }}
+  when: jenkins_rsa_key_dir_created is defined
+  register: jenkins_ssh_dir_list
+
+- name: Results - output jenkins ssh directory
+  debug: var=jenkins_ssh_dir_list.stdout_lines
+  when: jenkins_ssh_dir_list is defined
+
+- name: Copy rsa key to jenkins ssh directory
+  sudo: yes
+  command: cp /home/{{ user_name  | default('vagrant') }}/{{ ssh_dir }}/{{ rsa_key_file }} {{ jenkins_home }}/{{ ssh_dir }}
+  when: jenkins_ssh_dir_list.stdout.find('{{ rsa_key_file }}') == -1 and rsa_keygen_results is defined
+  register: jenkins_rsa_key_copied
+
+- name: Output updated jenkins ssh directory
+  sudo: yes
+  command: ls -la {{ jenkins_home }}/{{ ssh_dir }}
+  when: jenkins_rsa_key_dir_created is defined
+  register: jenkins_ssh_dir_list_updated
+
+- name: Results - output updated jenkins ssh directory
+  debug: var=jenkins_ssh_dir_list_updated.stdout_lines
+  when: jenkins_ssh_dir_list_updated is defined
+
+- name: Update permissions for rsa_key located in jenkins ssh directory
+  sudo: yes
+  command: chmod 400 {{ jenkins_home }}/{{ ssh_dir }}/{{ rsa_key_file }}
+  when: jenkins_ssh_dir_list_updated.stdout.find('{{ rsa_key_file }}') != -1
+  register: jenkins_rsa_key_chmod
+
+- name: Change owner and group of rsa_key located in jenkins ssh directory
+  sudo: yes
+  command: chown jenkins:jenkins {{ jenkins_home }}/{{ ssh_dir }}/{{ rsa_key_file }}
+  when: jenkins_ssh_dir_list_updated.stdout.find('{{ rsa_key_file }}') != -1
+  register: jenkins_key_chown
+
+- name: Copy publish over ssh config XML's to jenkins home
+  sudo: yes
+  copy: src={{ item }} dest={{ jenkins_home }} owner=jenkins mode=600
+  with_fileglob:
+        - "{{ local_files_dir_four_levels }}/jenkins/config/publish-over-ssh/{{ plugin_config_files.publish_over_ssh }}"
+  when: jenkins_dir_list.stdout.find('{{ plugin_config_files.publish_over_ssh }}') == -1 and plugin_config_files is defined and plugin_config_files.publish_over_ssh is defined
+  register: publish_over_SSH_configs_copied
+
+- name: Output updated jenkins directory
+  sudo: yes
+  command: ls -la {{ jenkins_home }}
+  register: jenkins_dir_list_updated
+
+- name: Results - output updated jenkins directory
+  debug: var=jenkins_dir_list_updated.stdout_lines
+  when: jenkins_dir_list_updated is defined
+
+- name: Set keyPath for publish over ssh config with rsa key file location
+  sudo: yes
+  replace: dest={{ jenkins_home }}/{{ plugin_config_files.publish_over_ssh }} regexp='{{ plugin_config_patterns.rsa_key_file }}' replace={{ jenkins_home }}/{{ ssh_dir }}/{{ rsa_key_file }}
+  when: jenkins_dir_list_updated.stdout.find('{{ plugin_config_files.publish_over_ssh }}') != -1 and plugin_config_patterns is defined and plugin_config_patterns.rsa_key_file is defined
+  register: publish_over_SSH_configs_rsa_key_update
+
+- name: Set remoteRootDir for publish over ssh config with tomcat web apps folder
+  sudo: yes
+  replace: dest={{ jenkins_home }}/{{ plugin_config_files.publish_over_ssh }} regexp='{{ plugin_config_patterns.tomcat_web_apps }}' replace={{ tomcat.web_apps_folder }}
+  when: jenkins_dir_list_updated.stdout.find('{{ plugin_config_files.publish_over_ssh }}') != -1 and tomcat.web_apps_folder is defined and plugin_config_patterns.tomcat_web_apps is defined
+  register: publish_over_SSH_configs_remote_root_dir_update
